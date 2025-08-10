@@ -1,0 +1,17 @@
+# Basic PDF processing
+pdfplumber==0.10.3
+PyPDF2==3.0.1
+
+# Enhanced image extraction and OCR
+PyMuPDF==1.23.14
+pytesseract==0.3.10
+Pillow==10.1.0
+opencv-python==4.8.1.78
+numpy==1.24.4
+
+# Advanced table extraction
+camelot-py[cv]==0.10.1
+tabula-py==2.8.2
+
+# Additional utilities
+pandas==2.1.4

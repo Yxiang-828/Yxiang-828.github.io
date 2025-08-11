@@ -15,13 +15,16 @@ Prof. Massimo Alioto, Dr. Chua Dingjuan, Dr. Christopher Moy, Dr. Goh Shu Ting, 
 
 ## Semester Schedule 
 (slight changes may be possible, see announcements)
-![wk1-recess_week](imgs/a1.png)
-![wk8-13](imgs/a2.png)
+
+<img src="imgs/a1.png" alt="wk1-recess_week" width="400">
+<img src="imgs/a2.png" alt="wk8-13" width="400">
 
 
 ## Course_assessment
-![cat](imgs/a3.png)
+
+<img src="imgs/a3.png" alt="cat" width="500">
 
 
 ## Lab/Project Guidelines
-![kitty](imgs/a4.png)
+
+<img src="imgs/a4.png" alt="kitty" width="500">

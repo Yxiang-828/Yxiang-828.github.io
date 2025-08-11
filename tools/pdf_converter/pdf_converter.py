@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-PDF to Text Converter
-Converts PDF files to clean text files for easy reading and analysis.
+PDF to Markdown Converter
+Converts PDF files to clean markdown files with table extraction and image analysis.
 Supports both single files and batch processing.
 """
 
@@ -25,19 +25,58 @@ class PDFConverter:
         self.use_pdfplumber = use_pdfplumber
     
     def extract_text_pdfplumber(self, pdf_path: str) -> str:
-        """Extract text using pdfplumber (better for tables and complex layouts)."""
-        text = ""
+        """Extract text using pdfplumber with markdown formatting and table extraction."""
+        markdown_content = ""
         try:
             with pdfplumber.open(pdf_path) as pdf:
                 for page_num, page in enumerate(pdf.pages, 1):
+                    markdown_content += f"\n## Page {page_num}\n\n"
+                    
+                    # Extract tables first
+                    tables = page.extract_tables()
+                    if tables:
+                        for i, table in enumerate(tables, 1):
+                            markdown_content += f"### Table {i}\n\n"
+                            if table:
+                                # Convert table to markdown format
+                                for row_idx, row in enumerate(table):
+                                    if row:  # Skip empty rows
+                                        row_text = " | ".join(str(cell) if cell else "" for cell in row)
+                                        markdown_content += f"| {row_text} |\n"
+                                        if row_idx == 0:  # Add header separator
+                                            separator = " | ".join("---" for _ in row)
+                                            markdown_content += f"| {separator} |\n"
+                                markdown_content += "\n"
+                    
+                    # Extract images and visual elements
+                    images = page.images
+                    if images:
+                        markdown_content += f"### Visual Elements on Page {page_num}\n\n"
+                        for i, img in enumerate(images, 1):
+                            x0, y0, x1, y1 = img['x0'], img['y0'], img['x1'], img['y1']
+                            width = x1 - x0
+                            height = y1 - y0
+                            markdown_content += f"- **Image {i}**: Position ({x0:.1f}, {y0:.1f}), Size: {width:.1f} x {height:.1f}\n"
+                        markdown_content += "\n"
+                    
+                    # Extract regular text
                     page_text = page.extract_text()
                     if page_text:
-                        text += f"\n--- Page {page_num} ---\n"
-                        text += page_text + "\n"
+                        # Clean up text and format for markdown
+                        lines = page_text.split('\n')
+                        for line in lines:
+                            line = line.strip()
+                            if line:
+                                # Simple heuristic for headers (lines in ALL CAPS or short lines)
+                                if len(line) < 60 and (line.isupper() or line.count(' ') < 3):
+                                    markdown_content += f"### {line}\n\n"
+                                else:
+                                    markdown_content += f"{line}\n\n"
+                    
         except Exception as e:
             print(f"Error with pdfplumber: {e}")
             return ""
-        return text
+        return markdown_content
     
     def extract_text_pypdf2(self, pdf_path: str) -> str:
         """Extract text using PyPDF2 (faster, simpler extraction)."""
@@ -48,8 +87,8 @@ class PDFConverter:
                 for page_num, page in enumerate(pdf_reader.pages, 1):
                     page_text = page.extract_text()
                     if page_text:
-                        text += f"\n--- Page {page_num} ---\n"
-                        text += page_text + "\n"
+                        text += f"\n## Page {page_num}\n\n"
+                        text += page_text + "\n\n"
         except Exception as e:
             print(f"Error with PyPDF2: {e}")
             return ""
@@ -57,173 +96,148 @@ class PDFConverter:
     
     def convert_pdf_to_text(self, pdf_path: str, output_path: Optional[str] = None) -> str:
         """
-        Convert a single PDF to text.
+        Convert PDF to markdown format.
         
         Args:
             pdf_path: Path to the PDF file
-            output_path: Optional path for output text file. If None, creates .txt file next to PDF
+            output_path: Optional path for output markdown file. If None, creates .md file next to PDF
             
         Returns:
-            Path to the created text file
+            Path to the created markdown file
         """
         pdf_file = Path(pdf_path)
-        
         if not pdf_file.exists():
-            raise FileNotFoundError(f"PDF file not found: {pdf_file}")
+            raise FileNotFoundError(f"PDF file not found: {pdf_path}")
         
-        # Determine output path
+        # Determine output file path
         if output_path is None:
-            output_file = pdf_file.with_suffix('.txt')
+            output_file = pdf_file.with_stem(pdf_file.stem + '_conv').with_suffix('.md')
         else:
             output_file = Path(output_path)
         
         print(f"Converting: {pdf_file.name}")
         
-        # Extract text
+        # Extract text using the preferred method
         if self.use_pdfplumber:
-            text = self.extract_text_pdfplumber(str(pdf_file))
+            extracted_text = self.extract_text_pdfplumber(str(pdf_file))
+            if not extracted_text:  # Fallback to PyPDF2 if pdfplumber fails
+                print("pdfplumber failed, trying PyPDF2...")
+                extracted_text = self.extract_text_pypdf2(str(pdf_file))
         else:
-            text = self.extract_text_pypdf2(str(pdf_file))
+            extracted_text = self.extract_text_pypdf2(str(pdf_file))
         
-        if not text.strip():
-            print(f"Warning: No text extracted from {pdf_file.name}")
-            text = f"No readable text found in {pdf_file.name}\n"
+        if not extracted_text:
+            raise Exception("Could not extract text from PDF")
         
-        # Clean up text
-        text = self.clean_text(text)
+        # Clean up the text
+        cleaned_text = self._clean_text(extracted_text)
         
-        # Add header with file info
-        header = f"PDF Source: {pdf_file.name}\n"
-        header += f"Converted on: {self.get_timestamp()}\n"
-        header += f"Method: {'pdfplumber' if self.use_pdfplumber else 'PyPDF2'}\n"
-        header += "="*60 + "\n\n"
-        
-        final_text = header + text
-        
-        # Write to file
+        # Write to output file
         try:
-            with open(str(output_file), 'w', encoding='utf-8') as f:
-                f.write(final_text)
-            print(f"✓ Saved to: {output_file}")
+            with open(output_file, 'w', encoding='utf-8') as f:
+                f.write(cleaned_text)
+            print(f"✓ Converted successfully: {output_file}")
             return str(output_file)
         except Exception as e:
-            print(f"Error writing file: {e}")
-            raise
+            raise Exception(f"Error writing output file: {e}")
     
-    def clean_text(self, text: str) -> str:
-        """Clean up extracted text."""
+    def _clean_text(self, text: str) -> str:
+        """Clean and format the extracted text."""
         # Remove excessive whitespace
         lines = text.split('\n')
         cleaned_lines = []
         
         for line in lines:
             line = line.strip()
-            if line:  # Skip empty lines
+            if line:  # Only keep non-empty lines
                 cleaned_lines.append(line)
+            elif cleaned_lines and cleaned_lines[-1]:  # Add single empty line between paragraphs
+                cleaned_lines.append('')
         
-        # Join with single newlines, but preserve page breaks
-        result = ""
-        for line in cleaned_lines:
-            if line.startswith("--- Page"):
-                result += "\n\n" + line + "\n"
-            else:
-                result += line + "\n"
-        
-        return result
+        return '\n'.join(cleaned_lines)
     
-    def get_timestamp(self) -> str:
-        """Get current timestamp."""
-        from datetime import datetime
-        return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    
-    def batch_convert(self, input_folder: str, output_folder: Optional[str] = None):
+    def convert_folder(self, folder_path: str, output_folder: Optional[str] = None) -> list:
         """
         Convert all PDF files in a folder.
         
         Args:
-            input_folder: Folder containing PDF files
-            output_folder: Optional output folder. If None, creates txt files next to PDFs
+            folder_path: Path to folder containing PDF files
+            output_folder: Optional output folder. If None, creates text files next to PDFs
+            
+        Returns:
+            List of paths to created markdown files
         """
-        input_path = Path(input_folder)
+        folder = Path(folder_path)
+        if not folder.exists():
+            raise FileNotFoundError(f"Folder not found: {folder_path}")
         
-        if not input_path.exists():
-            raise FileNotFoundError(f"Input folder not found: {input_folder}")
-        
-        pdf_files = list(input_path.glob("*.pdf"))
-        
+        pdf_files = list(folder.glob("*.pdf"))
         if not pdf_files:
-            print(f"No PDF files found in {input_folder}")
-            return
+            print("No PDF files found in the folder.")
+            return []
         
-        print(f"Found {len(pdf_files)} PDF files")
-        
+        # Create output directory if specified
         if output_folder:
             output_path = Path(output_folder)
             output_path.mkdir(exist_ok=True)
         
+        converted_files = []
         for pdf_file in pdf_files:
             try:
                 if output_folder:
-                    output_file = Path(output_folder) / f"{pdf_file.stem}.txt"
+                    output_file = Path(output_folder) / f"{pdf_file.stem}_conv.md"
+                    result = self.convert_pdf_to_text(str(pdf_file), str(output_file))
                 else:
-                    output_file = None
-                
-                self.convert_pdf_to_text(str(pdf_file), str(output_file) if output_file else None)
-                
+                    result = self.convert_pdf_to_text(str(pdf_file))
+                converted_files.append(result)
             except Exception as e:
-                print(f"Failed to convert {pdf_file.name}: {e}")
+                print(f"✗ Error converting {pdf_file.name}: {e}")
         
-        print(f"\n✓ Batch conversion complete!")
+        print(f"\nConverted {len(converted_files)} out of {len(pdf_files)} files.")
+        return converted_files
 
 def main():
-    parser = argparse.ArgumentParser(description="Convert PDF files to text")
+    parser = argparse.ArgumentParser(description="Convert PDF files to markdown format")
     parser.add_argument("input", help="PDF file or folder path")
     parser.add_argument("-o", "--output", help="Output file or folder path")
-    parser.add_argument("-b", "--batch", action="store_true", help="Batch convert all PDFs in folder")
-    parser.add_argument("--method", choices=['pdfplumber', 'pypdf2'], default='pdfplumber',
-                       help="Extraction method (default: pdfplumber)")
+    parser.add_argument("-b", "--batch", action="store_true", 
+                       help="Batch mode: treat input as folder")
+    parser.add_argument("--pypdf2", action="store_true", 
+                       help="Use PyPDF2 instead of pdfplumber (faster but simpler)")
     
     args = parser.parse_args()
     
-    # Initialize converter
-    use_pdfplumber = args.method == 'pdfplumber'
-    converter = PDFConverter(use_pdfplumber=use_pdfplumber)
+    # Create converter instance
+    converter = PDFConverter(use_pdfplumber=not args.pypdf2)
     
     try:
-        if args.batch:
-            converter.batch_convert(args.input, args.output)
+        if args.batch or Path(args.input).is_dir():
+            # Batch conversion
+            converter.convert_folder(args.input, args.output)
         else:
+            # Single file conversion
             converter.convert_pdf_to_text(args.input, args.output)
-            
     except Exception as e:
         print(f"Error: {e}")
         sys.exit(1)
 
+def show_help():
+    """Display help information."""
+    print("PDF to Markdown Converter")
+    print("=" * 50)
+    print("\nUsage:")
+    print("  python pdf_converter.py <pdf_file>")
+    print("  python pdf_converter.py <pdf_file> -o output.md")
+    print("  python pdf_converter.py <folder> -b")
+    print("  python pdf_converter.py <folder> -b -o output_folder")
+    print("\nExamples:")
+    print("  python pdf_converter.py document.pdf")
+    print("  python pdf_converter.py document.pdf -o converted.md")
+    print("  python pdf_converter.py ./pdfs/ -b")
+    print("  python pdf_converter.py ./pdfs/ -b -o ./converted/")
+
 if __name__ == "__main__":
-    # If no command line arguments, provide interactive mode
     if len(sys.argv) == 1:
-        print("=== PDF to Text Converter ===")
-        print("Usage examples:")
-        print("  python pdf_converter.py file.pdf")
-        print("  python pdf_converter.py file.pdf -o output.txt")
-        print("  python pdf_converter.py folder/ -b")
-        print("  python pdf_converter.py folder/ -b -o output_folder/")
-        print()
-        
-        # Interactive mode
-        pdf_path = input("Enter PDF file path (or drag and drop): ").strip().strip('"')
-        
-        if pdf_path and Path(pdf_path).exists():
-            converter = PDFConverter(use_pdfplumber=True)
-            try:
-                output_file = converter.convert_pdf_to_text(pdf_path)
-                print(f"\n✓ Conversion complete! Text saved to: {output_file}")
-                input("\nPress Enter to exit...")
-            except Exception as e:
-                print(f"Error: {e}")
-                input("\nPress Enter to exit...")
-        else:
-            print("Invalid file path!")
-            input("\nPress Enter to exit...")
+        show_help()
     else:
         main()

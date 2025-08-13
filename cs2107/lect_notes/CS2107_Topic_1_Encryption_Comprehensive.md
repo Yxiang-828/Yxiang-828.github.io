@@ -22,6 +22,14 @@
 > 
 > **Correctness Property**: ∀x, k: D_k(E_k(x)) = x
 
+> **Definition 1.1a: Plaintext**
+> 
+> The original, readable message or data that is input to an encryption algorithm.
+
+> **Definition 1.1b: Ciphertext**
+> 
+> The encrypted output produced by applying the encryption algorithm to the plaintext. Ciphertext appears random and unreadable without the decryption key.
+
 > **Definition 1.2: Cryptographic Security**
 > 
 > A cryptographic scheme provides security if an computationally bounded eavesdropper cannot derive useful information about the key k or plaintext x from the ciphertext c.

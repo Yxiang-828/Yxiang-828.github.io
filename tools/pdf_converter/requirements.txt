@@ -1,15 +1,15 @@
-# Core PDF processing (Python 3.13 compatible)
-pdfplumber==0.10.3
-PyPDF2==3.0.1
-
-# Image and data processing (Python 3.13 compatible)
-Pillow>=10.0.0
+# Professional PDF Processing (Python 3.13 compatible)
+pymupdf>=1.24.0
 pandas>=2.3.0
 numpy>=1.26.0
 
-# Optional: Enhanced PDF processing (install separately if needed)
-# PyMuPDF>=1.24.0  # Requires Visual Studio, install manually if needed
-# opencv-python>=4.8.0  # Large dependency, install manually if needed
-# pytesseract>=0.3.10  # Requires Tesseract OCR installation
-# camelot-py[cv]>=0.10.0  # Advanced table extraction, install manually if needed
-# tabula-py>=2.8.0  # Java-based table extraction, install manually if needed
+# Image and data processing
+Pillow>=10.0.0
+
+# OCR support (for extracting text from images in PDFs)
+pytesseract>=0.3.10
+opencv-python>=4.8.0
+
+# Additional utilities
+markdown>=3.5.0
+beautifulsoup4>=4.12.0

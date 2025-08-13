@@ -21,12 +21,35 @@
 - **Examples**: Step-by-step with "Problem/Solution/Key Insights"
 - **Structure**: ## for main, ### for sub, bullets for details
 
+## FILE NAMING CONVENTIONS
+When creating academic notes, use this standardized naming format:
+- **Format**: `[Course]_[Topic]_[Type]_[Version].md`
+- **Course**: Course code (e.g., CS2107, EE2026, ST2334)
+- **Topic**: Main topic/chapter (e.g., Topic_1, Chapter_3, Week_2)
+- **Type**: Content type (e.g., Notes, Summary, Comprehensive, Practice, Solutions, Reference)
+- **Version**: Optional version identifier (e.g., v1, Final, Draft)
+
+**Examples**:
+- `CS2107_Topic_1_Comprehensive_Notes.md` (complete lecture notes with examples)
+- `EE2026_Chapter_2_Summary.md` (condensed chapter summary)
+- `ST2334_Week_3_Practice_Problems.md` (practice problems with solutions)
+- `CS2107_Encryption_Quick_Reference.md` (quick reference guide)
+- `EE2026_Lab_1_Solutions.md` (lab solutions)
+
+**File Organization**:
+- Place in appropriate course subfolder: `[course]/lect_notes/` or `[course]/summaries/`
+- Use consistent capitalization and underscores (no spaces)
+- Keep names descriptive but concise (<50 characters when possible)
+
 ## MANDATORY ELEMENTS CHECKLIST
 - [ ] All terms defined precisely
+- [ ] All abbreviations defined precisely AND written with full form in parentheses on every use
 - [ ] Theorems with conditions & significance
 - [ ] Examples with complete solutions
 - [ ] Connections to other topics explicit
 - [ ] Common mistakes identified
+- [ ] Clear explanations that build understanding step-by-step
+- [ ] Sufficient elaboration with real-world context
 - [ ] Quick reference table/summary
 
 ## SUBJECT-SPECIFIC EMPHASIS

@@ -39,6 +39,49 @@ echo Installing essential packages...
 tools\.venv\Scripts\python.exe -m pip install --upgrade pip
 tools\.venv\Scripts\python.exe -m pip install -r tools\pdf_converter\requirements.txt
 
+REM Install Tesseract OCR for image text extraction
+echo.
+echo Installing Tesseract OCR for advanced text extraction...
+echo Checking if Chocolatey is available...
+choco --version >nul 2>&1
+if errorlevel 1 (
+    echo Chocolatey not found. Skipping Tesseract installation.
+    echo To install Tesseract manually:
+    echo 1. Download from: https://github.com/UB-Mannheim/tesseract/wiki
+    echo 2. Install and add to PATH
+    echo 3. Or install Chocolatey first: https://chocolatey.org/install
+) else (
+    echo Installing Tesseract via Chocolatey...
+    echo NOTE: This requires Administrator privileges.
+    choco install tesseract -y --force
+    if errorlevel 1 (
+        echo WARNING: Tesseract installation failed.
+        echo This is likely because Administrator privileges are required.
+        echo.
+        echo To install Tesseract:
+        echo 1. Open PowerShell as Administrator
+        echo 2. Run: choco install tesseract -y --force
+        echo 3. Restart terminal after installation
+        echo.
+        echo PDF converter will work without OCR features for now.
+        goto :skip_tesseract
+    ) else (
+        echo Tesseract installed successfully!
+        echo.
+        echo IMPORTANT NOTES ABOUT OCR:
+        echo - OCR works best with high-quality text images
+        echo - Mathematical notation and diagrams may have poor OCR quality
+        echo - Low-resolution PDF images will produce garbled text
+        echo - You may need to restart your terminal to access tesseract command
+        echo - Virtual environments may need PATH refresh
+        echo.
+        echo To test OCR: tesseract --version
+        goto :skip_tesseract
+    )
+)
+
+:skip_tesseract
+
 if errorlevel 1 (
     echo WARNING: Some packages failed to install.
     echo The basic PDF converter should still work with core packages.

@@ -42,15 +42,43 @@ When creating academic notes, use this standardized naming format:
 - Keep names descriptive but concise (<50 characters when possible)
 
 ## MANDATORY ELEMENTS CHECKLIST
-- [ ] All terms defined precisely
+- [ ] All terms defined precisely with NO ONE-LINERS - elaborate properly
 - [ ] All abbreviations defined precisely AND written with full form in parentheses on every use
-- [ ] Theorems with conditions & significance
-- [ ] Examples with complete solutions
-- [ ] Connections to other topics explicit
-- [ ] Common mistakes identified
-- [ ] Clear explanations that build understanding step-by-step
-- [ ] Sufficient elaboration with real-world context
-- [ ] Quick reference table/summary
+- [ ] NO meaningless bullet points without explanation - every concept needs detailed explanation
+- [ ] Theorems with conditions & significance AND step-by-step derivations
+- [ ] Examples with complete solutions showing EVERY step - no skipping
+- [ ] Multiple worked examples per concept - not just one token example
+- [ ] Connections to other topics explicit with practical context
+- [ ] Common mistakes identified with WHY they're wrong and HOW to avoid them
+- [ ] Clear explanations that build understanding step-by-step - assume reader knows nothing
+- [ ] Sufficient elaboration with real-world context - not just abstract theory
+- [ ] Comprehensive procedures for problem-solving, not just formulas
+- [ ] Working diagrams and visual aids that actually help understanding
+- [ ] Quick reference table/summary that's genuinely useful for quick lookup
+- [ ] Self-test questions that verify understanding of key concepts
+
+## ENHANCED QUALITY STANDARDS (CRITICAL)
+### Content Depth Requirements:
+- **NO superficial explanations** - every concept needs thorough treatment
+- **Step-by-step procedures** for all problem-solving methods
+- **Multiple examples** showing different scenarios and edge cases
+- **Detailed derivations** showing mathematical reasoning
+- **Physical intuition** - explain WHY things work, not just WHAT they are
+- **Complete coverage** - don't skip any terms or concepts from source material
+
+### Explanation Quality:
+- **Assume zero prior knowledge** - define everything from basics
+- **Build complexity gradually** - start simple, add layers of understanding
+- **Use analogies and real-world connections** to make abstract concepts concrete
+- **Provide multiple perspectives** on difficult concepts
+- **Include common misconceptions** and how to avoid them
+
+### Examples and Practice:
+- **Show complete working** - every step of calculation/reasoning
+- **Multiple difficulty levels** - basic, intermediate, advanced
+- **Different problem types** for each concept
+- **Solutions with explanations** - not just final answers
+- **Key insights highlighted** after each example
 
 ## SUBJECT-SPECIFIC EMPHASIS
 - **Math/Stats**: Proofs, theorem conditions, derivations

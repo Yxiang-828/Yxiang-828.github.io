@@ -1,2 +1,0 @@
-what is a radix:
-it is the base of a number system, which determines the number of unique digits, including zero, that a positional numeral system uses to represent numbers.

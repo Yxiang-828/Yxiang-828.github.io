@@ -1,7 +1,7 @@
 @echo off
-title Professional PDF to Markdown Converter
+title Simple PDF to Markdown Converter
 echo ========================================
-echo   Professional PDF to Markdown Converter
+echo   Simple PDF to Markdown Converter
 echo ========================================
 echo.
 
@@ -12,10 +12,10 @@ if not exist "%pdf_file%" (
     goto end
 )
 echo.
-echo Converting PDF with professional-grade processing...
-echo This may take a moment for large PDFs...
+echo Converting PDF with clean text extraction...
+echo This should be fast and accurate...
 echo.
-tools\.venv\Scripts\python.exe tools\pdf_converter\pdf_converter.py "%pdf_file%"
+py tools\pdf_converter\pdf_converter.py "%pdf_file%"
 echo.
 pause
 

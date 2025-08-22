@@ -217,9 +217,19 @@ Final Answer: -5₁₀
 **iii) 2's Complement:**
 ```
 MSB = 1 → negative number
+
+Method 1 (Traditional):
 Step 1: Invert bits: 00000101₂  
 Step 2: Add 1: 00000101₂ + 1 = 00000110₂ = 6₁₀
 Final Answer: -6₁₀
+
+Method 2 (Scan from Right):
+11111010₂ → Find rightmost 1 (position 1: the "1" in "10")
+Keep rightmost part: "10" 
+Invert left part: 11111010 → 00000110 = 6₁₀
+Final Answer: -6₁₀
+
+Both methods confirm: -6₁₀
 ```
 
 **🎯 Key Learning**: Same bit pattern = different values in different systems!
@@ -385,22 +395,19 @@ TO 2'S COMPLEMENT (negative numbers):
 2. Invert all bits  
 3. Add 1
 
-FROM 2'S COMPLEMENT (MSB = 1) - Multiple Methods:
-
-🚀 METHOD 1: Direct Weight Calculation (FASTEST!)
-For negative number: Value = -(MSB weight) + (other bits)
-Example: 11111010₂ = -128 + 64+32+16+8+2 = -6
-
-⚡ METHOD 2: Scan from Right (FAST for hand calculation)
-Find rightmost 1, keep it and everything to the right
-Invert everything to the left
-Example: 11111010₂ → rightmost 1 at position 1
-Keep: 10, Invert left part: 00000010₂ = 2, so original = -6
-
-🔄 METHOD 3: Traditional (Invert + Add 1)
+FROM 2'S COMPLEMENT (MSB = 1):
+Method 1: Traditional (Most Reliable)
 1. Invert all bits
 2. Add 1  
 3. Result is magnitude of negative number
+
+Method 2: Scan from Right (Alternative)
+1. Find rightmost 1 bit
+2. Keep that bit and everything to the right unchanged  
+3. Invert everything to the left of it
+4. Result is magnitude of negative number
+
+Both methods give the same result - choose what you're comfortable with!
 ```
 
 ### **3. Sign Extension Rule**
@@ -443,10 +450,13 @@ In 2's complement addition:
 ## 📝 **Practice Strategy**
 
 1. **Master 2's complement first** - it's used everywhere
-2. **Practice sign extension** - crucial for computer arithmetic  
-3. **Always verify conversions** by working backwards
-4. **Check overflow conditions** in arithmetic operations
-5. **Understand why 2's complement dominates** modern computing
+2. **Practice the two conversion methods** for 2's complement:
+   - **Traditional invert+add** (most reliable)
+   - **Scan from right** (alternative technique)  
+3. **Practice sign extension** - crucial for computer architecture  
+4. **Always verify conversions** by working backwards or using different methods
+5. **Check overflow conditions** in arithmetic operations
+6. **Understand why 2's complement dominates** modern computing
 
 ---
 

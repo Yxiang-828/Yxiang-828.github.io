@@ -89,11 +89,11 @@ Step 2: Add 1  → 11111011₂ = -5 in 2's complement
 Given the same 8-bit pattern, interpret in different systems:
 
 | **Bit Pattern** | **Signed Magnitude** | **1's Complement** | **2's Complement** |
-|-----------------|---------------------|-------------------|-------------------|
-| 10000001₂       | -1                  | -126              | -127              |
-| 11111110₂       | -126                | -1                | -2                |
-| 11111111₂       | -127                | -0                | -1                |
-| 10000000₂       | -0                  | -127              | -128              |
+| --------------- | -------------------- | ------------------ | ------------------ |
+| 10000001₂       | -1                   | -126               | -127               |
+| 11111110₂       | -126                 | -1                 | -2                 |
+| 11111111₂       | -127                 | -0                 | -1                 |
+| 10000000₂       | -0                   | -127               | -128               |
 
 #### **Method 2: Convert Between Systems**
 **From 2's Complement to Signed Magnitude:**
@@ -199,12 +199,12 @@ Reading remainders bottom to top: 11111010₂
 - Result: **-6₁₀**
 
 **Summary Table:**
-| **System** | **Interpretation** | **Decimal Value** |
-|------------|-------------------|-------------------|
-| Unsigned   | 11111010₂         | +250              |
-| Signed Magnitude | Sign=1, Mag=122 | -122              |
-| 1's Complement | Invert: 00000101 | -5                |
-| 2's Complement | Invert+1: 00000110 | -6                |
+| **System**       | **Interpretation** | **Decimal Value** |
+| ---------------- | ------------------ | ----------------- |
+| Unsigned         | 11111010₂          | +250              |
+| Signed Magnitude | Sign=1, Mag=122    | -122              |
+| 1's Complement   | Invert: 00000101   | -5                |
+| 2's Complement   | Invert+1: 00000110 | -6                |
 
 ### Example 4.2: 2's Complement Addition
 

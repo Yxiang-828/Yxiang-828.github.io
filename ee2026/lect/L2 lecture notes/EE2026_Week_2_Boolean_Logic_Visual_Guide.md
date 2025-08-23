@@ -145,6 +145,8 @@ flowchart LR
     
     style G fill:#f3e5f5,stroke:#7b1fa2,color:#000
     style Y fill:#e8f5e8,stroke:#2e7d32,color:#000
+    style A fill:#fff3e0,stroke:#f57c00,color:#000
+    style B fill:#fff3e0,stroke:#f57c00,color:#000
 ```
 
 **Truth Table & Verilog:**
@@ -172,6 +174,8 @@ flowchart LR
     
     style G fill:#fce4ec,stroke:#c2185b,color:#000
     style Y fill:#e8f5e8,stroke:#2e7d32,color:#000
+    style A fill:#fff3e0,stroke:#f57c00,color:#000
+    style B fill:#fff3e0,stroke:#f57c00,color:#000
 ```
 
 **Key Properties:**
@@ -301,6 +305,16 @@ flowchart TD
     
     style F fill:#c8e6c9,color:#000
     style or1 fill:#fff3e0,color:#000
+    style and1 fill:#e3f2fd,color:#000
+    style and2 fill:#e3f2fd,color:#000
+    style and3 fill:#e3f2fd,color:#000
+    style and4 fill:#e3f2fd,color:#000
+    style inv1 fill:#ffebee,color:#000
+    style inv2 fill:#ffebee,color:#000
+    style w fill:#fff3e0,color:#000
+    style x fill:#fff3e0,color:#000
+    style y fill:#fff3e0,color:#000
+    style z fill:#fff3e0,color:#000
 ```
 
 ### 7.2 POS Implementation
@@ -507,8 +521,12 @@ graph TD
     Step3[Apply Identity: F = A + A'·B] --> Step4
     Step4[Apply Absorption: F = A + B] --> Final[Final Answer: F = A + B]
     
-    style Start fill:#ffebee
-    style Final fill:#c8e6c9
+    style Start fill:#ffebee,color:#000
+    style Final fill:#c8e6c9,color:#000
+    style Step1 fill:#e3f2fd,color:#000
+    style Step2 fill:#e3f2fd,color:#000
+    style Step3 fill:#e3f2fd,color:#000
+    style Step4 fill:#e3f2fd,color:#000
 ```
 
 **Circuit Representation:**
@@ -518,8 +536,10 @@ graph LR
     B[B] --> OR1
     OR1 --> F[F = A + B]
     
-    style OR1 fill:#fff3e0
-    style F fill:#c8e6c9
+    style OR1 fill:#fff3e0,color:#000
+    style F fill:#c8e6c9,color:#000
+    style A fill:#fff3e0,color:#000
+    style B fill:#fff3e0,color:#000
 ```
 
 ### Example 2: Implement F = (A + B)·(A' + C) using NAND gates only
@@ -536,10 +556,14 @@ graph TD
     OR2 --> AND1
     AND1 --> F[F]
     
-    style OR1 fill:#fff3e0
-    style OR2 fill:#fff3e0
-    style AND1 fill:#e1f5fe
-    style F fill:#c8e6c9
+    style OR1 fill:#fff3e0,color:#000
+    style OR2 fill:#fff3e0,color:#000
+    style AND1 fill:#e1f5fe,color:#000
+    style F fill:#c8e6c9,color:#000
+    style NOT1 fill:#ffebee,color:#000
+    style A fill:#fff3e0,color:#000
+    style B fill:#fff3e0,color:#000
+    style C fill:#fff3e0,color:#000
 ```
 
 **NAND-only Implementation:**
@@ -567,7 +591,17 @@ graph TD
     NAND6 --> NAND7
     NAND7 --> F[F]
     
-    style F fill:#c8e6c9
+    style F fill:#c8e6c9,color:#000
+    style NAND1 fill:#f3e5f5,color:#000
+    style NAND2 fill:#f3e5f5,color:#000
+    style NAND3 fill:#f3e5f5,color:#000
+    style NAND4 fill:#f3e5f5,color:#000
+    style NAND5 fill:#f3e5f5,color:#000
+    style NAND6 fill:#f3e5f5,color:#000
+    style NAND7 fill:#f3e5f5,color:#000
+    style A fill:#fff3e0,color:#000
+    style B fill:#fff3e0,color:#000
+    style C fill:#fff3e0,color:#000
 ```
 
 ## 6. Truth Table to Logic Circuit Conversion
@@ -608,11 +642,14 @@ graph TD
     
     OR1 --> F[F = Majority Vote]
     
-    style AND1 fill:#e1f5fe
-    style AND2 fill:#e1f5fe
-    style AND3 fill:#e1f5fe
-    style OR1 fill:#fff3e0
-    style F fill:#c8e6c9
+    style AND1 fill:#e1f5fe,color:#000
+    style AND2 fill:#e1f5fe,color:#000
+    style AND3 fill:#e1f5fe,color:#000
+    style OR1 fill:#fff3e0,color:#000
+    style F fill:#c8e6c9,color:#000
+    style A fill:#fff3e0,color:#000
+    style B fill:#fff3e0,color:#000
+    style C fill:#fff3e0,color:#000
 ```
 
 ## 7. Karnaugh Maps (K-Maps) - Visual Simplification
@@ -631,14 +668,14 @@ graph TD
         K30[ABC': 6]
     end
     
-    style K00 fill:#ffebee
-    style K01 fill:#ffebee
-    style K11 fill:#ffebee
-    style K10 fill:#ffebee
-    style K20 fill:#ffebee
-    style K21 fill:#ffebee
-    style K31 fill:#ffebee
-    style K30 fill:#ffebee
+    style K00 fill:#ffebee,color:#000
+    style K01 fill:#ffebee,color:#000
+    style K11 fill:#ffebee,color:#000
+    style K10 fill:#ffebee,color:#000
+    style K20 fill:#ffebee,color:#000
+    style K21 fill:#ffebee,color:#000
+    style K31 fill:#ffebee,color:#000
+    style K30 fill:#ffebee,color:#000
 ```
 
 ### K-Map Grouping Rules
@@ -671,9 +708,12 @@ graph LR
     OR1 --> AND1
     AND1 --> Vault[Vault Opens]
     
-    style AND1 fill:#e1f5fe
-    style OR1 fill:#fff3e0
-    style Vault fill:#c8e6c9
+    style AND1 fill:#e1f5fe,color:#000
+    style OR1 fill:#fff3e0,color:#000
+    style Vault fill:#c8e6c9,color:#000
+    style Manager fill:#fff3e0,color:#000
+    style Day fill:#fff3e0,color:#000
+    style Emergency fill:#fff3e0,color:#000
 ```
 
 **Boolean Expression:** Vault = Manager · (Day + Emergency)
@@ -690,10 +730,13 @@ graph TD
     OR1 --> AND1
     AND1 --> Green[Green Light]
     
-    style NOT1 fill:#ffebee
-    style AND1 fill:#e1f5fe
-    style OR1 fill:#fff3e0
-    style Green fill:#c8e6c9
+    style NOT1 fill:#ffebee,color:#000
+    style AND1 fill:#e1f5fe,color:#000
+    style OR1 fill:#fff3e0,color:#000
+    style Green fill:#c8e6c9,color:#000
+    style Pedestrian fill:#fff3e0,color:#000
+    style Timer fill:#fff3e0,color:#000
+    style Manual fill:#fff3e0,color:#000
 ```
 
 ## 9. Common Pitfalls & How to Avoid Them
@@ -704,10 +747,10 @@ graph TD
     Wrong[❌ (A+B)' = A'+B'] --> Correct[✅ (A+B)' = A'·B']
     Wrong2[❌ (A·B)' = A'·B'] --> Correct2[✅ (A·B)' = A'+B']
     
-    style Wrong fill:#ffcdd2
-    style Wrong2 fill:#ffcdd2
-    style Correct fill:#c8e6c9
-    style Correct2 fill:#c8e6c9
+    style Wrong fill:#ffcdd2,color:#000
+    style Wrong2 fill:#ffcdd2,color:#000
+    style Correct fill:#c8e6c9,color:#000
+    style Correct2 fill:#c8e6c9,color:#000
 ```
 
 **Memory Aid:** "Break the line, change the sign"
@@ -721,9 +764,9 @@ graph LR
         NOT_Good[NOT: Triangle with bubble]
     end
     
-    style AND_Good fill:#c8e6c9
-    style OR_Good fill:#c8e6c9
-    style NOT_Good fill:#c8e6c9
+    style AND_Good fill:#c8e6c9,color:#000
+    style OR_Good fill:#c8e6c9,color:#000
+    style NOT_Good fill:#c8e6c9,color:#000
 ```
 
 ## 10. Practice Problems with Visual Solutions
@@ -736,8 +779,11 @@ graph TD
     Solution2 --> Solution3[F = A + A'B]
     Solution3 --> Final[F = A + B by Absorption Law]
     
-    style Problem fill:#fff3e0
-    style Final fill:#c8e6c9
+    style Problem fill:#fff3e0,color:#000
+    style Final fill:#c8e6c9,color:#000
+    style Solution1 fill:#e3f2fd,color:#000
+    style Solution2 fill:#e3f2fd,color:#000
+    style Solution3 fill:#e3f2fd,color:#000
 ```
 
 ### Problem 2: Convert to NAND-only
@@ -759,7 +805,13 @@ graph TD
     NAND2 --> NAND3
     NAND3 --> F[F]
     
-    style F fill:#c8e6c9
+    style F fill:#c8e6c9,color:#000
+    style NAND1 fill:#f3e5f5,color:#000
+    style NAND2 fill:#f3e5f5,color:#000
+    style NAND3 fill:#f3e5f5,color:#000
+    style A fill:#fff3e0,color:#000
+    style B fill:#fff3e0,color:#000
+    style C fill:#fff3e0,color:#000
 ```
 
 ## 11. Quick Reference Summary

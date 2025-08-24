@@ -69,7 +69,7 @@
 
 **Binary-Octal Mapping**:
 - 000₂ = 0₈
-- 001₂ = 1₈  
+- 001₂ = 1₈
 - 010₂ = 2₈
 - 011₂ = 3₈
 - 100₂ = 4₈
@@ -87,9 +87,60 @@
 
 **Hex-Binary Mapping**:
 - 0₁₆ = 0000₂, 1₁₆ = 0001₂, 2₁₆ = 0010₂, 3₁₆ = 0011₂
-- 4₁₆ = 0100₂, 5₁₆ = 0101₂, 6₁₆ = 0110₂, 7₁₆ = 0111₂  
+- 4₁₆ = 0100₂, 5₁₆ = 0101₂, 6₁₆ = 0110₂, 7₁₆ = 0111₂
 - 8₁₆ = 1000₂, 9₁₆ = 1001₂, A₁₆ = 1010₂, B₁₆ = 1011₂
 - C₁₆ = 1100₂, D₁₆ = 1101₂, E₁₆ = 1110₂, F₁₆ = 1111₂
+
+#### **Hexadecimal to Decimal Conversion**
+**Method**: Direct positional notation using powers of 16
+
+**Concept**: Each position in a hexadecimal number represents a power of 16, starting from 16⁰ on the right.
+
+**Procedure**:
+1. Identify each hex digit's position (rightmost is position 0)
+2. Convert hex digits A-F to decimal values: A=10, B=11, C=12, D=13, E=14, F=15
+3. Multiply each digit by 16 raised to its position power
+4. Sum all results to get the decimal equivalent
+
+**Powers of 16 Reference**:
+| Position | Power | Decimal Value |
+| -------- | ----- | ------------- |
+| 0        | 16⁰   | 1             |
+| 1        | 16¹   | 16            |
+| 2        | 16²   | 256           |
+| 3        | 16³   | 4,096         |
+| 4        | 16⁴   | 65,536        |
+
+**Example 1**: Convert 2A3₁₆ to decimal
+```
+Position:  2   1   0
+Hex:      2   A   3
+Powers:   16² 16¹ 16⁰
+Values:   256  16   1
+
+Calculation:
+2 × 256 = 512
+A(10) × 16 = 160
+3 × 1 = 3
+Total: 512 + 160 + 3 = 675₁₀
+```
+
+**Example 2**: Convert 1F4B₁₆ to decimal
+```
+Position:  3    2   1   0
+Hex:      1    F   4   B
+Powers:   16³  16² 16¹ 16⁰
+Values:   4096 256  16   1
+
+Calculation:
+1 × 4096 = 4096
+F(15) × 256 = 3840
+4 × 16 = 64
+B(11) × 1 = 11
+Total: 4096 + 3840 + 64 + 11 = 8011₁₀
+```
+
+**Key Advantage**: This direct method is more efficient than converting hex→binary→decimal, as it eliminates the intermediate binary step and directly applies the positional value concept.
 
 ### Verilog Bit Manipulation Fundamentals
 
@@ -114,7 +165,7 @@ data[31:24] // MSB byte access
 - **Used by**: PowerPC, SPARC, some ARM configurations
 - **Advantage**: Natural for humans reading hex dumps
 
-#### **Little Endian Architecture**  
+#### **Little Endian Architecture**
 - **Memory Layout**: LSB stored at lowest address
 - **Example**: 0x12345678 stored as [78][56][34][12] in consecutive bytes
 - **Used by**: x86, x86-64, most ARM configurations
@@ -127,7 +178,7 @@ data[31:24] // MSB byte access
 **Integer Part (166₁₀)**:
 ```
 166 ÷ 2 = 83 remainder 0
-83  ÷ 2 = 41 remainder 1  
+83  ÷ 2 = 41 remainder 1
 41  ÷ 2 = 20 remainder 1
 20  ÷ 2 = 10 remainder 0
 10  ÷ 2 = 5  remainder 0
@@ -140,7 +191,7 @@ data[31:24] // MSB byte access
 **Fractional Part (0.34₁₀)**:
 ```
 0.34 × 2 = 0.68 → 0
-0.68 × 2 = 1.36 → 1  
+0.68 × 2 = 1.36 → 1
 0.36 × 2 = 0.72 → 0
 0.72 × 2 = 1.44 → 1
 0.44 × 2 = 0.88 → 0
@@ -166,7 +217,7 @@ data[31:24] // MSB byte access
 **Fractional Part (0.16₁₀)**:
 ```
 0.16 × 16 = 2.56 → 2
-0.56 × 16 = 8.96 → 8  
+0.56 × 16 = 8.96 → 8
 0.96 × 16 = 15.36 → F (15 in hex)
 0.36 × 16 = 5.76 → 5
 ... (continues)
@@ -180,12 +231,12 @@ data[31:24] // MSB byte access
 **Integer Part**: 101011100₂
 **Grouping in 3s from right**: 101|011|100₂
 - 100₂ = 4₈
-- 011₂ = 3₈  
+- 011₂ = 3₈
 - 101₂ = 5₈
 
 **Result**: 534₈
 
-**Fractional Part**: .000111₂  
+**Fractional Part**: .000111₂
 **Grouping in 3s from left**: .000|111₂
 - 000₂ = 0₈
 - 111₂ = 7₈
@@ -206,13 +257,50 @@ data[31:24] // MSB byte access
 
 **Complete Answer**: A59.FCE₁₆ = 101001011001.111111001110₂
 
-### **Example 5: Radix Identification Problem**
+### **Example 5: Hexadecimal to Decimal (B3A.C8₁₆)**
+
+**Integer Part (B3A₁₆)**:
+```
+Position:  2   1   0
+Hex:      B   3   A
+Powers:   16² 16¹ 16⁰
+Values:   256  16   1
+
+Calculation:
+B(11) × 256 = 2816
+3 × 16 = 48
+A(10) × 1 = 10
+Total: 2816 + 48 + 10 = 2874₁₀
+```
+
+**Fractional Part (.C8₁₆)**:
+```
+Position:  -1   -2
+Hex:      C    8
+Powers:   16⁻¹ 16⁻²
+Values:   1/16 1/256
+
+Calculation:
+C(12) × (1/16) = 12/16 = 0.75
+8 × (1/256) = 8/256 = 0.03125
+Total: 0.75 + 0.03125 = 0.78125₁₀
+```
+
+**Complete Answer**: B3A.C8₁₆ = 2874.78125₁₀
+
+**Verification using alternative method**:
+- Convert to binary first: B3A.C8₁₆ = 101100111010.11001₂
+- Then binary to decimal: 2048+1024+256+64+8+2 + 0.75+0.03125 = 2874.78125₁₀ ✓
+
+**Key Insight**: The direct positional method is more efficient and less error-prone than the two-step hex→binary→decimal conversion process.
+
+### **Example 6: Radix Identification Problem**
 
 **Given**: (62)ₓ - (26)ₓ = (34)ₓ
 
 **Setting up the equation in decimal**:
 - (62)ₓ = 6x¹ + 2x⁰ = 6x + 2
-- (26)ₓ = 2x¹ + 6x⁰ = 2x + 6  
+- (26)ₓ = 2x¹ + 6x⁰ = 2x + 6
 - (34)ₓ = 3x¹ + 4x⁰ = 3x + 4
 
 **Equation**: (6x + 2) - (2x + 6) = 3x + 4
@@ -225,7 +313,7 @@ data[31:24] // MSB byte access
 
 **Verification**: (62)₈ - (26)₈ = 50₁₀ - 22₁₀ = 28₁₀ = (34)₈ ✓
 
-### **Example 6: Verilog Endianness Conversion**
+### **Example 7: Verilog Endianness Conversion**
 
 **Problem**: Convert 32-bit big-endian to little-endian
 **Input**: 32'h78563412 (big-endian)
@@ -242,7 +330,7 @@ module endian_converter (
 assign Y = {X[7:0], X[15:8], X[23:16], X[31:24]};
 
 // Method 2: More explicit byte swapping
-assign Y[31:24] = X[7:0];   // Move LSB to MSB position  
+assign Y[31:24] = X[7:0];   // Move LSB to MSB position
 assign Y[23:16] = X[15:8];  // Move byte 1 to byte 2 position
 assign Y[15:8]  = X[23:16]; // Move byte 2 to byte 1 position
 assign Y[7:0]   = X[31:24]; // Move MSB to LSB position
@@ -253,14 +341,14 @@ endmodule
 **Step-by-step Analysis**:
 1. **Input X = 32'h78563412**
    - X[31:24] = 8'h78 (MSB)
-   - X[23:16] = 8'h56  
+   - X[23:16] = 8'h56
    - X[15:8]  = 8'h34
    - X[7:0]   = 8'h12 (LSB)
 
 2. **Output Y Construction**:
    - Y[31:24] = X[7:0]  = 8'h12
    - Y[23:16] = X[15:8] = 8'h34
-   - Y[15:8]  = X[23:16]= 8'h56  
+   - Y[15:8]  = X[23:16]= 8'h56
    - Y[7:0]   = X[31:24]= 8'h78
 
 3. **Result**: Y = 32'h12345678
@@ -288,7 +376,7 @@ endmodule
 ❌ **Error**: Reading remainders in wrong order during division method
 ✅ **Correct**: Always read remainders from bottom to top (last to first)
 
-❌ **Error**: Grouping binary digits incorrectly for octal conversion  
+❌ **Error**: Grouping binary digits incorrectly for octal conversion
 ✅ **Correct**: Always group from right to left for integer part, left to right for fractional part
 
 ❌ **Error**: Assuming all decimal fractions have exact binary representations
@@ -308,10 +396,12 @@ endmodule
 
 ### **Problem Set A: Number Conversions**
 1. Convert 255.125₁₀ to binary
-2. Convert 1024.5₁₀ to hexadecimal  
+2. Convert 1024.5₁₀ to hexadecimal
 3. Convert 11111111.1₂ to octal
 4. Convert FF.8₁₆ to binary
-5. Find the radix x in: (123)ₓ + (45)ₓ = (170)ₓ
+5. Convert 2A5₁₆ to decimal using direct positional method
+6. Convert 1FC.4₁₆ to decimal using direct positional method
+7. Find the radix x in: (123)ₓ + (45)ₓ = (170)ₓ
 
 ### **Problem Set B: Verilog Implementation**
 1. Write a module to swap the upper and lower 16 bits of a 32-bit signal
@@ -323,9 +413,11 @@ endmodule
 
 **Problem A1**: 255.125₁₀ = 11111111.001₂
 **Problem A2**: 1024.5₁₀ = 400.8₁₆
-**Problem A3**: 11111111.1₂ = 377.4₈  
+**Problem A3**: 11111111.1₂ = 377.4₈
 **Problem A4**: FF.8₁₆ = 11111111.1₂
-**Problem A5**: x = 6 (base 6)
+**Problem A5**: 2A5₁₆ = 2×256 + 10×16 + 5×1 = 512 + 160 + 5 = 677₁₀
+**Problem A6**: 1FC.4₁₆ = 1×256 + 15×16 + 12×1 + 4×(1/16) = 256 + 240 + 12 + 0.25 = 508.25₁₀
+**Problem A7**: x = 6 (base 6)
 
 **Problem B1**:
 ```verilog
@@ -335,13 +427,14 @@ assign out = {in[15:0], in[31:16]};
 ## 8. Quick Reference Summary
 
 ### **Conversion Quick Reference**
-| From | To | Method |
-|------|----|---------| 
-| Decimal | Binary | Successive division by 2 |
-| Decimal | Hex | Successive division by 16 |
-| Binary | Octal | Group by 3 bits |
-| Hex | Binary | Each hex digit → 4 bits |
-| Binary | Decimal | Positional notation (Σ bit × 2ⁱ) |
+| From    | To      | Method                              |
+| ------- | ------- | ----------------------------------- |
+| Decimal | Binary  | Successive division by 2            |
+| Decimal | Hex     | Successive division by 16           |
+| Binary  | Octal   | Group by 3 bits                     |
+| Hex     | Binary  | Each hex digit → 4 bits             |
+| Hex     | Decimal | Positional notation (Σ digit × 16ⁱ) |
+| Binary  | Decimal | Positional notation (Σ bit × 2ⁱ)    |
 
 ### **Verilog Syntax Reference**
 ```verilog
@@ -349,7 +442,7 @@ assign out = {in[15:0], in[31:16]};
 signal[MSB:LSB]     // Range selection
 signal[bit_number]  // Single bit selection
 
-// Concatenation  
+// Concatenation
 {sig1, sig2, sig3}  // Join signals
 
 // Endian conversion (32-bit)

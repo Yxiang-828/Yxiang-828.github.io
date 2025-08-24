@@ -1,0 +1,719 @@
+a0299826e
+1.e
+2.99826
+3.6
+
+================================================================================
+# CONSTRAINT FILE - WHICH LINES TO UNCOMMENT FROM MASTER .XDC
+================================================================================
+
+From your master Basys3.xdc file, you need to uncomment ONLY these lines:
+
+**Switches (SW0 to SW9):**
+```
+set_property -dict { PACKAGE_PIN V17   IOSTANDARD LVCMOS33 } [get_ports {sw[0]}]
+set_property -dict { PACKAGE_PIN V16   IOSTANDARD LVCMOS33 } [get_ports {sw[1]}]
+set_property -dict { PACKAGE_PIN W16   IOSTANDARD LVCMOS33 } [get_ports {sw[2]}]
+set_property -dict { PACKAGE_PIN W17   IOSTANDARD LVCMOS33 } [get_ports {sw[3]}]
+set_property -dict { PACKAGE_PIN W15   IOSTANDARD LVCMOS33 } [get_ports {sw[4]}]
+set_property -dict { PACKAGE_PIN V15   IOSTANDARD LVCMOS33 } [get_ports {sw[5]}]
+set_property -dict { PACKAGE_PIN W14   IOSTANDARD LVCMOS33 } [get_ports {sw[6]}]
+set_property -dict { PACKAGE_PIN W13   IOSTANDARD LVCMOS33 } [get_ports {sw[7]}]
+set_property -dict { PACKAGE_PIN V2    IOSTANDARD LVCMOS33 } [get_ports {sw[8]}]
+set_property -dict { PACKAGE_PIN T3    IOSTANDARD LVCMOS33 } [get_ports {sw[9]}]
+```
+
+**LEDs (LED0 to LED9):**
+```
+set_property -dict { PACKAGE_PIN U16   IOSTANDARD LVCMOS33 } [get_ports {led[0]}]
+set_property -dict { PACKAGE_PIN E19   IOSTANDARD LVCMOS33 } [get_ports {led[1]}]
+set_property -dict { PACKAGE_PIN U19   IOSTANDARD LVCMOS33 } [get_ports {led[2]}]
+set_property -dict { PACKAGE_PIN V19   IOSTANDARD LVCMOS33 } [get_ports {led[3]}]
+set_property -dict { PACKAGE_PIN W18   IOSTANDARD LVCMOS33 } [get_ports {led[4]}]
+set_property -dict { PACKAGE_PIN U15   IOSTANDARD LVCMOS33 } [get_ports {led[5]}]
+set_property -dict { PACKAGE_PIN U14   IOSTANDARD LVCMOS33 } [get_ports {led[6]}]
+set_property -dict { PACKAGE_PIN V14   IOSTANDARD LVCMOS33 } [get_ports {led[7]}]
+set_property -dict { PACKAGE_PIN V13   IOSTANDARD LVCMOS33 } [get_ports {led[8]}]
+set_property -dict { PACKAGE_PIN V3    IOSTANDARD LVCMOS33 } [get_ports {led[9]}]
+```
+
+**7-Segment Display:**
+```
+set_property -dict { PACKAGE_PIN W7   IOSTANDARD LVCMOS33 } [get_ports {seg[0]}]
+set_property -dict { PACKAGE_PIN W6   IOSTANDARD LVCMOS33 } [get_ports {seg[1]}]
+set_property -dict { PACKAGE_PIN U8   IOSTANDARD LVCMOS33 } [get_ports {seg[2]}]
+set_property -dict { PACKAGE_PIN V8   IOSTANDARD LVCMOS33 } [get_ports {seg[3]}]
+set_property -dict { PACKAGE_PIN U5   IOSTANDARD LVCMOS33 } [get_ports {seg[4]}]
+set_property -dict { PACKAGE_PIN V5   IOSTANDARD LVCMOS33 } [get_ports {seg[5]}]
+set_property -dict { PACKAGE_PIN U7   IOSTANDARD LVCMOS33 } [get_ports {seg[6]}]
+
+set_property -dict { PACKAGE_PIN U2   IOSTANDARD LVCMOS33 } [get_ports {an[0]}]
+set_property -dict { PACKAGE_PIN U4   IOSTANDARD LVCMOS33 } [get_ports {an[1]}]
+set_property -dict { PACKAGE_PIN V4   IOSTANDARD LVCMOS33 } [get_ports {an[2]}]
+set_property -dict { PACKAGE_PIN W4   IOSTANDARD LVCMOS33 } [get_ports {an[3]}]
+```
+
+Just remove the # symbol from these lines in your master .xdc file!
+
+================================================================================
+# STEP-BY-STEP BREAKDOWN FOR BEGINNERS
+================================================================================
+
+## Understanding the Hardware Components
+
+**What is a switch?**
+- A switch is like a light switch - it can be ON (1) or OFF (0)
+- SW0 means "switch number 0"
+
+**What is an LED?**
+- An LED lights up when you send it a 1, stays off when you send it a 0
+- LED0 means "LED number 0"
+
+**What is a 7-segment display?**
+- It's like a digital clock display - made of 7 LED bars that can show numbers/letters
+- Each bar is called a "segment" (labeled a, b, c, d, e, f, g)
+
+**What are anodes?**
+- Think of them as ON/OFF switches for each of the 4 displays
+- AN0 controls rightmost display, AN3 controls leftmost display
+
+## Your Personal Assignment Data:
+- Matriculation: a0299826e
+- Password switches: SW2, SW6, SW8, SW9 (from digits 2,6,8,9 in "99826")
+- Display character: 'e' (rightmost alphabet)
+- 1st rightmost digit: 6 → means AN1 and AN2 show 'e' when password correct
+
+================================================================================
+# VERILOG ALGORITHM EXPLANATION (BEGINNER LEVEL)
+================================================================================
+
+## Step 1: Module Declaration (The "Container")
+```verilog
+module lab1 (
+    input [9:0] sw,      // 10 switches coming INTO our circuit
+    output [9:0] led,    // 10 LEDs going OUT of our circuit
+    output [6:0] seg,    // 7 segments going to display
+    output [3:0] an      // 4 anodes controlling which displays are on
+);
+```
+
+**Why [9:0]?**
+- This means "10 bits numbered from 9 down to 0"
+- sw[0] = switch 0, sw[1] = switch 1, ..., sw[9] = switch 9
+- Same for LEDs: led[0] = LED 0, led[1] = LED 1, etc.
+
+## Step 2: SUBTASK A - Direct LED Control (Simple Copying)
+
+```verilog
+assign led[0] = sw[0];  // Copy SW0 state to LED0
+assign led[1] = sw[1];  // Copy SW1 state to LED1
+assign led[2] = sw[2];  // Copy SW2 state to LED2
+// ... continue for all 10
+```
+
+**Algorithm Logic:**
+- This is like saying "LED0, always do whatever SW0 is doing"
+- If SW0 = 1 (ON), then LED0 = 1 (lights up)
+- If SW0 = 0 (OFF), then LED0 = 0 (stays dark)
+- No thinking involved - just direct copying!
+
+## Step 3: Password Detection (The "Brain" of the Circuit)
+
+```verilog
+wire password_correct;
+assign password_correct = sw[2] & sw[6] & sw[8] & sw[9] &     // These MUST be ON
+                         ~sw[0] & ~sw[1] & ~sw[3] & ~sw[4] & ~sw[5] & ~sw[7];  // These MUST be OFF
+```
+
+**Algorithm Logic:**
+- `&` means "AND" - ALL conditions must be true
+- `~` means "NOT" - flip the value (1 becomes 0, 0 becomes 1)
+- Password is correct ONLY when:
+  * SW2=1 AND SW6=1 AND SW8=1 AND SW9=1 (password switches ON)
+  * AND SW0=0 AND SW1=0 AND SW3=0 AND SW4=0 AND SW5=0 AND SW7=0 (others OFF)
+
+**Example Trace:**
+- Correct password: SW2=1, SW6=1, SW8=1, SW9=1, all others=0
+  * Result: 1&1&1&1 & ~0&~0&~0&~0&~0&~0 = 1&1&1&1 & 1&1&1&1&1&1 = 1 (TRUE)
+- Wrong password: SW0=1, SW2=1, SW6=1, SW8=1, SW9=1, others=0
+  * Result: 1&1&1&1 & ~1&~0&~0&~0&~0&~0 = 1&1&1&1 & 0&1&1&1&1&1 = 0 (FALSE)
+
+## Step 4: 7-Segment Display Pattern (Drawing the Letter 'e')
+
+```verilog
+assign seg[0] = 1'b0;    // segment a - ON (top horizontal bar)
+assign seg[1] = 1'b1;    // segment b - OFF (top right vertical)
+assign seg[2] = 1'b1;    // segment c - OFF (bottom right vertical)
+assign seg[3] = 1'b0;    // segment d - ON (bottom horizontal bar)
+assign seg[4] = 1'b0;    // segment e - ON (bottom left vertical)
+assign seg[5] = 1'b0;    // segment f - ON (top left vertical)
+assign seg[6] = 1'b0;    // segment g - ON (middle horizontal bar)
+```
+
+**Visual Explanation:**
+```
+Letter 'e' looks like this:
+  aaa     (seg[0] = 0, ON)
+ f   b    (seg[5] = 0, ON) (seg[1] = 1, OFF)
+  ggg     (seg[6] = 0, ON)
+ e   c    (seg[4] = 0, ON) (seg[2] = 1, OFF)
+  ddd     (seg[3] = 0, ON)
+```
+
+**Why 1'b0 and 1'b1?**
+- 1'b0 means "1-bit binary value 0"
+- 1'b1 means "1-bit binary value 1"
+- Hardware is "active low": 0 = LED ON, 1 = LED OFF
+
+## Step 5: Anode Control (Choosing Which Displays Are Active)
+
+```verilog
+assign an[3] = password_correct ? 1'b1 : 1'b0;  // LEFT display: OFF when correct, ON when wrong
+assign an[2] = 1'b0;                             // Display 2: Always ON
+assign an[1] = 1'b0;                             // Display 1: Always ON
+assign an[0] = password_correct ? 1'b1 : 1'b0;  // RIGHT display: OFF when correct, ON when wrong
+```
+
+**Algorithm Logic:**
+- `? :` is called "ternary operator" - like an if-then-else
+- Format: `condition ? value_if_true : value_if_false`
+
+**Translation:**
+- When password_correct = 1 (TRUE): AN3=1(OFF), AN2=0(ON), AN1=0(ON), AN0=1(OFF)
+  * Result: Only middle two displays show 'e'
+- When password_correct = 0 (FALSE): AN3=0(ON), AN2=0(ON), AN1=0(ON), AN0=0(ON)
+  * Result: All four displays show 'e'
+
+================================================================================
+# COMPLETE ALGORITHM FLOW
+================================================================================
+
+1. **Input Reading:** Circuit continuously reads all 10 switch positions
+2. **LED Control:** Each LED immediately copies its corresponding switch (no delay)
+3. **Password Check:** Circuit checks if exact password combination is entered
+4. **Display Control:** Based on password result, circuit decides which displays to turn on
+5. **Segment Pattern:** All active displays show the same 'e' pattern
+
+**Key Insight:** This is all happening simultaneously (parallel processing), not step-by-step!
+
+================================================================================
+# COMPLETE VERILOG CODE WITH BEGINNER COMMENTS
+================================================================================
+
+```verilog
+module lab1 (
+    // INPUTS: Signals coming INTO our circuit from the board
+    input [9:0] sw,          // 10 switches: sw[9], sw[8], sw[7], sw[6], sw[5], sw[4], sw[3], sw[2], sw[1], sw[0]
+
+    // OUTPUTS: Signals going OUT from our circuit to the board
+    output [9:0] led,        // 10 LEDs: led[9], led[8], led[7], led[6], led[5], led[4], led[3], led[2], led[1], led[0]
+    output [6:0] seg,        // 7 segments: seg[6]=g, seg[5]=f, seg[4]=e, seg[3]=d, seg[2]=c, seg[1]=b, seg[0]=a
+    output [3:0] an          // 4 anodes: an[3]=leftmost display, an[2], an[1], an[0]=rightmost display
+);
+
+    // ========================================
+    // SUBTASK A: LED Control (Simple Copying)
+    // ========================================
+    // Rule: Each LED should copy its corresponding switch
+    // This creates 10 separate "wires" connecting switches to LEDs
+
+    assign led[0] = sw[0];   // LED0 = SW0 (if SW0 is ON, LED0 lights up)
+    assign led[1] = sw[1];   // LED1 = SW1
+    assign led[2] = sw[2];   // LED2 = SW2
+    assign led[3] = sw[3];   // LED3 = SW3
+    assign led[4] = sw[4];   // LED4 = SW4
+    assign led[5] = sw[5];   // LED5 = SW5
+    assign led[6] = sw[6];   // LED6 = SW6
+    assign led[7] = sw[7];   // LED7 = SW7
+    assign led[8] = sw[8];   // LED8 = SW8
+    assign led[9] = sw[9];   // LED9 = SW9
+
+    // ========================================
+    // SUBTASK B: Password Detection Logic
+    // ========================================
+    // Rule: Password is correct ONLY when SW2, SW6, SW8, SW9 are ON and all others are OFF
+
+    wire password_correct;   // This is like a "flag" that becomes 1 when password is right, 0 when wrong
+
+    assign password_correct = sw[2] & sw[6] & sw[8] & sw[9] &              // These switches MUST be ON (=1)
+                             ~sw[0] & ~sw[1] & ~sw[3] & ~sw[4] & ~sw[5] & ~sw[7];  // These switches MUST be OFF (=0, so we use ~ to flip them)
+
+    // Explanation of the logic:
+    // - sw[2] & sw[6] & sw[8] & sw[9]: All these must be 1 (ON)
+    // - ~sw[0]: sw[0] must be 0 (OFF), so ~0 becomes 1 (true)
+    // - If ANY required switch is wrong, the whole expression becomes 0 (false)
+
+    // ========================================
+    // 7-SEGMENT DISPLAY: Letter 'e' Pattern
+    // ========================================
+    // Rule: Set each segment to create the letter 'e'
+    // Remember: 0 = LED ON, 1 = LED OFF (active low hardware)
+
+    assign seg[0] = 1'b0;    // segment a (top horizontal) - ON to draw top of 'e'
+    assign seg[1] = 1'b1;    // segment b (top right) - OFF (not needed for 'e')
+    assign seg[2] = 1'b1;    // segment c (bottom right) - OFF (not needed for 'e')
+    assign seg[3] = 1'b0;    // segment d (bottom horizontal) - ON to draw bottom of 'e'
+    assign seg[4] = 1'b0;    // segment e (bottom left) - ON to draw left side of 'e'
+    assign seg[5] = 1'b0;    // segment f (top left) - ON to draw left side of 'e'
+    assign seg[6] = 1'b0;    // segment g (middle horizontal) - ON to draw middle of 'e'
+
+    // ========================================
+    // ANODE CONTROL: Which Displays Are Active
+    // ========================================
+    // Rule: When password wrong, all 4 displays show 'e'
+    //       When password correct, only AN1 and AN2 show 'e' (because your first digit is 6)
+
+    // Using ternary operator: condition ? value_if_true : value_if_false
+    assign an[3] = password_correct ? 1'b1 : 1'b0;    // Leftmost display: OFF when password correct, ON when wrong
+    assign an[2] = 1'b0;                               // Always ON (always shows 'e')
+    assign an[1] = 1'b0;                               // Always ON (always shows 'e')
+    assign an[0] = password_correct ? 1'b1 : 1'b0;    // Rightmost display: OFF when password correct, ON when wrong
+
+    // Summary of anode behavior:
+    // Wrong password: an[3]=0, an[2]=0, an[1]=0, an[0]=0 → All 4 displays show 'e'
+    // Correct password: an[3]=1, an[2]=0, an[1]=0, an[0]=1 → Only middle 2 displays show 'e'
+
+endmodule
+```
+
+================================================================================
+# TESTING YOUR DESIGN STEP BY STEP
+================================================================================
+
+## Test 1: Verify SUBTASK A (LED Control)
+1. Turn ON only SW0 → LED0 should light up, all others off
+2. Turn ON only SW3 → LED3 should light up, all others off
+3. Turn ON SW2 and SW7 → LED2 and LED7 should light up, all others off
+4. Turn OFF all switches → All LEDs should be off
+
+## Test 2: Verify Wrong Password (All Displays Show 'e')
+1. All switches OFF → All 4 displays show 'e'
+2. Turn ON only SW1 → All 4 displays show 'e'
+3. Turn ON SW2, SW6, SW8 (missing SW9) → All 4 displays show 'e'
+4. Turn ON SW2, SW6, SW8, SW9, SW0 (extra SW0) → All 4 displays show 'e'
+
+## Test 3: Verify Correct Password (Only Middle Displays Show 'e')
+1. Turn ON exactly SW2, SW6, SW8, SW9 (all others OFF)
+2. Result: Only the middle two 7-segment displays should show 'e'
+3. The leftmost and rightmost displays should be completely dark
+
+================================================================================
+# WHY THIS ALGORITHM WORKS
+================================================================================
+
+**Parallel Processing:** All assignments happen simultaneously, not sequentially like software
+
+**Boolean Logic:** Uses AND (&), NOT (~), and conditional (? :) operators to make decisions
+
+**Hardware Mapping:** Each Verilog signal corresponds to a physical wire/pin on the FPGA board
+
+**State Machine:** The circuit has two main states (password correct/wrong) that control display behavior
+
+This is your first step into digital design - you're literally designing the logic circuits that control hardware!
+- seg[6:0] : This controls the 7 segments of ALL displays (a,b,c,d,e,f,g)
+- an[3:0] : This controls which of the 4 displays are ON/OFF
+
+================================================================================
+LOGIC BREAKDOWN:
+================================================================================
+
+STEP 1: SUBTASK A (LED Control)
+This is simple - just connect each switch to its LED:
+```verilog
+assign led[0] = sw[0];  // SW0 controls LED0
+assign led[1] = sw[1];  // SW1 controls LED1
+// ... continue for all 10
+```
+
+STEP 2: PASSWORD DETECTION
+We need to detect when password is correct:
+Password correct = SW2 AND SW6 AND SW8 AND SW9 are ON
+                   AND all other switches (SW0,SW1,SW3,SW4,SW5,SW7) are OFF
+
+```verilog
+wire password_correct;
+assign password_correct = sw[2] & sw[6] & sw[8] & sw[9] &  // These must be ON
+                         ~sw[0] & ~sw[1] & ~sw[3] & ~sw[4] & ~sw[5] & ~sw[7]; // These must be OFF
+```
+
+STEP 3: 7-SEGMENT DISPLAY FOR LETTER 'e'
+A 7-segment display looks like this:
+```
+  aaa
+ f   b
+  ggg
+ e   c
+  ddd
+```
+
+To display 'e', we need segments: a, d, e, f, g = ON; segments b, c = OFF
+But the display is ACTIVE LOW, so ON = 0, OFF = 1
+
+```verilog
+assign seg[0] = 1'b0;    // segment a - ON (0 means ON in active low)
+assign seg[1] = 1'b1;    // segment b - OFF (1 means OFF in active low)
+assign seg[2] = 1'b1;    // segment c - OFF
+assign seg[3] = 1'b0;    // segment d - ON
+assign seg[4] = 1'b0;    // segment e - ON
+assign seg[5] = 1'b0;    // segment f - ON
+assign seg[6] = 1'b0;    // segment g - ON
+```
+
+STEP 4: ANODE CONTROL (Which displays are ON)
+- When password WRONG: All 4 displays ON (AN0=0, AN1=0, AN2=0, AN3=0)
+- When password CORRECT: Only AN1 and AN2 ON (AN0=1, AN1=0, AN2=0, AN3=1)
+
+```verilog
+assign an[3] = password_correct ? 1'b1 : 1'b0;  // OFF when correct, ON when wrong
+assign an[2] = 1'b0;                             // Always ON
+assign an[1] = 1'b0;                             // Always ON
+assign an[0] = password_correct ? 1'b1 : 1'b0;  // OFF when correct, ON when wrong
+```
+
+================================================================================
+COMPLETE VERILOG CODE WITH DETAILED EXPLANATIONS:
+================================================================================
+module lab1 (
+    input [9:0] sw,          // SW0 to SW9 switches
+    output [9:0] led,        // LED0 to LED9
+    output [6:0] seg,        // 7-segment display segments
+    output [3:0] an          // 4 anodes for 7-segment displays
+);
+
+    // SUBTASK A: Direct LED control
+    assign led[0] = sw[0];
+    assign led[1] = sw[1];
+    assign led[2] = sw[2];
+    assign led[3] = sw[3];
+    assign led[4] = sw[4];
+    assign led[5] = sw[5];
+    assign led[6] = sw[6];
+    assign led[7] = sw[7];
+    assign led[8] = sw[8];
+    assign led[9] = sw[9];
+
+    // SUBTASK B: Password checking logic
+    // Correct password: SW2, SW6, SW8, SW9 ON; SW0,SW1,SW3,SW4,SW5,SW7 OFF
+    wire password_correct;
+    assign password_correct = sw[2] & sw[6] & sw[8] & sw[9] &
+                             ~sw[0] & ~sw[1] & ~sw[3] & ~sw[4] & ~sw[5] & ~sw[7];
+
+    // 7-segment display for letter 'e' (segments a,d,e,f,g ON; segments b,c OFF)
+    // Active low: ON = 0, OFF = 1
+    assign seg[0] = 1'b0;    // segment a - ON
+    assign seg[1] = 1'b1;    // segment b - OFF
+    assign seg[2] = 1'b1;    // segment c - OFF
+    assign seg[3] = 1'b0;    // segment d - ON
+    assign seg[4] = 1'b0;    // segment e - ON
+    assign seg[5] = 1'b0;    // segment f - ON
+    assign seg[6] = 1'b0;    // segment g - ON
+
+    // Anode control based on password correctness
+    // For digit 6: AN1 and AN2 ON when password correct, all ON when wrong
+    // Active low: ON = 0, OFF = 1
+    assign an[3] = password_correct ? 1'b1 : 1'b0;    // AN3: OFF when correct, ON when wrong
+    assign an[2] = 1'b0;                               // AN2: Always ON
+    assign an[1] = 1'b0;                               // AN1: Always ON
+    assign an[0] = password_correct ? 1'b1 : 1'b0;    // AN0: OFF when correct, ON when wrong
+
+endmodule
+
+================================================================================
+UNDERSTANDING THE DIFFERENT STATES/MODES:
+================================================================================
+
+STATE 1: WRONG PASSWORD EXAMPLES
+- All switches OFF: SW0=0, SW1=0, SW2=0, SW3=0, SW4=0, SW5=0, SW6=0, SW7=0, SW8=0, SW9=0
+  Result: password_correct = 0 (false)
+  Display: All 4 seven-segments (AN0,AN1,AN2,AN3) show 'e'
+
+- Only SW1 ON: SW0=0, SW1=1, SW2=0, SW3=0, SW4=0, SW5=0, SW6=0, SW7=0, SW8=0, SW9=0
+  Result: password_correct = 0 (false)
+  Display: All 4 seven-segments show 'e'
+
+- Missing one password switch: SW2=1, SW6=1, SW8=1, SW9=0 (SW9 is missing)
+  Result: password_correct = 0 (false)
+  Display: All 4 seven-segments show 'e'
+
+STATE 2: CORRECT PASSWORD
+- ONLY SW2, SW6, SW8, SW9 ON: SW0=0, SW1=0, SW2=1, SW3=0, SW4=0, SW5=0, SW6=1, SW7=0, SW8=1, SW9=1
+  Result: password_correct = 1 (true)
+  Display: Only AN1 and AN2 show 'e', AN0 and AN3 are OFF (blank)
+
+================================================================================
+HOW THE BOOLEAN LOGIC WORKS:
+================================================================================
+
+Password Detection Logic Breakdown:
+```verilog
+password_correct = sw[2] & sw[6] & sw[8] & sw[9] &     // These 4 must be 1 (ON)
+                  ~sw[0] & ~sw[1] & ~sw[3] & ~sw[4] & ~sw[5] & ~sw[7];  // These 6 must be 0 (OFF)
+```
+
+Let's trace through examples:
+
+EXAMPLE 1 - Wrong password (all switches off):
+sw[2]=0, sw[6]=0, sw[8]=0, sw[9]=0, sw[0]=0, sw[1]=0, sw[3]=0, sw[4]=0, sw[5]=0, sw[7]=0
+password_correct = 0 & 0 & 0 & 0 & ~0 & ~0 & ~0 & ~0 & ~0 & ~0
+                 = 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1
+                 = 0 (because first four terms are 0)
+
+EXAMPLE 2 - Correct password:
+sw[2]=1, sw[6]=1, sw[8]=1, sw[9]=1, sw[0]=0, sw[1]=0, sw[3]=0, sw[4]=0, sw[5]=0, sw[7]=0
+password_correct = 1 & 1 & 1 & 1 & ~0 & ~0 & ~0 & ~0 & ~0 & ~0
+                 = 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1
+                 = 1 (all terms are 1)
+
+EXAMPLE 3 - Wrong password (extra switch on):
+sw[2]=1, sw[6]=1, sw[8]=1, sw[9]=1, sw[0]=1, sw[1]=0, sw[3]=0, sw[4]=0, sw[5]=0, sw[7]=0
+password_correct = 1 & 1 & 1 & 1 & ~1 & ~0 & ~0 & ~0 & ~0 & ~0
+                 = 1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 1 & 1
+                 = 0 (because ~sw[0] = ~1 = 0)
+
+================================================================================
+WHY WE USE SPECIFIC SIGNALS:
+================================================================================
+
+WHY seg[6:0]?
+- Each 7-segment display has 7 segments (a,b,c,d,e,f,g)
+- seg[0] = segment a, seg[1] = segment b, etc.
+- We set these to display the letter 'e'
+- Same pattern goes to ALL 4 displays, but anodes control which ones are ON
+
+WHY an[3:0]?
+- There are 4 seven-segment displays on the board
+- an[0] controls the rightmost display (AN0)
+- an[1] controls AN1, an[2] controls AN2, an[3] controls leftmost (AN3)
+- We use these to select which displays show the letter
+
+WHY Active Low Logic?
+- The hardware is designed this way
+- For segments: 0 = LED ON, 1 = LED OFF
+- For anodes: 0 = Display ON, 1 = Display OFF
+- This is just how the Basys 3 board works
+
+================================================================================
+TESTING YOUR DESIGN:
+================================================================================
+
+TEST 1: Check SUBTASK A
+- Turn on SW0 → LED0 should light up
+- Turn on SW5 → LED5 should light up
+- Turn off SW0 → LED0 should turn off
+- This should work regardless of other switches
+
+TEST 2: Check Wrong Password States
+- Turn all switches OFF → All 4 displays show 'e'
+- Turn only SW1 ON → All 4 displays show 'e'
+- Turn SW2,SW6,SW8 ON (missing SW9) → All 4 displays show 'e'
+
+TEST 3: Check Correct Password
+- Turn ON only SW2, SW6, SW8, SW9 → Only middle two displays (AN1, AN2) show 'e'
+- AN0 and AN3 should be completely OFF (dark)
+
+================================================================================
+Create a file named "lab1_constraints.xdc" with the following content:
+
+## Switches
+set_property PACKAGE_PIN V17 [get_ports {sw[0]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {sw[0]}]
+set_property PACKAGE_PIN V16 [get_ports {sw[1]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {sw[1]}]
+set_property PACKAGE_PIN W16 [get_ports {sw[2]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {sw[2]}]
+set_property PACKAGE_PIN W17 [get_ports {sw[3]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {sw[3]}]
+set_property PACKAGE_PIN W15 [get_ports {sw[4]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {sw[4]}]
+set_property PACKAGE_PIN V15 [get_ports {sw[5]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {sw[5]}]
+set_property PACKAGE_PIN W14 [get_ports {sw[6]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {sw[6]}]
+set_property PACKAGE_PIN W13 [get_ports {sw[7]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {sw[7]}]
+set_property PACKAGE_PIN V2 [get_ports {sw[8]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {sw[8]}]
+set_property PACKAGE_PIN T3 [get_ports {sw[9]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {sw[9]}]
+
+## LEDs
+set_property PACKAGE_PIN U16 [get_ports {led[0]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {led[0]}]
+set_property PACKAGE_PIN E19 [get_ports {led[1]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {led[1]}]
+set_property PACKAGE_PIN U19 [get_ports {led[2]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {led[2]}]
+set_property PACKAGE_PIN V19 [get_ports {led[3]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {led[3]}]
+set_property PACKAGE_PIN W18 [get_ports {led[4]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {led[4]}]
+set_property PACKAGE_PIN U15 [get_ports {led[5]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {led[5]}]
+set_property PACKAGE_PIN U14 [get_ports {led[6]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {led[6]}]
+set_property PACKAGE_PIN V14 [get_ports {led[7]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {led[7]}]
+set_property PACKAGE_PIN V13 [get_ports {led[8]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {led[8]}]
+set_property PACKAGE_PIN V3 [get_ports {led[9]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {led[9]}]
+
+## 7-segment display segments
+set_property PACKAGE_PIN W7 [get_ports {seg[0]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {seg[0]}]
+set_property PACKAGE_PIN W6 [get_ports {seg[1]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {seg[1]}]
+set_property PACKAGE_PIN U8 [get_ports {seg[2]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {seg[2]}]
+set_property PACKAGE_PIN V8 [get_ports {seg[3]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {seg[3]}]
+set_property PACKAGE_PIN U5 [get_ports {seg[4]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {seg[4]}]
+set_property PACKAGE_PIN V5 [get_ports {seg[5]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {seg[5]}]
+set_property PACKAGE_PIN U7 [get_ports {seg[6]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {seg[6]}]
+
+## 7-segment display anodes
+set_property PACKAGE_PIN U2 [get_ports {an[0]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {an[0]}]
+set_property PACKAGE_PIN U4 [get_ports {an[1]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {an[1]}]
+set_property PACKAGE_PIN V4 [get_ports {an[2]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {an[2]}]
+set_property PACKAGE_PIN W4 [get_ports {an[3]}]
+    set_property IOSTANDARD LVCMOS33 [get_ports {an[3]}]
+
+================================================================================
+
+SWITCH ASSIGNMENT SUMMARY:
+================================================================================
+For your matriculation number a0299826e:
+
+PASSWORD SWITCHES (must be ON for correct password):
+- SW2: ON
+- SW6: ON
+- SW8: ON
+- SW9: ON
+
+NON-PASSWORD SWITCHES (must be OFF for correct password):
+- SW0: OFF
+- SW1: OFF
+- SW3: OFF
+- SW4: OFF
+- SW5: OFF
+- SW7: OFF
+
+TESTING PROCEDURE:
+================================================================================
+1. Wrong password test: Turn any combination of switches OTHER than SW2+SW6+SW8+SW9
+   → All 4 anodes should display 'e'
+
+2. Correct password test: Turn ON ONLY SW2, SW6, SW8, SW9
+   → Only AN1 and AN2 should display 'e' (AN0 and AN3 should be OFF)
+
+VIVADO IMPLEMENTATION STEPS:
+================================================================================
+1. Create New Project:
+   - File → New Project
+   - Choose project name and location
+   - Select Basys 3 board (xc7a35tcpg236-1)
+
+2. Add Verilog Source:
+   - Add Sources → Add or create design sources
+   - Create file "lab1.v" with the Verilog code above
+
+3. Add Constraints:
+   - Add Sources → Add or create constraints
+   - Create file "lab1_constraints.xdc" with constraints above
+
+4. Generate Bitstream:
+   - Run Synthesis
+   - Run Implementation
+   - Generate Bitstream
+
+5. Program Device:
+   - Connect Basys 3 board
+   - Hardware Manager → Program DeviceEDs
+off
+
+7-seg display must auto display the rightmost alphabet on all 4 anodes
+
+character must be displayed exactly as indicated
+(decimal off)
+
+
+SUBTASK A
+
+Consider the 10 (ten) switches SW0 to SW9 (Ignore SW10 to SW15). Whenever any of these 10 switches are ON, the corresponding
+LED LDX, where X is a number ranging from 0 to 9, must be ON.  (For example, if SW0 is ON, then LD0 must be ON. If SW3, SW7
+and SW9 are ON, then LD3, LD7 and LD9 must be ON.) Do not put constraint to SW10 to SW15, and LD10 to LD15.
+
+SUBTASK B
+
+Continuing from SUBTASK A, create your personal student matriculation number password based on the five rightmost numerical
+values of your student matriculation number.
+
+These five digits (May be less than five digits if you have duplicate numbers) will represent the switches that need to be ON, while
+all the other switches between SW0 to SW9 must be OFF, to be considered a correct password. Whenever the password is wrong,
+all the 4 (four) anodes of the 7-segment displays show the rightmost alphabet. (For example, if all the ten switches SW0 to SW9
+are turned ON, that is considered as a wrong password)
+
+Whenever  the  password  entered  by  the  user  is the  correct  password,  then  instead  of  all  the  4  (four)  anodes  of  the  7-segment
+displays showing your rightmost alphabet, only specific anodes of the 7-segment displays must show that alphabet. The specific
+anodes  on  which  the  character  should  be  displayed  is  dependent  on  the  1st  rightmost  numerical  value  of  your  student
+matriculation number, as indicated in the table below:
+
+1st Rightmost
+Numerical Value
+Anode
+AN3
+Anode
+AN2
+Anode
+AN1
+Anode
+AN0
+0 , 1 ON OFF OFF ON
+2 , 3 ON OFF ON OFF
+4 , 5 ON ON OFF OFF
+6 , 7 OFF ON ON OFF
+8 , 9 OFF ON OFF ON
+
+
+Note: Marks will not be given if wrong switch constraints are used! If your student matriculation number password has a 0, then
+it refers to SW0. If your student matriculation number password has a 1, then it refers to SW1. If your student matriculation number
+password  has  a  2,  then  it  refers  to  SW2  etc...Ensure you have noted down your 5  rightmost  numerical  values  of  your  student
+matriculation number accurately for the password.
+
+SUGGESTIONS
+
+• Create a new Vivado project for this assignment, instead of continuing from your previous Vivado project.
+• This assignment can be fully completed by using SOP / POS expressions.
+• This is a warm-up exercise. It is not recommended to use contents not taught in this lab session.
+• Simulation is not required in the submission.
+
+GETTING STARTED WITH THE SEVEN-SEGMENT DISPLAYS
+
+
+There  are  7  LED  segments  in  each  display,  with  an  additional  decimal  point
+segment. They are respectively denoted by “seg[0]” to “seg[6]”, and “dp”, in the
+Basys_Master.xdc constraint file.
+
+There are 4 seven-segment displays on the Basys 3 development board. Each one
+of the displays is controlled by a common anode pin, thus resulting in a total of 4
+common anodes. These active-low pins are denoted as “an[3]” to “an[0]” in the
+Basys_Master.xdc  constraint  file.  (For  more  information,  you  can  refer  to  the
+Basys 3 reference manual, pages 14 to 16)
+
+In your constraint file, it is compulsory to put constraints to the 8 segments (7 segments + decimal point) of the seven -segment
+display, and to the 4 anodes of the seven-segment display. Segments or anodes that need to be OFF must explicitly be assigned
+a value of ‘1’ in your Verilog codes. For example, if the ‘dot’ segment is required to be off, assign a value of ‘1’ to it.
+
+EXAMPLE:
+
+If your student matriculation number is A0159089Y, then:
+
+1st rightmost numerical value:  9 (Means only AN2 and AN0 will be ON if password is correct)
+Five rightmost numerical values:  59089 (Means password is SW0, SW5, SW8, SW9)
+Rightmost alphabet:  Y

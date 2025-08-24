@@ -1,4 +1,4 @@
-# EE2026 Tutorial 2 - Questions
+# EE2026
 
 ## Page 1
 
@@ -63,15 +63,15 @@ gate
 symbol
 function (F)
 AND
-𝐴𝐴ȉ 𝐵𝐵
+𝐴𝐴• 𝐵𝐵
 NAND
-𝐴𝐴ȉ 𝐵𝐵
+𝐴𝐴• 𝐵𝐵
 OR
 𝐴𝐴+ 𝐵𝐵
 NOR
 𝐴𝐴+ 𝐵𝐵
 NOT
-̅𝐴𝐴
+'𝐴𝐴
 Buffer
 𝐴𝐴
 A
@@ -99,8 +99,8 @@ AND
 F is 1 only when both A and B are 1
 A
 B
-𝑨𝑨ȉ 𝑩𝑩
-𝑨𝑨ȉ 𝑩𝑩
+𝑨𝑨• 𝑩𝑩
+𝑨𝑨• 𝑩𝑩
 0
 0
 0
@@ -117,11 +117,11 @@ B
 1
 1
 0
-𝑭𝑭= 𝑨𝑨ȉ 𝑩𝑩
+𝑭𝑭= 𝑨𝑨• 𝑩𝑩
 A
 B
 F
-𝑭𝑭= 𝑨𝑨ȉ 𝑩𝑩
+𝑭𝑭= 𝑨𝑨• 𝑩𝑩
 A
 B
 F
@@ -137,7 +137,7 @@ endmodule
 NAND
 •
 F is 0 only if both A and B are 1
-module nandgate(A, B, F);
+module NANDgate(A, B, F);
 input A, B;
 output F;
 assign F = ~(A & B);
@@ -152,7 +152,7 @@ Prof. Massimo Alioto
 A
 B
 F
-module norgate(A, B, F);
+module NORgate(A, B, F);
 input A, B;
 output F;
 assign F = ~(A | B);
@@ -206,12 +206,12 @@ Truth table (OR, NOR)
 EE2026 Digital Design
 
 Prof. Massimo Alioto
-module xnorgate(A, B, F);
+module XNORgate(A, B, F);
 input A, B;
 output F;
 assign F = ~(A ^ B);
 endmodule
-module xorgate(A, B, F);
+module XORgate(A, B, F);
 input A, B;
 output F;
 assign F = A ^ B;
@@ -282,8 +282,8 @@ Logic gates as building blocks of any digital system
 Start simple: SOP form → gate-level design
 ◦
 Example of SOP with constraint: max number of logic gate inputs is 4 (fan-in)
-𝐹𝐹𝑤𝑤, 𝑥𝑥, 𝑦𝑦, 𝑧𝑧= ഥ𝑤𝑤̅𝑥𝑥𝑧𝑧+ ഥ𝑤𝑤𝑥𝑥𝑥𝑥+ 𝑤𝑤𝑤𝑤𝑤𝑤+ 𝑥𝑥𝑥𝑥𝑥𝑥
-ഥ𝑤𝑤̅𝑥𝑥𝑧𝑧
+𝐹𝐹𝑤𝑤, 𝑥𝑥, 𝑦𝑦, 𝑧𝑧= ഥ𝑤𝑤'𝑥𝑥𝑧𝑧+ ഥ𝑤𝑤𝑥𝑥𝑥𝑥+ 𝑤𝑤𝑤𝑤𝑤𝑤+ 𝑥𝑥𝑥𝑥𝑥𝑥
+ഥ𝑤𝑤'𝑥𝑥𝑧𝑧
 ഥ𝑤𝑤𝑥𝑥𝑥𝑥
 𝑤𝑤𝑤𝑤𝑤𝑤
 𝑥𝑥𝑦𝑦𝑧𝑧
@@ -318,7 +318,7 @@ Implementation of Boolean Functions with Logic Gates
 Page 8
 ◦
 Another example of SOP with constraint: max number of logic gate inputs is 4
-𝐹𝐹𝑎𝑎, 𝑏𝑏, 𝑐𝑐, 𝑑𝑑= 𝑎𝑎𝑎𝑎̅𝑐𝑐+ 𝑎𝑎𝑎𝑎𝑎𝑎+ 𝑏𝑏𝑏𝑏𝑏𝑏+ ത𝑎𝑎𝑐𝑐𝑐𝑐+ 𝑎𝑎ത𝑏𝑏𝑐𝑐𝑑𝑑
+𝐹𝐹𝑎𝑎, 𝑏𝑏, 𝑐𝑐, 𝑑𝑑= 𝑎𝑎𝑎𝑎'𝑐𝑐+ 𝑎𝑎𝑎𝑎𝑎𝑎+ 𝑏𝑏𝑏𝑏𝑏𝑏+ '𝑎𝑎𝑐𝑐𝑐𝑐+ 𝑎𝑎'𝑏𝑏𝑐𝑐𝑑𝑑
 gate count = 11
 
 ## Page 9
@@ -340,7 +340,7 @@ Implementation of Boolean Functions with Logic Gates
 Page 9
 ◦
 Example of POS with constraint: max number of logic gate inputs is 4
-𝐹𝐹𝑎𝑎, 𝑏𝑏, 𝑐𝑐= (𝑎𝑎+ 𝑏𝑏+ ̅𝑐𝑐)(𝑎𝑎+ 𝑐𝑐)(ത𝑎𝑎+ ത𝑏𝑏+ 𝑐𝑐)(𝑎𝑎+ ത𝑏𝑏+ 𝑐𝑐)
+𝐹𝐹𝑎𝑎, 𝑏𝑏, 𝑐𝑐= (𝑎𝑎+ 𝑏𝑏+ '𝑐𝑐)(𝑎𝑎+ 𝑐𝑐)('𝑎𝑎+ '𝑏𝑏+ 𝑐𝑐)(𝑎𝑎+ '𝑏𝑏+ 𝑐𝑐)
 parentheses needed in POS,
 as precedence order is ~, &, ^, |
 
@@ -362,7 +362,7 @@ Algebraic manipulations using postulates and theorems
 ◦
 Karnaugh maps
 𝐹𝐹2 𝐴𝐴, 𝐵𝐵, 𝐶𝐶=
-̅𝐴𝐴𝐵𝐵̅𝐶𝐶+ A ത𝐵𝐵+ ത𝐵𝐵𝐶𝐶+ 𝐴𝐴𝐴𝐴̅𝐶𝐶
+'𝐴𝐴𝐵𝐵'𝐶𝐶+ A '𝐵𝐵+ '𝐵𝐵𝐶𝐶+ 𝐴𝐴𝐴𝐴'𝐶𝐶
 terms
 literals (variables, complemented or not)
 •
@@ -370,8 +370,8 @@ Definition of simplified Boolean Function
 ◦
 It contains a minimal number of terms and literals in each term, such that no other
 expression with fewer literals and terms will represent the original function
-𝐹𝐹2 𝐴𝐴, 𝐵𝐵, 𝐶𝐶= 𝐴𝐴+ 𝐵𝐵+ 𝐶𝐶⋅𝐴𝐴+ ത𝐵𝐵+
-̅𝐶𝐶
+𝐹𝐹2 𝐴𝐴, 𝐵𝐵, 𝐶𝐶= 𝐴𝐴+ 𝐵𝐵+ 𝐶𝐶⋅𝐴𝐴+ '𝐵𝐵+
+'𝐶𝐶
 terms
 literals
 Boolean Function Simplification
@@ -386,21 +386,21 @@ Boolean Function Simplification using Algebraic Manipulations
 Example: SOP
 Page 11
 (𝐴𝐴+
-̅𝐴𝐴= 1)
+'𝐴𝐴= 1)
 (𝐴𝐴+
-̅𝐴𝐴= 1)
+'𝐴𝐴= 1)
 Before simplification
 gate count = 8
 After simplification
 gate count = 3
 (62.5% reduction!)
-= ത𝑎𝑎̅𝑐𝑐
-= ത𝑎𝑎̅𝑐𝑐ത𝑏𝑏+ 𝑏𝑏
-= ത𝑎𝑎ത𝑏𝑏̅𝑐𝑐+ ത𝑎𝑎𝑏𝑏̅𝑐𝑐
-̅𝑑𝑑+ 𝑑𝑑
-𝐹𝐹𝑎𝑎, 𝑏𝑏, 𝑐𝑐, 𝑑𝑑= ത𝑎𝑎ത𝑏𝑏̅𝑐𝑐+ ത𝑎𝑎𝑏𝑏̅𝑐𝑐̅𝑑𝑑+ ത𝑎𝑎𝑏𝑏̅𝑐𝑐𝑑𝑑
+= '𝑎𝑎'𝑐𝑐
+= '𝑎𝑎'𝑐𝑐'𝑏𝑏+ 𝑏𝑏
+= '𝑎𝑎'𝑏𝑏'𝑐𝑐+ '𝑎𝑎𝑏𝑏'𝑐𝑐
+'𝑑𝑑+ 𝑑𝑑
+𝐹𝐹𝑎𝑎, 𝑏𝑏, 𝑐𝑐, 𝑑𝑑= '𝑎𝑎'𝑏𝑏'𝑐𝑐+ '𝑎𝑎𝑏𝑏'𝑐𝑐'𝑑𝑑+ '𝑎𝑎𝑏𝑏'𝑐𝑐𝑑𝑑
 (𝐴𝐴+
-̅𝐴𝐴= 1)
+'𝐴𝐴= 1)
 
 ## Page 12
 
@@ -416,18 +416,18 @@ Boolean Function Simplification using Algebraic Manipulations
 ◦
 Another example: SOP
 Page 12
-𝐹𝐹𝑥𝑥, 𝑦𝑦, 𝑧𝑧= ഥ𝑤𝑤̅𝑥𝑥𝑧𝑧+ ഥ𝑤𝑤𝑥𝑥𝑥𝑥+ 𝑥𝑥𝑥𝑥𝑥𝑥+ 𝑤𝑤𝑤𝑤𝑤𝑤
+𝐹𝐹𝑥𝑥, 𝑦𝑦, 𝑧𝑧= ഥ𝑤𝑤'𝑥𝑥𝑧𝑧+ ഥ𝑤𝑤𝑥𝑥𝑥𝑥+ 𝑥𝑥𝑥𝑥𝑥𝑥+ 𝑤𝑤𝑤𝑤𝑤𝑤
 (𝐴𝐴+
-̅𝐴𝐴= 1)
+'𝐴𝐴= 1)
 (𝐴𝐴𝐵𝐵+
-̅𝐴𝐴𝐶𝐶+ 𝐵𝐵𝐶𝐶= 𝐴𝐴𝐴𝐴+
-̅𝐴𝐴𝐶𝐶) - consensus
+'𝐴𝐴𝐶𝐶+ 𝐵𝐵𝐶𝐶= 𝐴𝐴𝐴𝐴+
+'𝐴𝐴𝐶𝐶) - consensus
 = ഥ𝑤𝑤𝑧𝑧
-̅𝑥𝑥+ 𝑥𝑥+ 𝑤𝑤𝑥𝑥𝑥𝑥+ 𝑧𝑧𝑥𝑥𝑥𝑥
+'𝑥𝑥+ 𝑥𝑥+ 𝑤𝑤𝑥𝑥𝑥𝑥+ 𝑧𝑧𝑥𝑥𝑥𝑥
 = ഥ𝑤𝑤𝑧𝑧+ 𝑤𝑤𝑥𝑥𝑥𝑥+ 𝑧𝑧𝑥𝑥𝑥𝑥
 = ഥ𝑤𝑤𝑧𝑧+ 𝑤𝑤𝑥𝑥𝑥𝑥
 (𝐴𝐴+
-̅𝐴𝐴= 1)
+'𝐴𝐴= 1)
 
 ## Page 13
 
@@ -441,22 +441,22 @@ Boolean Function Simplification using Algebraic Manipulations
 Another example: SOP
 Page 13
 (𝐴𝐴+
-̅𝐴𝐴= 1)
+'𝐴𝐴= 1)
 (𝐴𝐴𝐵𝐵+
-̅𝐴𝐴𝐶𝐶+ 𝐵𝐵𝐶𝐶= 𝐴𝐴𝐴𝐴+
-̅𝐴𝐴𝐶𝐶) - consensus
-𝐹𝐹𝑎𝑎, 𝑏𝑏, 𝑐𝑐, 𝑑𝑑= 𝑎𝑎𝑎𝑎̅𝑐𝑐+ 𝑎𝑎𝑎𝑎𝑎𝑎+ 𝑏𝑏𝑏𝑏𝑏𝑏+ ത𝑎𝑎𝑐𝑐𝑐𝑐+ 𝑎𝑎ത𝑏𝑏𝑐𝑐𝑑𝑑
+'𝐴𝐴𝐶𝐶+ 𝐵𝐵𝐶𝐶= 𝐴𝐴𝐴𝐴+
+'𝐴𝐴𝐶𝐶) - consensus
+𝐹𝐹𝑎𝑎, 𝑏𝑏, 𝑐𝑐, 𝑑𝑑= 𝑎𝑎𝑎𝑎'𝑐𝑐+ 𝑎𝑎𝑎𝑎𝑎𝑎+ 𝑏𝑏𝑏𝑏𝑏𝑏+ '𝑎𝑎𝑐𝑐𝑐𝑐+ 𝑎𝑎'𝑏𝑏𝑐𝑐𝑑𝑑
 (𝐴𝐴+
-̅𝐴𝐴ȉ 𝐵𝐵= 𝐴𝐴+ 𝐵𝐵)
+'𝐴𝐴• 𝐵𝐵= 𝐴𝐴+ 𝐵𝐵)
 = 𝑎𝑎𝑎𝑎
-̅𝑐𝑐+ 𝑐𝑐+ 𝑏𝑏𝑏𝑏𝑏𝑏+ ത𝑎𝑎𝑐𝑐𝑐𝑐+ 𝑎𝑎ത𝑏𝑏𝑐𝑐𝑑𝑑
-= 𝑎𝑎𝑏𝑏+ ത𝑏𝑏
-̅𝑐𝑐𝑑𝑑
-+ 𝑏𝑏𝑏𝑏𝑏𝑏+ ത𝑎𝑎𝑐𝑐𝑐𝑐
-= 𝑎𝑎𝑏𝑏+ ̅𝑐𝑐𝑑𝑑+ 𝑏𝑏𝑏𝑏𝑏𝑏+ ത𝑎𝑎𝑐𝑐𝑐𝑐
-= 𝑎𝑎𝑏𝑏+ ത𝑎𝑎𝑐𝑐𝑐𝑐+ 𝑏𝑏𝑐𝑐𝑐𝑐
-+ 𝑎𝑎̅𝑐𝑐𝑑𝑑
-= 𝑎𝑎𝑎𝑎+ ത𝑎𝑎𝑐𝑐𝑐𝑐+ 𝑎𝑎̅𝑐𝑐𝑑𝑑
+'𝑐𝑐+ 𝑐𝑐+ 𝑏𝑏𝑏𝑏𝑏𝑏+ '𝑎𝑎𝑐𝑐𝑐𝑐+ 𝑎𝑎'𝑏𝑏𝑐𝑐𝑑𝑑
+= 𝑎𝑎𝑏𝑏+ '𝑏𝑏
+'𝑐𝑐𝑑𝑑
++ 𝑏𝑏𝑏𝑏𝑏𝑏+ '𝑎𝑎𝑐𝑐𝑐𝑐
+= 𝑎𝑎𝑏𝑏+ '𝑐𝑐𝑑𝑑+ 𝑏𝑏𝑏𝑏𝑏𝑏+ '𝑎𝑎𝑐𝑐𝑐𝑐
+= 𝑎𝑎𝑏𝑏+ '𝑎𝑎𝑐𝑐𝑐𝑐+ 𝑏𝑏𝑐𝑐𝑐𝑐
++ 𝑎𝑎'𝑐𝑐𝑑𝑑
+= 𝑎𝑎𝑎𝑎+ '𝑎𝑎𝑐𝑐𝑐𝑐+ 𝑎𝑎'𝑐𝑐𝑑𝑑
 gate count = 6
 After simplification
 (45.5% reduction!)
@@ -469,12 +469,12 @@ Prof. Massimo Alioto
 •
 Proposed procedure to somewhat minimize Boolean functions using
 algebraic manipulations
-1) 𝐴𝐴𝐴𝐴+ 𝐴𝐴ത𝐵𝐵= 𝐴𝐴           (Logical adjacency)
+1) 𝐴𝐴𝐴𝐴+ 𝐴𝐴'𝐵𝐵= 𝐴𝐴           (Logical adjacency)
 2) 𝐴𝐴+
-̅𝐴𝐴ȉ 𝐵𝐵= 𝐴𝐴+ 𝐵𝐵
+'𝐴𝐴• 𝐵𝐵= 𝐴𝐴+ 𝐵𝐵
 3) 𝐴𝐴𝐴𝐴+
-̅𝐴𝐴𝐶𝐶+ 𝐵𝐵𝐵𝐵= 𝐴𝐴𝐴𝐴+
-̅𝐴𝐴𝐶𝐶    (Consensus)
+'𝐴𝐴𝐶𝐶+ 𝐵𝐵𝐵𝐵= 𝐴𝐴𝐴𝐴+
+'𝐴𝐴𝐶𝐶    (Consensus)
 Boolean Function Simplification using Algebraic Manipulations
 •
 Disadvantage of algebraic manipulations: not systematic, tedious, no
@@ -548,9 +548,9 @@ graphically add “bubble” to signals to remind about the complement
 ◦
 In the (distant) past, active-low preferred because of lower power in H level
 ◦
-normally-off signals (e.g., reset) were set to H (e.g., TTL logic, open-collector)
+NORmally-off signals (e.g., reset) were set to H (e.g., TTL logic, open-collector)
 ◦
-it was easier to merge normally-off signals into one occasionally-on signal
+it was easier to merge NORmally-off signals into one occasionally-on signal
 ◦
 today used only in system resets, interrupts and I2C busses
 I1
@@ -605,7 +605,7 @@ Bubble Pushing Rule
 Page 17
 ◦
 Example: implement Boolean function using only NOR gates and inverter gates
-𝐹𝐹= 𝐴𝐴ȉ 𝐵𝐵+ 𝐴𝐴ȉ 𝐶𝐶
+𝐹𝐹= 𝐴𝐴• 𝐵𝐵+ 𝐴𝐴• 𝐶𝐶
 Step 1: place logic gates
 A
 B

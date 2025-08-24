@@ -3,14 +3,14 @@ a0299826e
 2.99826
 3.6
 
-================================================================================
+---------------------------------------------------------------------------------------------------------------------
 STEP-BY-STEP BREAKDOWN OF THE LAB ASSIGNMENT
-================================================================================
+---------------------------------------------------------------------------------------------------------------------
 
 UNDERSTANDING THE HARDWARE FIRST:
 - You have a Basys 3 board with:
   * 16 switches (SW0 to SW15) - we only use SW0 to SW9
-  * 16 LEDs (LED0 to LED15) - we only use LED0 to LED9  
+  * 16 LEDs (LED0 to LED15) - we only use LED0 to LED9
   * 4 seven-segment displays (each has 7 segments + 1 decimal point)
   * 4 anodes (AN0, AN1, AN2, AN3) to control which displays are ON/OFF
 
@@ -24,24 +24,24 @@ WHAT THE ASSIGNMENT WANTS:
 
 SUBTASK A (Simple part):
 - If SW0 is ON → LED0 should be ON
-- If SW1 is ON → LED1 should be ON  
+- If SW1 is ON → LED1 should be ON
 - ... and so on up to SW9 → LED9
 - This is just direct connection: LED mirrors the switch
 
 SUBTASK B (Password part):
 - Your password is when ONLY SW2, SW6, SW8, SW9 are ON and all others OFF
 - Two different display modes:
-  
+
   MODE 1 - WRONG PASSWORD (any switch combination except your password):
   * All 4 displays (AN0, AN1, AN2, AN3) show letter 'e'
-  
+
   MODE 2 - CORRECT PASSWORD (only SW2,SW6,SW8,SW9 are ON):
   * Since your 1st rightmost digit is 6, only AN1 and AN2 show 'e'
   * AN0 and AN3 are OFF (blank)
 
-================================================================================
+---------------------------------------------------------------------------------------------------------------------
 WHY WE NEED THESE SIGNALS IN VERILOG:
-================================================================================
+---------------------------------------------------------------------------------------------------------------------
 
 INPUT SIGNALS:
 - sw[9:0] : This represents the 10 switches SW0 to SW9 as a 10-bit input
@@ -51,9 +51,9 @@ OUTPUT SIGNALS:
 - seg[6:0] : This controls the 7 segments of ALL displays (a,b,c,d,e,f,g)
 - an[3:0] : This controls which of the 4 displays are ON/OFF
 
-================================================================================
+---------------------------------------------------------------------------------------------------------------------
 LOGIC BREAKDOWN:
-================================================================================
+---------------------------------------------------------------------------------------------------------------------
 
 STEP 1: SUBTASK A (LED Control)
 This is simple - just connect each switch to its LED:
@@ -80,7 +80,7 @@ A 7-segment display looks like this:
   aaa
  f   b
   ggg
- e   c  
+ e   c
   ddd
 ```
 
@@ -89,7 +89,7 @@ But the display is ACTIVE LOW, so ON = 0, OFF = 1
 
 ```verilog
 assign seg[0] = 1'b0;    // segment a - ON (0 means ON in active low)
-assign seg[1] = 1'b1;    // segment b - OFF (1 means OFF in active low) 
+assign seg[1] = 1'b1;    // segment b - OFF (1 means OFF in active low)
 assign seg[2] = 1'b1;    // segment c - OFF
 assign seg[3] = 1'b0;    // segment d - ON
 assign seg[4] = 1'b0;    // segment e - ON
@@ -104,19 +104,20 @@ STEP 4: ANODE CONTROL (Which displays are ON)
 ```verilog
 assign an[3] = password_correct ? 1'b1 : 1'b0;  // OFF when correct, ON when wrong
 assign an[2] = 1'b0;                             // Always ON
-assign an[1] = 1'b0;                             // Always ON  
+assign an[1] = 1'b0;                             // Always ON
 assign an[0] = password_correct ? 1'b1 : 1'b0;  // OFF when correct, ON when wrong
 ```
 
-================================================================================
+-------------
 COMPLETE VERILOG CODE WITH DETAILED EXPLANATIONS:
-================================================================================
-module lab1 (
-    input [9:0] sw,          // SW0 to SW9 switches
-    output [9:0] led,        // LED0 to LED9
-    output [6:0] seg,        // 7-segment display segments
-    output [3:0] an          // 4 anodes for 7-segment displays
-);
+-------------
+
+    module lab1 (
+        input [9:0] sw,          // SW0 to SW9 switches
+        output [9:0] led,        // LED0 to LED9
+        output [6:0] seg,        // 7-segment display segments
+        output [3:0] an          // 4 anodes for 7-segment displays
+    );
 
     // SUBTASK A: Direct LED control
     assign led[0] = sw[0];
@@ -154,23 +155,23 @@ module lab1 (
     assign an[1] = 1'b0;                               // AN1: Always ON
     assign an[0] = password_correct ? 1'b1 : 1'b0;    // AN0: OFF when correct, ON when wrong
 
-endmodule
+    endmodule
 
-================================================================================
+-------------
 UNDERSTANDING THE DIFFERENT STATES/MODES:
-================================================================================
+-------------
 
 STATE 1: WRONG PASSWORD EXAMPLES
 - All switches OFF: SW0=0, SW1=0, SW2=0, SW3=0, SW4=0, SW5=0, SW6=0, SW7=0, SW8=0, SW9=0
   Result: password_correct = 0 (false)
   Display: All 4 seven-segments (AN0,AN1,AN2,AN3) show 'e'
-  
-- Only SW1 ON: SW0=0, SW1=1, SW2=0, SW3=0, SW4=0, SW5=0, SW6=0, SW7=0, SW8=0, SW9=0  
+
+- Only SW1 ON: SW0=0, SW1=1, SW2=0, SW3=0, SW4=0, SW5=0, SW6=0, SW7=0, SW8=0, SW9=0
   Result: password_correct = 0 (false)
   Display: All 4 seven-segments show 'e'
-  
+
 - Missing one password switch: SW2=1, SW6=1, SW8=1, SW9=0 (SW9 is missing)
-  Result: password_correct = 0 (false) 
+  Result: password_correct = 0 (false)
   Display: All 4 seven-segments show 'e'
 
 STATE 2: CORRECT PASSWORD
@@ -178,9 +179,9 @@ STATE 2: CORRECT PASSWORD
   Result: password_correct = 1 (true)
   Display: Only AN1 and AN2 show 'e', AN0 and AN3 are OFF (blank)
 
-================================================================================
+-------------
 HOW THE BOOLEAN LOGIC WORKS:
-================================================================================
+-------------
 
 Password Detection Logic Breakdown:
 ```verilog
@@ -208,9 +209,9 @@ password_correct = 1 & 1 & 1 & 1 & ~1 & ~0 & ~0 & ~0 & ~0 & ~0
                  = 1 & 1 & 1 & 1 & 0 & 1 & 1 & 1 & 1 & 1
                  = 0 (because ~sw[0] = ~1 = 0)
 
-================================================================================
+-------------
 WHY WE USE SPECIFIC SIGNALS:
-================================================================================
+-------------
 
 WHY seg[6:0]?
 - Each 7-segment display has 7 segments (a,b,c,d,e,f,g)
@@ -218,7 +219,7 @@ WHY seg[6:0]?
 - We set these to display the letter 'e'
 - Same pattern goes to ALL 4 displays, but anodes control which ones are ON
 
-WHY an[3:0]?  
+WHY an[3:0]?
 - There are 4 seven-segment displays on the board
 - an[0] controls the rightmost display (AN0)
 - an[1] controls AN1, an[2] controls AN2, an[3] controls leftmost (AN3)
@@ -226,17 +227,17 @@ WHY an[3:0]?
 
 WHY Active Low Logic?
 - The hardware is designed this way
-- For segments: 0 = LED ON, 1 = LED OFF  
+- For segments: 0 = LED ON, 1 = LED OFF
 - For anodes: 0 = Display ON, 1 = Display OFF
 - This is just how the Basys 3 board works
 
-================================================================================
+--------------------------
 TESTING YOUR DESIGN:
-================================================================================
+--------------------------
 
 TEST 1: Check SUBTASK A
 - Turn on SW0 → LED0 should light up
-- Turn on SW5 → LED5 should light up  
+- Turn on SW5 → LED5 should light up
 - Turn off SW0 → LED0 should turn off
 - This should work regardless of other switches
 
@@ -249,83 +250,85 @@ TEST 3: Check Correct Password
 - Turn ON only SW2, SW6, SW8, SW9 → Only middle two displays (AN1, AN2) show 'e'
 - AN0 and AN3 should be completely OFF (dark)
 
-================================================================================
+--------------------------
 Create a file named "lab1_constraints.xdc" with the following content:
 
 ## Switches
-set_property PACKAGE_PIN V17 [get_ports {sw[0]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {sw[0]}]
-set_property PACKAGE_PIN V16 [get_ports {sw[1]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {sw[1]}]
-set_property PACKAGE_PIN W16 [get_ports {sw[2]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {sw[2]}]
-set_property PACKAGE_PIN W17 [get_ports {sw[3]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {sw[3]}]
-set_property PACKAGE_PIN W15 [get_ports {sw[4]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {sw[4]}]
-set_property PACKAGE_PIN V15 [get_ports {sw[5]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {sw[5]}]
-set_property PACKAGE_PIN W14 [get_ports {sw[6]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {sw[6]}]
-set_property PACKAGE_PIN W13 [get_ports {sw[7]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {sw[7]}]
-set_property PACKAGE_PIN V2 [get_ports {sw[8]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {sw[8]}]
-set_property PACKAGE_PIN T3 [get_ports {sw[9]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {sw[9]}]
 
-## LEDs
-set_property PACKAGE_PIN U16 [get_ports {led[0]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {led[0]}]
-set_property PACKAGE_PIN E19 [get_ports {led[1]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {led[1]}]
-set_property PACKAGE_PIN U19 [get_ports {led[2]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {led[2]}]
-set_property PACKAGE_PIN V19 [get_ports {led[3]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {led[3]}]
-set_property PACKAGE_PIN W18 [get_ports {led[4]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {led[4]}]
-set_property PACKAGE_PIN U15 [get_ports {led[5]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {led[5]}]
-set_property PACKAGE_PIN U14 [get_ports {led[6]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {led[6]}]
-set_property PACKAGE_PIN V14 [get_ports {led[7]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {led[7]}]
-set_property PACKAGE_PIN V13 [get_ports {led[8]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {led[8]}]
-set_property PACKAGE_PIN V3 [get_ports {led[9]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {led[9]}]
+    set_property PACKAGE_PIN V17 [get_ports {sw[0]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {sw[0]}]
+    set_property PACKAGE_PIN V16 [get_ports {sw[1]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {sw[1]}]
+    set_property PACKAGE_PIN W16 [get_ports {sw[2]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {sw[2]}]
+    set_property PACKAGE_PIN W17 [get_ports {sw[3]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {sw[3]}]
+    set_property PACKAGE_PIN W15 [get_ports {sw[4]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {sw[4]}]
+    set_property PACKAGE_PIN V15 [get_ports {sw[5]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {sw[5]}]
+    set_property PACKAGE_PIN W14 [get_ports {sw[6]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {sw[6]}]
+    set_property PACKAGE_PIN W13 [get_ports {sw[7]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {sw[7]}]
+    set_property PACKAGE_PIN V2 [get_ports {sw[8]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {sw[8]}]
+    set_property PACKAGE_PIN T3 [get_ports {sw[9]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {sw[9]}]
 
-## 7-segment display segments
-set_property PACKAGE_PIN W7 [get_ports {seg[0]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {seg[0]}]
-set_property PACKAGE_PIN W6 [get_ports {seg[1]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {seg[1]}]
-set_property PACKAGE_PIN U8 [get_ports {seg[2]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {seg[2]}]
-set_property PACKAGE_PIN V8 [get_ports {seg[3]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {seg[3]}]
-set_property PACKAGE_PIN U5 [get_ports {seg[4]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {seg[4]}]
-set_property PACKAGE_PIN V5 [get_ports {seg[5]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {seg[5]}]
-set_property PACKAGE_PIN U7 [get_ports {seg[6]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {seg[6]}]
+    ## LEDs
+    set_property PACKAGE_PIN U16 [get_ports {led[0]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {led[0]}]
+    set_property PACKAGE_PIN E19 [get_ports {led[1]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {led[1]}]
+    set_property PACKAGE_PIN U19 [get_ports {led[2]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {led[2]}]
+    set_property PACKAGE_PIN V19 [get_ports {led[3]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {led[3]}]
+    set_property PACKAGE_PIN W18 [get_ports {led[4]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {led[4]}]
+    set_property PACKAGE_PIN U15 [get_ports {led[5]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {led[5]}]
+    set_property PACKAGE_PIN U14 [get_ports {led[6]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {led[6]}]
+    set_property PACKAGE_PIN V14 [get_ports {led[7]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {led[7]}]
+    set_property PACKAGE_PIN V13 [get_ports {led[8]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {led[8]}]
+    set_property PACKAGE_PIN V3 [get_ports {led[9]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {led[9]}]
 
-## 7-segment display anodes
-set_property PACKAGE_PIN U2 [get_ports {an[0]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {an[0]}]
-set_property PACKAGE_PIN U4 [get_ports {an[1]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {an[1]}]
-set_property PACKAGE_PIN V4 [get_ports {an[2]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {an[2]}]
-set_property PACKAGE_PIN W4 [get_ports {an[3]}]
-    set_property IOSTANDARD LVCMOS33 [get_ports {an[3]}]
+    ## 7-segment display segments
+    set_property PACKAGE_PIN W7 [get_ports {seg[0]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {seg[0]}]
+    set_property PACKAGE_PIN W6 [get_ports {seg[1]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {seg[1]}]
+    set_property PACKAGE_PIN U8 [get_ports {seg[2]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {seg[2]}]
+    set_property PACKAGE_PIN V8 [get_ports {seg[3]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {seg[3]}]
+    set_property PACKAGE_PIN U5 [get_ports {seg[4]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {seg[4]}]
+    set_property PACKAGE_PIN V5 [get_ports {seg[5]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {seg[5]}]
+    set_property PACKAGE_PIN U7 [get_ports {seg[6]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {seg[6]}]
 
-================================================================================
+    ## 7-segment display anodes
+    set_property PACKAGE_PIN U2 [get_ports {an[0]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {an[0]}]
+    set_property PACKAGE_PIN U4 [get_ports {an[1]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {an[1]}]
+    set_property PACKAGE_PIN V4 [get_ports {an[2]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {an[2]}]
+    set_property PACKAGE_PIN W4 [get_ports {an[3]}]
+        set_property IOSTANDARD LVCMOS33 [get_ports {an[3]}]
+
+--------------------------
 
 SWITCH ASSIGNMENT SUMMARY:
-================================================================================
+--------------------------
+
 For your matriculation number a0299826e:
 
 PASSWORD SWITCHES (must be ON for correct password):
@@ -343,7 +346,8 @@ NON-PASSWORD SWITCHES (must be OFF for correct password):
 - SW7: OFF
 
 TESTING PROCEDURE:
-================================================================================
+
+--------------------------
 1. Wrong password test: Turn any combination of switches OTHER than SW2+SW6+SW8+SW9
    → All 4 anodes should display 'e'
 
@@ -351,7 +355,8 @@ TESTING PROCEDURE:
    → Only AN1 and AN2 should display 'e' (AN0 and AN3 should be OFF)
 
 VIVADO IMPLEMENTATION STEPS:
-================================================================================
+
+--------------------------
 1. Create New Project:
    - File → New Project
    - Choose project name and location

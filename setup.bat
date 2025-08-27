@@ -37,6 +37,22 @@ if not exist "tools\.venv" (
 echo.
 echo Installing essential packages...
 tools\.venv\Scripts\python.exe -m pip install --upgrade pip
+
+echo Installing core packages (pymupdf, pandas, numpy, Pillow)...
+tools\.venv\Scripts\python.exe -m pip install pymupdf>=1.24.0 pandas>=2.3.0 numpy>=1.26.0 Pillow>=10.0.0
+
+if errorlevel 1 (
+    echo ERROR: Failed to install core packages!
+    echo Trying alternative installation method...
+    py -m pip install pymupdf pandas numpy Pillow
+    if errorlevel 1 (
+        echo ERROR: Alternative installation also failed!
+        pause
+        exit /b 1
+    )
+)
+
+echo Installing additional packages from requirements.txt...
 tools\.venv\Scripts\python.exe -m pip install -r tools\pdf_converter\requirements.txt
 
 REM Install Tesseract OCR for image text extraction
@@ -88,14 +104,14 @@ if errorlevel 1 (
     echo.
     echo Installing core packages only...
     tools\.venv\Scripts\python.exe -m pip install pdfplumber==0.10.3 PyPDF2==3.0.1 Pillow pandas numpy
-    
+
     if errorlevel 1 (
         echo ERROR: Failed to install core packages!
         echo Please check your internet connection and try again.
         pause
         exit /b 1
     )
-    
+
     echo.
     echo =====================================
     echo     Basic Setup Complete!

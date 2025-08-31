@@ -27,43 +27,43 @@ If an attacker gets your password, they can read your emails (confidentiality), 
 
 #### (a) 64-bit key, 4GHz single-core, 512 cycles/test
 
-| Parameter         | Value                |
-|-------------------|----------------------|
-| Total keys        | 2^64                 |
-| Cycles per test   | 512                  |
-| Processor speed   | 4GHz = 4 × 10^9 Hz   |
-| Time per test     | 512 / (4 × 10^9) s   |
-| Tests/sec         | 7.81 × 10^6          |
-| Total time (sec)  | 2^64 / 7.81 × 10^6   |
-| Total time (years)| ≈ 70,400             |
+| Parameter          | Value              |
+| ------------------ | ------------------ |
+| Total keys         | 2^64               |
+| Cycles per test    | 512                |
+| Processor speed    | 4GHz = 4 × 10^9 Hz |
+| Time per test      | 512 / (4 × 10^9) s |
+| Tests/sec          | 7.81 × 10^6        |
+| Total time (sec)   | 2^64 / 7.81 × 10^6 |
+| Total time (years) | ≈ 70,400           |
 
 #### (b) 1024 servers, each quad-core 4GHz
 
-| Parameter         | Value                |
-|-------------------|----------------------|
-| Total cores       | 1024 × 4 = 4096      |
-| Total tests/sec   | 4096 × 7.81 × 10^6   |
-| Total time (sec)  | 2^64 / 3.2 × 10^10   |
-| Total time (years)| ≈ 18.3               |
+| Parameter          | Value              |
+| ------------------ | ------------------ |
+| Total cores        | 1024 × 4 = 4096    |
+| Total tests/sec    | 4096 × 7.81 × 10^6 |
+| Total time (sec)   | 2^64 / 3.2 × 10^10 |
+| Total time (years) | ≈ 18.3             |
 
 #### (c) Bitcoin Network (hash rate = 1T = 2^40 tests/sec)
 
-| Parameter         | Value                |
-|-------------------|----------------------|
-| Total tests/sec   | 2^40                 |
-| Total time (sec)  | 2^64 / 2^40 = 2^24   |
-| Total time (years)| ≈ 0.53 (6.1 months)  |
+| Parameter          | Value               |
+| ------------------ | ------------------- |
+| Total tests/sec    | 2^40                |
+| Total time (sec)   | 2^64 / 2^40 = 2^24  |
+| Total time (years) | ≈ 0.53 (6.1 months) |
 
 ---
 
 ### Q3: 42-bit key, 4GHz single-core
 
-| Parameter         | Value                |
-|-------------------|----------------------|
-| Total keys        | 2^42                 |
-| Tests/sec         | 7.81 × 10^6          |
-| Total time (sec)  | 2^42 / 7.81 × 10^6   |
-| Total time (days) | ≈ 6.54               |
+| Parameter         | Value              |
+| ----------------- | ------------------ |
+| Total keys        | 2^42               |
+| Tests/sec         | 7.81 × 10^6        |
+| Total time (sec)  | 2^42 / 7.81 × 10^6 |
+| Total time (days) | ≈ 6.54             |
 
 ---
 
@@ -101,7 +101,7 @@ If an attacker gets your password, they can read your emails (confidentiality), 
 ## 4. Quick Reference Table
 
 | Key Size | Tests/sec (4GHz) | Time to Crack (single-core) |
-|----------|------------------|-----------------------------|
+| -------- | ---------------- | --------------------------- |
 | 42-bit   | 7.8M             | ~6.5 days                   |
 | 56-bit   | 7.8M             | ~9.4 years                  |
 | 64-bit   | 7.8M             | ~70,400 years               |

@@ -18,13 +18,17 @@
 ### Clarity
 Clarity is the quality of being easily understood, free from confusion or ambiguity. In critical thinking, clarity is essential because if a statement or idea is unclear, it is impossible to assess its accuracy, relevance, significance, precision, logicalness, fairness, breadth, or depth. Clarity is the foundation for all other intellectual standards.
 
+**Clarity vs. Precision:**
+- Clarity is about being understandable and free from confusion or ambiguity. It is not about "more details." Instead, it means the idea is expressed in a way that can be grasped by others.
+- Precision is about being specific and exact to the necessary level of detail. Precision adds the necessary details once clarity is achieved.
+
 **How to achieve clarity:**
 - Restate the idea in simpler terms
 - Ask for examples or illustrations
 - Request further explanation or elaboration
 
 **Questions to promote clarity:**
-- Can you elaborate on that point?
+- Can you elaborate on that point? (Note: This can also relate to depth if asking for more complexity)
 - Could you give an example?
 - Can you rephrase that in another way?
 
@@ -76,7 +80,11 @@ Instead of saying "This policy is effective," you could say "From the perspectiv
 
 
 ### Precision
-Precision means providing enough detail to be specific and exact. In critical thinking, precision avoids vagueness and generalities.
+Precision means being specific and exact to the necessary level of detail. In critical thinking, precision avoids vagueness and generalities. Precision is not about "more details" in general, but about the right details that make a statement exact and unambiguous.
+
+**Clarity vs. Precision:**
+- Clarity comes first: Is the idea understandable?
+- Precision comes next: Is the idea specific and exact enough for the context?
 
 **Questions to ask:**
 - Can you be more specific?
@@ -85,7 +93,11 @@ Precision means providing enough detail to be specific and exact. In critical th
 
 
 ### Significance
-Significance means focusing on the most important information, ideas, or issues. It helps prioritize what matters most in reasoning and decision-making.
+Significance means focusing on the most important information, ideas, or issues. It helps prioritize what matters most in reasoning and decision-making. Significance is about importance, not about complexity.
+
+**Significance vs. Depth:**
+- Significance is about what is most important or impactful.
+- Depth is about the complexity and underlying factors of an issue.
 
 **How to apply significance:**
 Significance is about deciding whether something is worth spending time and attention on. It helps you focus on what truly matters, especially when considering implications or consequences. When evaluating information or arguments, ask yourself if the point is central to the issue or if it will have meaningful impact.
@@ -114,6 +126,10 @@ Fairness means being just, impartial, and free from bias. In critical thinking, 
 ### Depth
 Depth means addressing the complexities and underlying factors of an issue. A statement can be clear, accurate, precise, relevant, significant, logical, fair, and broad, but still lack depth if it only scratches the surface and ignores deeper causes, relationships, or implications. Depth requires exploring the underlying issues, recognizing complexities, and not settling for superficial explanations.
 
+**Depth vs. Significance:**
+- Depth is about complexity and the need to address underlying causes, relationships, or implications.
+- Significance is about importance or impact.
+
 **Example:**
 A statement like "Exercise is good for health" is clear, accurate, precise, and relevant, but it lacks depth because it does not address how, why, or under what conditions exercise benefits health, or what types of exercise are most effective.
 
@@ -123,7 +139,7 @@ A statement like "Exercise is good for health" is clear, accurate, precise, and 
 - Are there complexities that need to be considered?
 
 **Key point:**
-Depth ensures that reasoning goes beyond the obvious and addresses the real substance of a problem or question.
+Depth ensures that reasoning goes beyond the obvious and addresses the real substance and complexity of a problem or question.
 
 ## The 8 Elements of Thought:
 

@@ -141,7 +141,7 @@
 ## 5. Quick Reference Table
 
 | Key Size | Tests/sec (4GHz) | Time to Crack (single-core) |
-|----------|------------------|-----------------------------|
+| -------- | ---------------- | --------------------------- |
 | 42-bit   | 7.8M             | ~6.5 days                   |
 | 56-bit   | 7.8M             | ~9.4 years                  |
 | 64-bit   | 7.8M             | ~70,400 years               |

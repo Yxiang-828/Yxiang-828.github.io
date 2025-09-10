@@ -47,7 +47,7 @@ Now we can substitute this value back into the equation:
 
 Solving for n gives:
 
-n = 50 / 9.96578 = 5.017 (4sf)
+> n = 50 / 9.96578 = 5.017 (4sf)
 
 Since we can't have a fraction of a word, we round up to the nearest whole number. Therefore, we need at least 6 words from the dictionary to achieve 50 bits of randomness.
 
@@ -82,7 +82,7 @@ for the gym be larger, smaller, or equal to 0.5?
 >
 > FMR means *false match rate*: no. of fakes accepted / total faked attempts(fakes accepted + fakes not accepted) [security risk]
 
-The smaller than 0.5 because gym usually require more convenience than security, less rejection of real users over rejecting fakes. Hence having a lower threshold is more suitable and reasonable.
+The smaller than 0.5 because gym usually require more convenience than security, less rejection of real users over rejecting fakes. Hence having a *lower threshold* is more suitable and reasonable.
 
 3.
 ```
@@ -131,7 +131,7 @@ encrypted/protected by HTTPS. However, if the attacker is a malware in the PC, t
 might able to get everything.
 </small>
 
->It is safer to the interaction with the bank using the sms option as the otp is sent through the phone of the user via sms so the attacker on the PC does not have access to the otp.
+>It is safer to use SMS as the user can verify the transaction detals sent to their phone which is not compromised. This implies that the user can detect if the attacker has modified the transaction details on the PC.
 
 (b) Consider this scenario.
 •Alice is a billionaire. She attended a conference in a nice pacific
@@ -161,7 +161,7 @@ M2 “You have requested to transfer $50,000 from account 1388293-
 •M1 and M2 have their own limitation. How to get a tradeoff
 between the two choices?
 
-> Just keep it concise, keep information but don't reveal too much
+> Remove sensitive information such as the account numbers and only keep the transaction amount and recipient name if possible. This way, the user can still verify the transaction without exposing sensitive details that could be exploited by attackers.
 
 
 4.

@@ -53,7 +53,7 @@ type hash_clean.txt
 
 **Hash Mode Reference:**
 - Office 2007: `-m 9400`
-- Office 2010: `-m 9500` 
+- Office 2010: `-m 9500`
 - Office 2013: `-m 9600`
 - Office 2016: `-m 9700`
 
@@ -88,7 +88,7 @@ During the attack, use these controls:
 
 - Press `s` - Show current status and speed
 - Press `p` - Pause the attack
-- Press `r` - Resume the attack  
+- Press `r` - Resume the attack
 - Press `q` - Quit (can resume later)
 
 **Status Information:**

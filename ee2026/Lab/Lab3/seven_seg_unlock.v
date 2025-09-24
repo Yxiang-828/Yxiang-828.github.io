@@ -1,51 +1,52 @@
-module seven_seg_unlock(
+`timescale 1ns / 1ps
+module led_lighting(
     input CLK,
-    input [3:0] BTN,
-    input max_led_on,
-    output reg [3:0] an,
-    output reg [6:0] seg,
-    output reg LED15
+    input pulse_1_11s,
+    input [2:0] sw,
+    input slow_1hz,
+    input slow_10hz,
+    input slow_100hz,
+    output reg [14:0] LED_low,
+    output max_led_on
 );
 
-reg [2:0] step = 0;
-reg [3:0] prev_btn = 4'b1111;
-wire [3:0] press = BTN & ~prev_btn;
-wire [2:0] press_btn = BTN[0] ? 0 : BTN[1] ? 1 : BTN[2] ? 2 : BTN[3] ? 3 : 4;
+reg [3:0] led_count = 0;
 
 always @(posedge CLK) begin
-    prev_btn <= BTN;
-end
-
-always @(posedge CLK) begin
-    if (!max_led_on) begin
-        step <= 0;
-        LED15 <= 0;
-    end else begin
-        if (step == 0) step <= 1;  // Set to step 1 when max_led_on
-        else if (press && press_btn != 4) begin  // BTN[3]=btnL, BTN[2]=btnR, BTN[1]=btnD, BTN[0]=btnC
-            if (step == 1 && press_btn == 0) step <= 2;      // BTNC
-            else if (step == 2 && press_btn == 2) step <= 3; // BTNR
-            else if (step == 3 && press_btn == 1) step <= 4; // BTND
-            else if (step == 4 && press_btn == 3) step <= 5; // BTNL
-            else if (step == 5 && press_btn == 2) step <= 6; // BTNR
-            // Wrong presses do nothing
-        end
+    if (pulse_1_11s && led_count < 8) begin  // Stop at 8 to prevent overflow to 9
+        led_count <= led_count + 1;
     end
-    LED15 <= (step == 6);
 end
 
-// Seven-segment display
+assign max_led_on = (led_count >= 8);
+
 always @(*) begin
-    case (step)
-        0: begin an = 4'b1111; seg = 7'b1111111; end // off
-        1: begin an = 4'b1110; seg = 7'b0100111; end // g,e,d on 4th (AN3)
-        2: begin an = 4'b1101; seg = 7'b0101111; end // g,e on 3rd (AN2)
-        3: begin an = 4'b1011; seg = 7'b0100001; end // g,e,d,c,b on 2nd (AN1)
-        4: begin an = 4'b0111; seg = 7'b1001111; end // e,f on 1st (AN0)
-        5: begin an = 4'b1101; seg = 7'b0101111; end // e,g on 3rd (AN2)
-        6: begin an = 4'b1101; seg = 7'b0101111; end // e,g on 3rd (AN2, unlocked)
-        default: begin an = 4'b1111; seg = 7'b1111111; end
-    endcase
+    LED_low = 15'b0; // Default all LEDs off
+
+    if (max_led_on) begin
+        // Blinking phase: LD0-8 ON by default, override blinking LED based on priority
+        LED_low[8:0] = 9'b111111111; // LD0-8 ON
+
+        if (sw[2]) LED_low[2] = slow_100hz; // SW2 on: LD2 blinks (highest priority)
+        if (sw[1] && !sw[2]) LED_low[1] = slow_10hz; // SW1 on, SW2 off: LD1 blinks
+        if (sw[0] && !sw[1] && !sw[2]) LED_low[0] = slow_1hz; // SW0 on, SW1/SW2 off: LD0 blinks
+        // If multiple on, higher priority wins; if none, all stay ON
+        // LD9-14 stay off
+    end else begin
+        // Lighting phase: LD0 to led_count ON, others off
+        case (led_count)
+            0: LED_low[0] = 1;
+            1: LED_low[1:0] = 2'b11;
+            2: LED_low[2:0] = 3'b111;
+            3: LED_low[3:0] = 4'b1111;
+            4: LED_low[4:0] = 5'b11111;
+            5: LED_low[5:0] = 6'b111111;
+            6: LED_low[6:0] = 7'b1111111;
+            7: LED_low[7:0] = 8'b11111111;
+            8: LED_low[8:0] = 9'b111111111;
+            default: LED_low = 15'b0;
+        endcase
+    end
 end
 
 endmodule

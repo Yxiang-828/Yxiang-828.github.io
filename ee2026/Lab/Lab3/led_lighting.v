@@ -21,7 +21,7 @@ end
 assign max_led_on = (led_count >= 8);
 
 always @(*) begin
-    LED_low = 15'b0; // Default all LEDs off
+    LED_low = 15'b0; // Default all LEDs off, LED_low[14:9] remain unused (0)
 
     if (max_led_on) begin
         // Blinking phase: LD0-8 ON by default, override blinking LED based on priority

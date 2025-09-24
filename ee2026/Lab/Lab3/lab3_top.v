@@ -3,7 +3,7 @@
 module lab3_top(
     input CLK,          // 100 MHz clock
     input [2:0] sw,     // Switches SW0, SW1, SW2
-    input btnC, btnD, btnL, btnR,  // Buttons
+    input btnC, btnD, btnL, btnR, btnU,  // Buttons
     output [15:0] led,  // LEDs LD0-LD15
     output [3:0] an,    // Seven-segment anodes (4)
     output [6:0] seg    // Seven-segment segments

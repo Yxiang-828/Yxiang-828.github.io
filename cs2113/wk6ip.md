@@ -170,10 +170,10 @@ A JAR file is like a **ZIP file for Java** that contains:
 
 ### **Regular vs Executable JAR**
 
-| Type | What it contains | How to run |
-|------|------------------|------------|
-| **Regular JAR** | Just classes | `java -cp myapp.jar MainClass` |
-| **Executable JAR** | Classes + Manifest | `java -jar myapp.jar` |
+| Type               | What it contains   | How to run                     |
+| ------------------ | ------------------ | ------------------------------ |
+| **Regular JAR**    | Just classes       | `java -cp myapp.jar MainClass` |
+| **Executable JAR** | Classes + Manifest | `java -jar myapp.jar`          |
 
 ---
 

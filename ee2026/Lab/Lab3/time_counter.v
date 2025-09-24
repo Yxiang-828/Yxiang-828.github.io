@@ -5,7 +5,7 @@ module time_counter(
     output reg pulse_1_11s
 );
 
-parameter COUNT_1_11S = 111000000; // 100MHz * 1.11s ≈ 111M cycles
+parameter COUNT_1_11S = 111000000; // 100MHz * 1.11s ? 111M cycles
 
 reg [26:0] counter = 0; // 27 bits for up to 134M
 

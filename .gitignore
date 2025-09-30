@@ -8,6 +8,9 @@ tools/.venv/
 __pycache__/
 *.pyc
 *.pyo
+
+# Vencord
+vencord/
 *.pyd
 .Python
 
@@ -30,3 +33,4 @@ desktop.ini
 *.temp
 gf.instructions.md
 wow.md
+quest_script.md

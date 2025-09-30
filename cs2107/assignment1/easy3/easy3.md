@@ -1,50 +1,49 @@
-# Easy3 Write-Up
+# Easy3 Solution
 
-## Analysis of the Question
-The challenge involves cracking an encrypted ZIP file called `sus_package.zip` containing two files: `Assignment 1.pdf` and `flag.txt`. Both are encrypted using ZipCrypto. The goal is to extract the flag from `flag.txt`. I analyzed it as a known-plaintext attack on ZipCrypto, since I have the unencrypted version of `Assignment 1.pdf` in the parent directory.
+1. Download bkcrack from https://github.com/kimci86/bkcrack/releases (get the win64 zip).
+2. Extract bkcrack.exe to the folder with sus_package.zip.
+3. List files in ZIP: bkcrack -L sus_package.zip
+4. Find keys using known plaintext: bkcrack -C sus_package.zip -c "Assignment 1.pdf" -p "../../Assignment 1.pdf"
+5. Decrypt flag: bkcrack -C sus_package.zip -k [keys from step 4] -c "flag.txt" -d flag.txt
+6. Read flag.txt for the answer.
 
-## Why This Plaintext
-I used `Assignment 1.pdf` as the known plaintext because it's the same file available unencrypted in the parent directory (`../Assignment 1.pdf`). This provides about 80KB of known data, which is sufficient for the attack.
+## How ZipCrypto Encryption Works and Why the Attack Succeeds
 
-## Why That Cipher
-ZipCrypto is a legacy encryption method used in ZIP files. It's weak and vulnerable to cryptanalysis because it uses a simple stream cipher based on a linear congruential generator (LCG), rather than modern encryption standards like AES.
+ZipCrypto encryption (used in ZIP files) is weak, which is why the known plaintext attack works. Here's how it functions and why it's vulnerable.
 
-## Why XOR etc.
-ZipCrypto works as a stream cipher: it generates a keystream of pseudo-random bytes using an LCG, then XORs each plaintext byte with the corresponding keystream byte to produce ciphertext. XOR is used because it's reversible—if you XOR again with the same keystream, you get back the plaintext. The LCG updates the internal state (three 32-bit keys) for each byte, making the keystream deterministic once the initial keys are known.
+### How ZipCrypto Encryption Works
+1. **Password to Keys**: The password is hashed to create 3 initial "keys" (32-bit numbers, like `7e827b05 98ea3b23 33a5bfc8`). These are the starting point for encryption.
+2. **Keystream Generation**: For each byte of the file, a "keystream" byte is generated using a Linear Congruential Generator (LCG)—a math formula that produces a sequence of pseudo-random numbers. The LCG updates the keys for each byte.
+   - Formula (simplified): `next_key = (current_key * 0x08088405 + 1) % 2^32`
+   - This creates a stream of "random" bytes.
+3. **Encryption**: Each plaintext byte is XORed with the keystream byte to get ciphertext.
+   - `ciphertext_byte = plaintext_byte XOR keystream_byte`
+   - Decryption reverses it: `plaintext_byte = ciphertext_byte XOR keystream_byte`
+4. **Header**: The first 12 bytes of each file include a random header, encrypted the same way.
 
-## How bkcrack Did It
-bkcrack performs a known-plaintext attack on ZipCrypto. It uses the known plaintext to deduce part of the keystream, then brute-forces the LCG's initial state (the three keys) by working backwards from the known data. Once the keys are found, it can regenerate the keystream for any file in the ZIP and decrypt them by XORing the ciphertext with the keystream.
+The LCG is deterministic—if you know the initial keys, you can regenerate the exact keystream.
 
-## Inputs and Outputs
+### Why the Known Plaintext Attack Works
+ZipCrypto's weakness is that the LCG is predictable and reversible with enough data.
 
-```
-Input: bkcrack -L sus_package.zip
-Output:
-bkcrack 1.7.0 - 2024-05-26
-Archive: sus_package.zip
-Index Encryption Compression CRC32    Uncompressed  Packed size Name
------ ---------- ----------- -------- ------------ ------------ ----------------
-    0 ZipCrypto  Store       e823ad14        82144        82156 Assignment 1.pdf
-    1 ZipCrypto  Store       7dabb3fe           52           64 flag.txt
+1. **Get Keystream from Known Plaintext**:
+   - You have known plaintext (e.g., the PDF).
+   - XOR it with the ciphertext from the ZIP: `keystream = ciphertext XOR plaintext`
+   - This gives you part of the keystream.
 
-Input: bkcrack -C sus_package.zip -c "Assignment 1.pdf" -p "../Assignment 1.pdf"
-Output:
-bkcrack 1.7.0 - 2024-05-26
-[01:02:13] Z reduction using 82137 bytes of known plaintext
-18.6 % (15292 / 82137)
-[01:02:14] Attack on 123 Z values at index 67342
-Keys: 7e827b05 98ea3b23 33a5bfc8
-100.0 % (123 / 123)
-Found a solution. Stopping.
-[01:02:14] Keys
-7e827b05 98ea3b23 33a5bfc8
+2. **Reverse the LCG**:
+   - The LCG is linear, so with ~12 bytes of keystream, you can work backward to find the initial keys.
+   - bkcrack brute-forces the LCG state (3 keys) by trying combinations until the generated keystream matches your known one.
+   - It starts from the end (easier to reverse) and checks if it fits.
 
-Input: bkcrack -C sus_package.zip -k 7e827b05 98ea3b23 33a5bfc8 -c "flag.txt" -d flag.txt
-Output:
-bkcrack 1.7.0 - 2024-05-26
-[01:02:21] Writing deciphered data flag.txt
-Wrote deciphered data (not compressed).
+3. **Decrypt Everything**:
+   - With the keys, regenerate the full keystream for any file in the ZIP.
+   - XOR the ciphertext with the keystream to get plaintext.
 
-Input: Get-Content flag.txt
-Output: CS2107{but_what_if_zipcrypto_deflate_is_used_hmm...}
-```
+### Why It's Broken
+- **Short Keys**: Only 96 bits (3 x 32-bit), easy to brute-force with known data.
+- **No Salt/IV**: Same password always gives same keys—no randomness per file.
+- **LCG Flaws**: The generator is old (from 1990s) and cryptographically weak—predictable after a few bytes.
+- **No Modern Crypto**: Unlike AES-256, ZipCrypto is legacy and should never be used.
+
+In this case, the PDF gives enough known data (~80KB) to crack the keys instantly. If the file was compressed (deflate), it'd be harder because compression scrambles the data. That's why the flag mentions "deflate"! This attack is why ZipCrypto is obsolete—always use AES for ZIPs.

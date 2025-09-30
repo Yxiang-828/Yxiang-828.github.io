@@ -5,7 +5,7 @@
 
 Prof. Massimo Alioto & Dr. Chua Dingjuan
 
-Lab Instructors : 
+Lab Instructors :
 
 Dr. Christopher Moy & Dr. Goh Shu Ting
 
@@ -13,7 +13,7 @@ Tutors :
 Prof. Massimo Alioto, Dr. Chua Dingjuan, Dr. Christopher Moy, Dr. Goh Shu Ting, Shao Yurui, Zhang Haoyu
 
 
-## Semester Schedule 
+## Semester Schedule
 (slight changes may be possible, see announcements)
 
 <img src="imgs/a1.png" alt="wk1-recess_week" width="400">

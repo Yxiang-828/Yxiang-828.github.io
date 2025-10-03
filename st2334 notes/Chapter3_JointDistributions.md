@@ -44,7 +44,31 @@
 ### Example
 - If (X,Y) is joint for height and weight, marginal of X is just the height distribution across all people.
 
-## 4. Conditional Distributions
+## 4. Differentiation and Integration Operations
+
+### Starting from Joint CDF F(x,y) = P(X ≤ x, Y ≤ y):
+
+**Differentiate by x**: ∂F(x,y)/∂x → f_Y(y|x) (conditional density of Y given x)
+**Differentiate by y**: ∂F(x,y)/∂y → f_X(x|y) (conditional density of X given y)
+**Differentiate by both**: ∂²F(x,y)/∂x∂y → f(x,y) (joint PDF)
+
+### Starting from Joint PDF f(x,y):
+
+**Integrate over y**: ∫ f(x,y) dy → f_X(x) (marginal PDF of X)
+**Integrate over x**: ∫ f(x,y) dx → f_Y(y) (marginal PDF of Y)
+**Double integrate**: ∫∫ f(x,y) dx dy → 1 (total probability)
+**Integrate over region R**: ∫∫_R f(x,y) dx dy → P((X,Y) ∈ R)
+
+### Starting from Marginal f_X(x):
+
+**Integrate**: ∫ f_X(x) dx → F_X(x) (marginal CDF of X)
+**Differentiate F_X(x)**: dF_X(x)/dx → f_X(x) (back to marginal PDF)
+
+### Summary Chain:
+F(x,y) ←→ f(x,y) ←→ f_X(x), f_Y(y) ←→ F_X(x), F_Y(y)
+(differentiate/integrate) (integrate/sum) (integrate/differentiate)
+
+## 5. Conditional Distributions
 
 ### What is Conditional?
 - The probability of Y given that X has a specific value.

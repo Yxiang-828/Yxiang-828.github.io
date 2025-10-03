@@ -49,15 +49,35 @@
   - **Inputs needed**: f(x) (PDF).
 - **General Expectation of a Function**: For any function g(X), $E[g(X)] = \sum g(x) P(X=x)$ (discrete) or $E[g(X)] = \int g(x) f(x) \, dx$ (continuous).
   - **Inputs needed**: g(x) (function), P(X=x) or f(x).
-- **Properties**: $E[aX + b] = a E[X] + b$ (linearity). $E[X+Y] = E[X] + E[Y]$ for independent RVs.
+  - **Why E[X^2] = sum P(x) * x^2**: E[X^2] is the expected value of the function g(X) = X^2. It's not P(X^2) * X^2 (which doesn't make sense, as P(X^2) isn't defined). Instead, for each possible x, multiply the probability P(X=x) by the squared value x^2, then sum. This gives the average of X^2 across the distribution.
+- **Properties (Linearity & Manipulation)**:
+  - $E[aX + b] = aE[X] + b$ (constants pull out, additive constants add)
+  - $E[X + Y] = E[X] + E[Y]$ (always true, even if dependent)
+  - $E[aX] = aE[X]$ (multiplicative constants factor out)
+  - $E[c] = c$ (expectation of constant = constant)
+  - $E[X^n]$ = nth moment (requires calculation case by case)
+  - $E[g(X) + h(X)] = E[g(X)] + E[h(X)]$ (linearity of expectation)
 - **Example**: Coin flip (X=1 heads, 0 tails): $E[X] = 1 \times 0.5 + 0 \times 0.5 = 0.5$.
+- **Manipulation Examples**:
+  - $E[3X + 5] = 3E[X] + 5$
+  - $E[2X - 7] = 2E[X] - 7$
+  - If $E[X] = 10$, then $E[0.5X + 3] = 0.5(10) + 3 = 8$
 
 ### Variance
 - **What it is**: Measures how spread out the values are around the mean. Like how "variable" the RV is.
 - **Formula**: $\text{Var}(X) = E[(X - \mu)^2] = E[X^2] - (E[X])^2$.
   - **Inputs needed**: E[X], E[X^2] (or the values and probabilities to compute them).
 - **Standard Deviation**: $\sigma = \sqrt{\text{Var}(X)}$, in same units as X.
-- **Properties**: $\text{Var}(aX + b) = a^2 \text{Var}(X)$. $\text{Var}(X+Y) = \text{Var}(X) + \text{Var}(Y)$ if independent.
+- **Properties (Coefficient Manipulation)**:
+  - $\text{Var}(aX + b) = a^2 \text{Var}(X)$ (constants squared for multiplication, additive constants disappear)
+  - $\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$ if independent
+  - $\text{Var}(aX) = a^2 \text{Var}(X)$ (coefficient gets squared)
+  - $\text{Var}(X + c) = \text{Var}(X)$ (adding constants doesn't change spread)
+  - $\text{Var}(c) = 0$ (constants have no variability)
+- **Manipulation Examples**:
+  - $\text{Var}(3X + 5) = 3^2 \text{Var}(X) = 9\text{Var}(X)$
+  - $\text{Var}(2X - 7) = 2^2 \text{Var}(X) = 4\text{Var}(X)$
+  - If $\text{Var}(X) = 4$, then $\text{Var}(0.5X + 3) = (0.5)^2(4) = 1$
 - **Example**: Coin flip: $\text{Var}(X) = E[X^2] - (0.5)^2 = (1^2 \times 0.5 + 0^2 \times 0.5) - 0.25 = 0.5 - 0.25 = 0.25$. $\sigma=0.5$.
 
 ### Higher Moments

@@ -53,6 +53,25 @@
 - **Combination**: Unordered groups. $C(n,r) = \frac{n!}{r! (n-r)!}$ — ways to pick r from n without order.
   - **Inputs needed**: n (total items), r (items to choose).
   - Example: Teams of 3 from 5: 10 ways.
+- **Combinations with Repetition**: Unordered groups where items can repeat. $C(n + r - 1, r)$ — ways to choose r items from n with replacement/order irrelevant.
+  - **Inputs needed**: n (distinct items), r (selections).
+  - **Logic**: Uses "stars and bars" theorem. Imagine r identical "stars" (selections) and n-1 "bars" (dividers between n groups). Total positions: r + (n-1) = n+r-1. Choose r positions for stars: C(n+r-1, r).
+    - **How it works for dice**: For 2 dice (r=2) from 1-6 (n=6), arrange 2 stars and 5 bars in a line. Each arrangement represents counts in 6 bins (e.g., * * | | | | | | = 2 in bin1 → (1,1); * | * | | | | | = 1 in bin1, 1 in bin2 → (1,2)). Since bins are ordered (1-6), (1,2) is distinct from (2,1)—order doesn't matter because we treat the pair as unordered.
+  - Example: Two dice (1-6), order doesn't matter: C(6+2-1, 2) = C(7,2) = 21 ways ((1,1), (1,2), ..., (6,6)).
+
+#### Breakdown for Two Selections from {1,2,3,4,5,6} (e.g., Two Dice)
+- **Permutations with Repetition** (ordered, repeats allowed): Each selection is distinct, order matters. Total: 6 × 6 = 36.
+  - Examples: (1,1), (1,2), (2,1), (6,6). Includes all ordered pairs.
+  - Use when: Selections are distinguishable (e.g., Die A and Die B), and order matters.
+- **Permutations without Repetition** (ordered, no repeats): Ordered pairs with distinct numbers. Total: P(6,2) = 30.
+  - Examples: (1,2), (2,1), but not (1,1). Excludes doubles.
+  - Use when: Ordered, but no identical outcomes allowed.
+- **Combinations without Repetition** (unordered, no repeats): Unordered pairs with distinct numbers. Total: C(6,2) = 15.
+  - Examples: {1,2} (same as {2,1}), but not {1,1}.
+  - Use when: Order doesn't matter, and no repeats (e.g., choosing 2 distinct numbers).
+- **Combinations with Repetition** (unordered, repeats allowed): Unordered pairs with repeats. Total: C(6+2-1,2) = 21.
+  - Examples: {1,1}, {1,2} (same as {2,1}), {6,6}.
+  - Use when: Order doesn't matter, but repeats are allowed (e.g., two dice outcomes where (1,2) ≡ (2,1)).
 
 ### Applications
 - Calculate probabilities when outcomes equally likely.
@@ -91,6 +110,23 @@
 ### Example Calculations
 - **Tree Diagrams**: For sequences (e.g., two coin flips).
 - **Venn Diagrams**: Visualize unions/intersections.
+
+## Question Types and Formulas Summary Table
+
+| **Question Type**              | **Description**                        | **Formula**                 | **When to Use**                                 |
+| ------------------------------ | -------------------------------------- | --------------------------- | ----------------------------------------------- |
+| **Classical Probability**      | Equally likely outcomes                | P(E) = favorable/total      | Fair dice, cards, coins                         |
+| **Permutations (no repeat)**   | Ordered arrangements, distinct items   | P(n,r) = n!/(n-r)!          | Arranging people in line, passwords             |
+| **Permutations (with repeat)** | Ordered arrangements, items can repeat | n^r                         | License plates, multiple trials                 |
+| **Combinations (no repeat)**   | Unordered groups, distinct items       | C(n,r) = n!/[r!(n-r)!]      | Choosing teams, lottery numbers                 |
+| **Combinations (with repeat)** | Unordered groups, items can repeat     | C(n+r-1,r)                  | Dice outcomes (order irrelevant), distributions |
+| **Multinomial Arrangements**   | Arranging identical groups             | n!/(n₁!×n₂!×...×nₖ!)        | Trees of same type, letters in words            |
+| **Conditional Probability**    | Probability given information          | P(A\|B) = P(A∩B)/P(B)       | Medical tests, card draws                       |
+| **Addition Rule**              | Union of events                        | P(A∪B) = P(A)+P(B)-P(A∩B)   | At least one event occurs                       |
+| **Multiplication Rule**        | Intersection of events                 | P(A∩B) = P(A)×P(B\|A)       | Both events occur                               |
+| **Independence**               | Events don't affect each other         | P(A∩B) = P(A)×P(B)          | Separate coin flips, dice rolls                 |
+| **Complement Rule**            | Event doesn't occur                    | P(A') = 1 - P(A)            | "At least one" vs "none"                        |
+| **Bayes' Theorem**             | Update probabilities                   | P(A\|B) = P(B\|A)×P(A)/P(B) | Diagnostic tests, prior beliefs                 |
 
 ## Summary
 This chapter lays the foundation for probability by defining experiments, outcomes, and events, and providing tools to calculate probabilities. Key is understanding how to model real-world scenarios into mathematical sets and apply counting and probability rules.

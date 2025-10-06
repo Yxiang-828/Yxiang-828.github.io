@@ -34,3 +34,7 @@ desktop.ini
 gf.instructions.md
 wow.md
 quest_script.md
+
+# Large folders and build artifacts
+**/hashclash/
+**/boost_*/

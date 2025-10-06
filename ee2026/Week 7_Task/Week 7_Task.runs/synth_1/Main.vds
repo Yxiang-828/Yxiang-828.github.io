@@ -2,8 +2,8 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Wed Oct  1 17:15:06 2025
-# Process ID: 17120
+# Start of session at: Sat Oct  4 22:36:12 2025
+# Process ID: 12832
 # Current directory: C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.runs/synth_1
 # Command line: vivado.exe -log Main.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Main.tcl
 # Log file: C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.runs/synth_1/Main.vds
@@ -15,9 +15,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 3900 
+INFO: Helper process launched with PID 39892 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 356.312 ; gain = 99.906
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 356.586 ; gain = 99.445
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'Main' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Main.v:73]
 INFO: [Synth 8-6157] synthesizing module 'flexible_timer' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Main.v:13]
@@ -83,33 +83,33 @@ INFO: [Synth 8-226] default block is never used [C:/Users/rkoh2/OneDrive/Desktop
 WARNING: [Synth 8-693] zero replication count - replication ignored [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Oled_Display.v:346]
 INFO: [Synth 8-6155] done synthesizing module 'Oled_Display' (4#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Oled_Display.v:36]
 WARNING: [Synth 8-350] instance 'oled' of module 'Oled_Display' requires 14 connections, but only 10 given [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Main.v:115]
-INFO: [Synth 8-6157] synthesizing module 'Task_P' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:345]
+INFO: [Synth 8-6157] synthesizing module 'Task_P' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:334]
 INFO: [Synth 8-6157] synthesizing module 'debouncer' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:10]
-	Parameter MIN_HIGH_COUNT bound to: 19999999 - type: integer 
+	Parameter DEBOUNCE_COUNT bound to: 19999999 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'debouncer' (5#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:10]
-INFO: [Synth 8-6157] synthesizing module 'single_pulse_detector' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:68]
-INFO: [Synth 8-6155] done synthesizing module 'single_pulse_detector' (6#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:68]
-INFO: [Synth 8-6157] synthesizing module 'toggle_switch' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:81]
-INFO: [Synth 8-6155] done synthesizing module 'toggle_switch' (7#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:81]
-INFO: [Synth 8-6157] synthesizing module 'ram' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:97]
-INFO: [Synth 8-6155] done synthesizing module 'ram' (8#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:97]
-INFO: [Synth 8-6157] synthesizing module 'drawer_control' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:304]
+INFO: [Synth 8-6157] synthesizing module 'single_pulse_detector' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:57]
+INFO: [Synth 8-6155] done synthesizing module 'single_pulse_detector' (6#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:57]
+INFO: [Synth 8-6157] synthesizing module 'toggle_switch' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:70]
+INFO: [Synth 8-6155] done synthesizing module 'toggle_switch' (7#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:70]
+INFO: [Synth 8-6157] synthesizing module 'ram' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:86]
+INFO: [Synth 8-6155] done synthesizing module 'ram' (8#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:86]
+INFO: [Synth 8-6157] synthesizing module 'drawer_control' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:293]
 	Parameter WIDTH bound to: 96 - type: integer 
 	Parameter HEIGHT bound to: 64 - type: integer 
 	Parameter BLACK_COLOR bound to: 16'b0000000000000000 
-INFO: [Synth 8-6157] synthesizing module 'drawer_logic' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:235]
+INFO: [Synth 8-6157] synthesizing module 'drawer_logic' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:224]
 	Parameter COLOR_RED bound to: 16'b1111100000000000 
 	Parameter COLOR_GREEN bound to: 16'b0000011111100000 
 	Parameter COLOR_MAGENTA bound to: 16'b1111100000011111 
 	Parameter COLOR_BLACK bound to: 16'b0000000000000000 
 	Parameter COLOR_WHITE bound to: 16'b1111111111111111 
-INFO: [Synth 8-6157] synthesizing module 'seven_segment_generator' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:118]
-INFO: [Synth 8-6155] done synthesizing module 'seven_segment_generator' (9#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:118]
-INFO: [Synth 8-6157] synthesizing module 'circle' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:208]
-INFO: [Synth 8-6155] done synthesizing module 'circle' (10#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:208]
-INFO: [Synth 8-6155] done synthesizing module 'drawer_logic' (11#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:235]
-INFO: [Synth 8-6155] done synthesizing module 'drawer_control' (12#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:304]
-INFO: [Synth 8-6155] done synthesizing module 'Task_P' (13#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:345]
+INFO: [Synth 8-6157] synthesizing module 'seven_segment_generator' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:107]
+INFO: [Synth 8-6155] done synthesizing module 'seven_segment_generator' (9#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:107]
+INFO: [Synth 8-6157] synthesizing module 'circle' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:197]
+INFO: [Synth 8-6155] done synthesizing module 'circle' (10#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:197]
+INFO: [Synth 8-6155] done synthesizing module 'drawer_logic' (11#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:224]
+INFO: [Synth 8-6155] done synthesizing module 'drawer_control' (12#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:293]
+INFO: [Synth 8-6155] done synthesizing module 'Task_P' (13#1) [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:334]
 INFO: [Synth 8-6157] synthesizing module 'Task_Q' [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_Q.v:11]
 	Parameter target_left bound to: 3'b011 
 	Parameter target_mid bound to: 3'b001 
@@ -159,7 +159,7 @@ WARNING: [Synth 8-3331] design drawer_logic has unconnected port state[1]
 WARNING: [Synth 8-3331] design drawer_logic has unconnected port state[0]
 WARNING: [Synth 8-3331] design Main has unconnected port JC[2]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 412.023 ; gain = 155.617
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 412.012 ; gain = 154.871
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -173,10 +173,10 @@ WARNING: [Synth 8-3295] tying undriven pin oled:reset to constant 0 [C:/Users/rk
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 412.023 ; gain = 155.617
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 412.012 ; gain = 154.871
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 412.023 ; gain = 155.617
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 412.012 ; gain = 154.871
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -192,22 +192,22 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 760.523 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 759.387 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 760.523 ; gain = 504.117
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:15 . Memory (MB): peak = 759.387 ; gain = 502.246
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 760.523 ; gain = 504.117
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:15 . Memory (MB): peak = 759.387 ; gain = 502.246
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 760.523 ; gain = 504.117
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:15 . Memory (MB): peak = 759.387 ; gain = 502.246
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'Oled_Display'
 INFO: [Synth 8-5546] ROM "fsm_next_state0" won't be mapped to RAM because it is too sparse
@@ -259,7 +259,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'seg_reg' [C:/Users/rkoh2/On
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'Oled_Display'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 760.523 ; gain = 504.117
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:16 . Memory (MB): peak = 759.387 ; gain = 502.246
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -274,7 +274,6 @@ Detailed RTL Component Info :
 +---Adders : 
 	   2 Input     32 Bit       Adders := 8     
 	   3 Input     32 Bit       Adders := 2     
-	   2 Input     25 Bit       Adders := 5     
 	   2 Input     17 Bit       Adders := 1     
 	   2 Input      9 Bit       Adders := 1     
 	   3 Input      8 Bit       Adders := 2     
@@ -286,16 +285,15 @@ Detailed RTL Component Info :
 	   2 Input      2 Bit       Adders := 1     
 +---Registers : 
 	               40 Bit    Registers := 1     
-	               25 Bit    Registers := 5     
 	               17 Bit    Registers := 1     
 	               16 Bit    Registers := 2     
 	                8 Bit    Registers := 2     
 	                7 Bit    Registers := 1     
 	                6 Bit    Registers := 2     
-	                5 Bit    Registers := 7     
+	                5 Bit    Registers := 2     
 	                3 Bit    Registers := 4     
 	                2 Bit    Registers := 1     
-	                1 Bit    Registers := 23    
+	                1 Bit    Registers := 29    
 +---Multipliers : 
 	                32x32  Multipliers := 2     
 +---RAMs : 
@@ -304,7 +302,6 @@ Detailed RTL Component Info :
 	   2 Input     40 Bit        Muxes := 3     
 	   2 Input     32 Bit        Muxes := 7     
 	  32 Input     32 Bit        Muxes := 1     
-	   2 Input     25 Bit        Muxes := 10    
 	  32 Input     20 Bit        Muxes := 1     
 	   2 Input     17 Bit        Muxes := 1     
 	   2 Input     16 Bit        Muxes := 21    
@@ -320,7 +317,7 @@ Detailed RTL Component Info :
 	   2 Input      2 Bit        Muxes := 2     
 	   5 Input      2 Bit        Muxes := 2     
 	   3 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 53    
+	   2 Input      1 Bit        Muxes := 18    
 	   5 Input      1 Bit        Muxes := 3     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -376,14 +373,8 @@ Detailed RTL Component Info :
 	   2 Input      1 Bit        Muxes := 2     
 Module debouncer 
 Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input     25 Bit       Adders := 5     
 +---Registers : 
-	               25 Bit    Registers := 5     
-	                5 Bit    Registers := 5     
-+---Muxes : 
-	   2 Input     25 Bit        Muxes := 10    
-	   2 Input      1 Bit        Muxes := 35    
+	                1 Bit    Registers := 3     
 Module single_pulse_detector 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -497,7 +488,7 @@ Start Cross Boundary and Area Optimization
 Warning: Parallel synthesis criteria is not met 
 INFO: [Synth 8-5546] ROM "fsm_next_state0" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "fsm_next_state0" won't be mapped to RAM because it is too sparse
-WARNING: [Synth 8-3936] Found unconnected internal register 'pulse_gen/btn_pulse_reg' and it is trimmed from '5' to '4' bits. [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:77]
+WARNING: [Synth 8-3936] Found unconnected internal register 'pulse_gen/btn_pulse_reg' and it is trimmed from '5' to '4' bits. [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_P.v:66]
 INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_S.v:154]
 INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.srcs/sources_1/new/Task_S.v:154]
 DSP Report: Generating DSP oled_data3, operation Mode is: A*B.
@@ -557,97 +548,14 @@ WARNING: [Synth 8-3332] Sequential element (character/seg_reg[3]) is unused and 
 WARNING: [Synth 8-3332] Sequential element (character/seg_reg[2]) is unused and will be removed from module Main.
 WARNING: [Synth 8-3332] Sequential element (character/seg_reg[1]) is unused and will be removed from module Main.
 WARNING: [Synth 8-3332] Sequential element (character/seg_reg[0]) is unused and will be removed from module Main.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/button_sync_q1_reg[4]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/button_sync_q1_reg[1]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/button_sync_q1_reg[0]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/button_sync_q2_reg[4]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/button_sync_q2_reg[1]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/button_sync_q2_reg[0]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/active_press_reg[4]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/active_press_reg[1]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/active_press_reg[0]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][24]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][23]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][22]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][21]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][20]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][19]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][18]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][17]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][16]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][15]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][14]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][13]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][12]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][11]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][10]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][9]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][8]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][7]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][6]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][5]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][4]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][3]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][2]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][1]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[0][0]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][24]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][23]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][22]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][21]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][20]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][19]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][18]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][17]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][16]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][15]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][14]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][13]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][12]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][11]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][10]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][9]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][8]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][7]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][6]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][5]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][4]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][3]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][2]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][1]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[1][0]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][24]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][23]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][22]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][21]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][20]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][19]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][18]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][17]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][16]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][15]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][14]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][13]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][12]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][11]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][10]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][9]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][8]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][7]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][6]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][5]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][4]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][3]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][2]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][1]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/counter_reg[4][0]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/min_time_expired_reg[4]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/min_time_expired_reg[1]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/min_time_expired_reg[0]) is unused and will be removed from module Task_P.
-WARNING: [Synth 8-3332] Sequential element (debounce_btn/btn_out_reg[4]) is unused and will be removed from module Task_P.
-INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-3332] Sequential element (pulse_gen/btn_prev_reg[4]) is unused and will be removed from module Task_P.
+WARNING: [Synth 8-3332] Sequential element (pulse_gen/btn_prev_reg[1]) is unused and will be removed from module Task_P.
+WARNING: [Synth 8-3332] Sequential element (pulse_gen/btn_prev_reg[0]) is unused and will be removed from module Task_P.
+WARNING: [Synth 8-3332] Sequential element (pulse_gen/btn_pulse_reg[1]) is unused and will be removed from module Task_P.
+WARNING: [Synth 8-3332] Sequential element (pulse_gen/btn_pulse_reg[0]) is unused and will be removed from module Task_P.
+WARNING: [Synth 8-3332] Sequential element (SLOW_CLOCK_reg) is unused and will be removed from module flexible_timer.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 760.523 ; gain = 504.117
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 759.387 ; gain = 502.246
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -694,13 +602,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:31 . Memory (MB): peak = 799.930 ; gain = 543.523
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:36 . Memory (MB): peak = 798.520 ; gain = 541.379
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:29 ; elapsed = 00:00:32 . Memory (MB): peak = 828.543 ; gain = 572.137
+Finished Timing Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:37 . Memory (MB): peak = 827.812 ; gain = 570.672
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -725,14 +633,14 @@ Report RTL Partitions:
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-3886] merging instance 'task_p/debounce_btn/button_sync_q1_reg[2]' (FD) to 'task_q/dbL/btn_sync_reg'
-INFO: [Synth 8-3886] merging instance 'task_p/debounce_btn/button_sync_q1_reg[3]' (FD) to 'task_q/dbR/btn_sync_reg'
+INFO: [Synth 8-3886] merging instance 'task_p/debouncerL/btn_sync_reg' (FD) to 'task_q/dbL/btn_sync_reg'
+INFO: [Synth 8-3886] merging instance 'task_p/debouncerR/btn_sync_reg' (FD) to 'task_q/dbR/btn_sync_reg'
 INFO: [Synth 8-4480] The timing for the instance task_p/memory/memory_reg_0 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Synth 8-4480] The timing for the instance task_p/memory/memory_reg_1 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Synth 8-4480] The timing for the instance task_p/memory/memory_reg_2 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Synth 8-4480] The timing for the instance task_p/memory/memory_reg_3 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:30 ; elapsed = 00:00:33 . Memory (MB): peak = 879.004 ; gain = 622.598
+Finished Technology Mapping : Time (s): cpu = 00:00:33 ; elapsed = 00:00:38 . Memory (MB): peak = 877.465 ; gain = 620.324
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -756,7 +664,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 879.004 ; gain = 622.598
+Finished IO Insertion : Time (s): cpu = 00:00:34 ; elapsed = 00:00:39 . Memory (MB): peak = 877.465 ; gain = 620.324
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -769,7 +677,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 879.004 ; gain = 622.598
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:34 ; elapsed = 00:00:39 . Memory (MB): peak = 877.465 ; gain = 620.324
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -781,25 +689,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 879.004 ; gain = 622.598
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:34 ; elapsed = 00:00:39 . Memory (MB): peak = 877.465 ; gain = 620.324
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 879.004 ; gain = 622.598
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:34 ; elapsed = 00:00:39 . Memory (MB): peak = 877.465 ; gain = 620.324
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 879.004 ; gain = 622.598
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:34 ; elapsed = 00:00:39 . Memory (MB): peak = 877.465 ; gain = 620.324
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 879.004 ; gain = 622.598
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:34 ; elapsed = 00:00:39 . Memory (MB): peak = 877.465 ; gain = 620.324
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -816,17 +724,17 @@ Report Cell Usage:
 |      |Cell     |Count |
 +------+---------+------+
 |1     |BUFG     |     2|
-|2     |CARRY4   |   238|
+|2     |CARRY4   |   240|
 |3     |DSP48E1  |     6|
 |4     |LUT1     |    55|
-|5     |LUT2     |   326|
-|6     |LUT3     |   199|
-|7     |LUT4     |   146|
-|8     |LUT5     |   190|
+|5     |LUT2     |   327|
+|6     |LUT3     |   198|
+|7     |LUT4     |   154|
+|8     |LUT5     |   181|
 |9     |LUT6     |   431|
 |10    |RAMB36E1 |     4|
 |11    |FDE_1    |    32|
-|12    |FDRE     |   496|
+|12    |FDRE     |   492|
 |13    |FDSE     |     6|
 |14    |IBUF     |    12|
 |15    |OBUF     |    19|
@@ -837,43 +745,44 @@ Report Instance Areas:
 +------+------------------+----------------------+------+
 |      |Instance          |Module                |Cells |
 +------+------------------+----------------------+------+
-|1     |top               |                      |  2163|
+|1     |top               |                      |  2160|
 |2     |  character       |character_display     |     2|
 |3     |  nolabel_line83  |flexible_timer        |    57|
 |4     |  nolabel_line89  |flexible_timer_0      |    58|
-|5     |  oled            |Oled_Display          |   794|
+|5     |  oled            |Oled_Display          |   791|
 |6     |  selector        |selector_module       |     9|
-|7     |  task_p          |Task_P                |   421|
-|8     |    debounce_btn  |debouncer             |   100|
-|9     |    drawer        |drawer_control        |   296|
-|10    |      to_draw     |drawer_logic          |   236|
-|11    |        in_circle |circle                |   236|
-|12    |    memory        |ram                   |    17|
-|13    |    pulse_gen     |single_pulse_detector |     4|
-|14    |    toggle_2_inst |toggle_switch         |     2|
-|15    |    toggle_9_inst |toggle_switch_7       |     2|
-|16    |  task_q          |Task_Q                |   226|
-|17    |    dbC           |debounce_btn_q        |    51|
-|18    |    dbL           |debounce_btn_q_5      |    51|
-|19    |    dbR           |debounce_btn_q_6      |    51|
-|20    |    drawer_inst   |drawer_q              |    55|
-|21    |  task_r          |Task_R                |   250|
-|22    |    Hz23          |flexible_timer_1      |    57|
-|23    |    Hz6           |flexible_timer_2      |    57|
-|24    |    d8            |draw_8                |     4|
-|25    |      eight1      |draw_rectangle        |     2|
-|26    |      eight2      |draw_rectangle_3      |     1|
-|27    |      eight4      |draw_rectangle_4      |     1|
-|28    |  task_s          |Task_S                |   284|
+|7     |  task_p          |Task_P                |   419|
+|8     |    debouncerL    |debouncer             |    46|
+|9     |    debouncerR    |debouncer_7           |    46|
+|10    |    drawer        |drawer_control        |   298|
+|11    |      to_draw     |drawer_logic          |   238|
+|12    |        in_circle |circle                |   238|
+|13    |    memory        |ram                   |    19|
+|14    |    pulse_gen     |single_pulse_detector |     6|
+|15    |    toggle_2_inst |toggle_switch         |     2|
+|16    |    toggle_9_inst |toggle_switch_8       |     2|
+|17    |  task_q          |Task_Q                |   228|
+|18    |    dbC           |debounce_btn_q        |    51|
+|19    |    dbL           |debounce_btn_q_5      |    52|
+|20    |    dbR           |debounce_btn_q_6      |    52|
+|21    |    drawer_inst   |drawer_q              |    55|
+|22    |  task_r          |Task_R                |   250|
+|23    |    Hz23          |flexible_timer_1      |    57|
+|24    |    Hz6           |flexible_timer_2      |    57|
+|25    |    d8            |draw_8                |     4|
+|26    |      eight1      |draw_rectangle        |     2|
+|27    |      eight2      |draw_rectangle_3      |     1|
+|28    |      eight4      |draw_rectangle_4      |     1|
+|29    |  task_s          |Task_S                |   284|
 +------+------------------+----------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 879.004 ; gain = 622.598
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:34 ; elapsed = 00:00:39 . Memory (MB): peak = 877.465 ; gain = 620.324
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 116 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:23 ; elapsed = 00:00:28 . Memory (MB): peak = 879.004 ; gain = 274.098
-Synthesis Optimization Complete : Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 879.004 ; gain = 622.598
+Synthesis finished with 0 errors, 0 critical warnings and 26 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:26 ; elapsed = 00:00:31 . Memory (MB): peak = 877.465 ; gain = 272.949
+Synthesis Optimization Complete : Time (s): cpu = 00:00:35 ; elapsed = 00:00:40 . Memory (MB): peak = 877.465 ; gain = 620.324
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 292 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 294 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
@@ -882,11 +791,11 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   FDE_1 => FDRE (inverted pins: C): 32 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-101 Infos, 128 Warnings, 0 Critical Warnings and 0 Errors encountered.
+100 Infos, 46 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:32 ; elapsed = 00:00:37 . Memory (MB): peak = 879.004 ; gain = 635.434
+synth_design: Time (s): cpu = 00:00:36 ; elapsed = 00:00:42 . Memory (MB): peak = 877.465 ; gain = 633.156
 WARNING: [Constraints 18-5210] No constraint will be written out.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.runs/synth_1/Main.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file Main_utilization_synth.rpt -pb Main_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 879.004 ; gain = 0.000
-INFO: [Common 17-206] Exiting Vivado at Wed Oct  1 17:15:48 2025...
+report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.032 . Memory (MB): peak = 877.465 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Sat Oct  4 22:37:00 2025...

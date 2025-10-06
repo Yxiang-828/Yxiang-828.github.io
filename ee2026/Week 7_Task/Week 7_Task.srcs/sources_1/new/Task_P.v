@@ -8,60 +8,49 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module debouncer (
-    input CLOCK,
-    input [4:0] btn,
-    output reg [4:0] btn_out = 0
+    input  wire clk,
+    input  wire btn_in,
+    output reg  btn_out
 );
 
-    // Minimum required high time (200ms at 100MHz clock)
-    localparam MIN_HIGH_COUNT = 20_000_000 - 1;
+    localparam integer DEBOUNCE_COUNT = 20_000_000 - 1;
 
-    reg [24:0] counter [0:4];
-    reg [4:0] button_sync_q1 = 0;
-    reg [4:0] button_sync_q2 = 0;
-    reg [4:0] min_time_expired = 0; 
-    reg [4:0] active_press = 0; 
-    
-    integer i;
-    initial begin
-        for (i = 0; i < 5; i = i + 1) begin
-            counter[i] = 25'b0;
+    reg btn_ff = 0;
+    reg [24:0] count = 0;
+    reg btn_sync = 0;
+
+    // synchronize raw button input
+    always @(posedge clk) begin
+        btn_sync <= btn_in;
+    end
+
+    always @(posedge clk) begin
+        btn_out <= 0;  // default to low
+        
+        // once btn_ff set to high for first button press, sets btn signal to 1,and 0 in next clk cycle
+        // btn_out stays at 0 untill user releases button, once the release is stable for 200ms,
+        // we clear btn_ff to get ready for next button press.
+        if (!btn_ff && btn_sync) begin
+            // rising edge detected, initial press
+            btn_out <= 1;    // register inital press
+            btn_ff <= 1;     // set flip-flop to block further pulses, untill released & stable for >200ms
+            count <= 0;      // start counting debounce period
         end
-    end
-    
-    // Double-flop synchronizer (essential for any asynchronous input)
-    always @ (posedge CLOCK) begin 
-        button_sync_q1 <= btn; 
-        button_sync_q2 <= button_sync_q1;
-    end
-
-    // Logic: Instant Press, Minimum 200ms Hold, Instant Release afterwards
-    always @ (posedge CLOCK) begin
-        for (i = 0; i < 5; i = i + 1) begin
-            if (button_sync_q2[i] == 1'b1 && active_press[i] == 1'b0) begin
-                active_press[i] <= 1'b1;
-                min_time_expired[i] <= 1'b0;
-                counter[i] <= 25'b0;
+        // flip flop is now high at 1, it will hold the output to 0 now
+        else if (btn_ff) begin
+            if (btn_sync) begin
+                // button being held down, hold infinitely untill button released for >200ms
+                count <= count;
+            end 
+            
+            else begin
+                // button released, count 200 ms before resetting flip-flop
+                if (count < DEBOUNCE_COUNT)
+                    count <= count + 1;
+                else
+                    btn_ff <= 0; // ready for next press
             end
-
-            if (active_press[i] == 1'b1) begin
-                if (counter[i] < MIN_HIGH_COUNT) begin
-                    counter[i] <= counter[i] + 1;
-                end else begin
-                    min_time_expired[i] <= 1'b1;
-                end
-                
-                if (button_sync_q2[i] == 1'b0 && min_time_expired[i] == 1'b1) begin
-                    active_press[i] <= 1'b0;
-                end
-            end
-
-            if (button_sync_q2[i] == 1'b1 || active_press[i] == 1'b1) begin
-                btn_out[i] <= 1'b1;
-            end else begin
-                btn_out[i] <= 1'b0; 
-            end
-        end 
+        end
     end
 endmodule
 
@@ -352,12 +341,13 @@ module Task_P (
 );
 
     // Button debouncer to reset screen
+    
+    wire btn_debounced_L, btn_debounced_R;
     wire [4:0] btn_debounced;
-    debouncer debounce_btn (
-        .CLOCK(CLOCK),
-        .btn(btn),
-        .btn_out(btn_debounced)
-    );
+    debouncer debouncerL (.clk(CLOCK), .btn_in(btn[2]), .btn_out(btn_debounced_L));
+    debouncer debouncerR (.clk(CLOCK), .btn_in(btn[3]), .btn_out(btn_debounced_R));
+    
+    assign btn_debounced = {btn[4], btn_debounced_R, btn_debounced_L, btn[1:0]};
     
     wire [4:0] btn_pulse;
     single_pulse_detector pulse_gen (
@@ -401,7 +391,7 @@ module Task_P (
         .clk6p25m(clk6p25m),
         .pixel_index(pixel_index),
         .current_color(current_color),
-        .btn(btn_debounced[4:0]),
+        .btn(btn),
         .state({btn_debounced[4], toggle_9, toggle_2, btn_debounced[1:0]}),
         
         .draw_en(draw_en),

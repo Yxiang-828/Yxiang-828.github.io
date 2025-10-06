@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
-| Date             : Wed Oct  1 17:17:27 2025
+| Date             : Sat Oct  4 22:38:13 2025
 | Host             : LAPTOP-TABE59UT running 64-bit major release  (build 9200)
 | Command          : report_power -file Main_power_routed.rpt -pb Main_power_summary_routed.pb -rpx Main_power_routed.rpx
 | Design           : Main
@@ -53,13 +53,13 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.003 |        3 |       --- |             --- |
-| Slice Logic    |     0.002 |     2165 |       --- |             --- |
-|   LUT as Logic |     0.001 |     1134 |     20800 |            5.45 |
-|   CARRY4       |    <0.001 |      238 |      8150 |            2.92 |
-|   Register     |    <0.001 |      534 |     41600 |            1.28 |
-|   Others       |     0.000 |       48 |       --- |             --- |
+| Slice Logic    |     0.002 |     2164 |       --- |             --- |
+|   LUT as Logic |     0.001 |     1136 |     20800 |            5.46 |
+|   CARRY4       |    <0.001 |      240 |      8150 |            2.94 |
+|   Register     |    <0.001 |      530 |     41600 |            1.27 |
+|   Others       |     0.000 |       50 |       --- |             --- |
 |   BUFG         |     0.000 |        1 |        32 |            3.13 |
-| Signals        |     0.002 |     1836 |       --- |             --- |
+| Signals        |     0.002 |     1835 |       --- |             --- |
 | Block RAM      |     0.000 |        4 |        50 |            8.00 |
 | DSPs           |     0.005 |        6 |        90 |            6.67 |
 | I/O            |     0.027 |       32 |       106 |           30.19 |
@@ -150,7 +150,8 @@ Table of Contents
 |   oled            |    <0.001 |
 |   selector        |    <0.001 |
 |   task_p          |    <0.001 |
-|     debounce_btn  |    <0.001 |
+|     debouncerL    |    <0.001 |
+|     debouncerR    |    <0.001 |
 |     drawer        |    <0.001 |
 |       to_draw     |    <0.001 |
 |         in_circle |    <0.001 |
@@ -158,7 +159,7 @@ Table of Contents
 |     pulse_gen     |    <0.001 |
 |     toggle_2_inst |    <0.001 |
 |     toggle_9_inst |    <0.001 |
-|   task_q          |     0.001 |
+|   task_q          |    <0.001 |
 |     dbC           |    <0.001 |
 |     dbL           |    <0.001 |
 |     dbR           |    <0.001 |

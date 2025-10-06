@@ -1,0 +1,77 @@
+M.1: Rolling Thunder!
+
+When I first looked at this challenge, I was given an encrypted file called flag.png.enc and a Python script named encrypt.py. My initial thought was that this was some kind of XOR encryption since it's a common cipher in CTFs. I opened the encrypt.py file in VSCode and read through the code. It was reading a file called flag.png, then for each byte in the file, it was XORing it with a key byte, where the key was repeated cyclically. The key was hardcoded as "elephant". So, to decrypt, I would need to do the same XOR operation on the encrypted file.
+
+But wait, the key is given in the code? That seemed too straightforward. Maybe the key wasn't "elephant", or maybe it was a red herring. I thought about the file being a PNG. PNG files have a specific header: the first 8 bytes are always \x89PNG\r\n\x1a\n. If I could verify that the decrypted file starts with that, then I could confirm the key.
+
+I decided to try XORing the first 8 bytes of flag.png.enc with the expected PNG header to recover the key. In Python, I wrote a small script in the VSCode terminal. I read the first 8 bytes of the encrypted file, XORed them with the PNG signature, and got "elephant". Perfect! The key was indeed "elephant".
+
+Now, to decrypt the whole file, I wrote another Python script that reads flag.png.enc, XORs each byte with the corresponding key byte (cycling through "elephant"), and writes the result to a new file called flag.png. I ran this in the terminal, and it worked. Opening flag.png, it was a valid PNG image with the flag text: CS2107{rolling_thunder_xor}.
+
+Tools used: Python in VSCode terminal for scripting and decryption.
+
+M.2: [Challenge Name]
+
+The challenge provided a file secret_message.txt with what looked like a monoalphabetic substitution cipher. Each letter was replaced by another letter consistently. My first approach was manual frequency analysis. I counted the frequency of each letter in the ciphertext and compared it to English letter frequencies. The most common letters in English are E, T, A, O, I, N, etc. In the cipher, the most frequent was some letter, say X, so I guessed X maps to E.
+
+I tried substituting and looking for common words like "the", "and", "in". It was tedious, so I turned to an online tool called quipqiup.com, which automates cryptogram solving. It uses frequency analysis and pattern recognition to find digrams and trigrams like TH, HE, IN, ER, ON. It generates multiple possible decryptions ranked by likelihood score.
+
+The tool gave 8 possibilities, and the highest-ranked one was coherent English text. Interestingly, the decrypted text was meta—it described the process of breaking the cipher itself, with the flag embedded near the end. The flag was CS2107{QO4SDY1Y_GRTCV3OE1D_QM56J}.
+
+Tools used: quipqiup.com for automated solving, manual frequency analysis as backup.
+
+M.3: Red Herring
+
+This challenge boasted about AES encryption being uncrackable, even providing the encryption code. But the hint was "red herring", meaning something that draws attention away from the real issue. AES is indeed secure if used properly, but here the code was encrypting the script itself with a random key generated each time. Since the key is random and not stored, the encryption is irreversible.
+
+The real "secret" wasn't encrypted at all—it was in the code comments. The note to the next programmer mentioned "Generate secret.keys and leave on remote instance for future use". That was the red herring pointing to the flag: CS2107{secret.keys}.
+
+No tools needed, just reading the code carefully.
+
+M.4: [Not solved, skip]
+
+E.1: [Challenge Name, probably RSA]
+
+I was given a large RSA modulus n, public exponent e=65537, and ciphertext c. Normally, RSA decryption requires factoring n into p and q, which is hard for large numbers. But the challenge was called "Easy 1", so I suspected the factors were already known.
+
+I checked factordb.com, a database of factored numbers. Searching for n, it was marked as "FF" (Fully Factored), meaning the factors were public. I copied p and q from there.
+
+With p and q, I calculated the Euler's totient phi = (p-1)*(q-1), then the private key d = inverse of e mod phi. Then, decrypted m = c^d mod n, converted to bytes, and got the flag: CS2107{B1G_but_f4ct0rDB_c4n_h3lP_m3_S0lV3}.
+
+Tools used: factordb.com, Python for calculations.
+
+E.2: [Office Document Password]
+
+The challenge was a password-protected Word document encrypted_flag.docx. I needed to crack the password. I used John the Ripper's office2john.py to extract the hash from the document. Then, cleaned the hash file to remove any BOM characters that could cause issues.
+
+With the clean hash, I used Hashcat on GPU to brute-force against the rockyou.txt wordlist. It found the password quickly. Opening the document with the password revealed the flag inside.
+
+Tools used: office2john.py, Hashcat with rockyou.txt.
+
+E.3: [ZipCrypto]
+
+Given a ZIP file sus_package.zip with encrypted contents, including flag.txt. The encryption was ZipCrypto, which is weak. I used bkcrack to perform a known-plaintext attack. I knew the contents included Assignment 1.pdf, which I had.
+
+bkcrack found the keys by analyzing the known plaintext. Then, decrypted flag.txt: CS2107{but_what_if_zipcrypto_deflate_is_used_hmm...}.
+
+Tools used: bkcrack.
+
+H.1: [Predict Rand]
+
+The server printed the current time, seeded rand() with time(NULL), generated a random number, and asked for its MD5 hash. Since rand() is pseudorandom and deterministic with the same seed, I could predict it.
+
+The server printed local time but seeded with UTC. I parsed the time string as UTC using timegm(), simulated srand() and rand() on the same architecture (x86_64 Linux), computed the MD5 of the random number string.
+
+Connected to the server, got the time, ran my solver script, got the hash, submitted it.
+
+Flag: CS2107{p53ud0_r4nd0m_15_n0t_7ru3_r4nd0m!!}
+
+Tools used: C program for simulation, ncat for connection.
+
+H.2: [MD5 Collision]
+
+Required two different PDF files with the same MD5 hash but same visual content as Assignment 1.pdf. Used hashclash tool to generate chosen-prefix collision. It appended collision data to the PDF, preserving appearance but making hashes identical.
+
+Generated pdf1.pdf and pdf2.pdf, uploaded to the server, got the flag.
+
+Tools used: hashclash.

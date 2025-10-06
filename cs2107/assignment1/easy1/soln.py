@@ -14,32 +14,21 @@ url = f"http://factordb.com/api?query={n}"
 response = requests.get(url, timeout=30)
 data = response.json()
 
-if data['status'] == 'FF':  # Fully factored
+if data['status'] == 'FF':  # Fully factored, CF means composite factors
     factors = []
     for factor in data['factors']:
         factors.append(int(factor[0]))
+    print (f"Factor: {factors}")
 
-    print(f"Found factors from factordb.com: {factors}")
+    p,q = factors[0], factors[1]
+    phi_n = (p-1) * (q-1)
+    d = pow(e, -1, phi_n)
 
-    if len(factors) == 2:
-        p, q = factors[0], factors[1]
-        print(f"p = {p}")
-        print(f"q = {q}")
-        print(f"Verification: p * q = {p * q == n}")
+    m= pow(c,d,n)
 
-        # Calculate private key
-        phi_n = (p - 1) * (q - 1)
-        d = pow(e, -1, phi_n)
+    print(f"m: {m}")
 
-        # Decrypt the ciphertext
-        m = pow(c, d, n)
-
-        # Convert to flag
-        flag_bytes = m.to_bytes((m.bit_length() + 7) // 8, 'big')
-        flag = flag_bytes.decode('utf-8')
-
-        print(f"\n🎉 FLAG: {flag}")
-
-else:
-    print(f"Status: {data['status']} - Not fully factored in factordb")
-    print("Would need manual factorization")
+    m_byte = m.to_bytes((m.bit_length() + 7) // 8 , 'big')
+    print(m_byte)
+    flag = m_byte.decode('utf-8')
+    print(f"Flag: {flag}")

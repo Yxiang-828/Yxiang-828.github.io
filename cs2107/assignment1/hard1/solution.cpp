@@ -9,7 +9,7 @@
 
 time_t parse_time(const std::string &time_str)
 {
-    putenv(const_cast<char*>("TZ=UTC"));
+    putenv(const_cast<char *>("TZ=UTC"));
     tzset();
     struct tm tm = {};
 

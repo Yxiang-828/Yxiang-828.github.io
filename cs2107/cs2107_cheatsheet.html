@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2107 Cryptography Cheatsheet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 8.5px;
+            line-height: 1.05;
+            margin: 2.5px;
+            padding: 2.5px;
+            column-count: 2;
+            column-gap: 7px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 2.5px 0;
+            padding: 0;
+            font-size: 10.5px;
+            color: #28A745;
+        }
+
+        p,
+        li {
+            margin: 0.75px 0;
+            padding: 0;
+        }
+
+        ul {
+            margin: 0.75px 0;
+            padding-left: 7px;
+        }
+
+        b {
+            color: #6F42C1;
+            font-weight: bold;
+        }
+
+        .counter {
+            color: #FF4500;
+        }
+
+        .why {
+            color: #0000FF;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        .keyword {
+            background-color: #FFD700;
+            /* Gold for highlighting keywords */
+            padding: 1px 2px;
+            border-radius: 2px;
+        }
+
+        .math {
+            background-color: #D3D3D3;
+            color: #837212;
+            padding: 0 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CS2107 Cryptography Cheatsheet</h1>
+
+    <h2>Terminology</h2>
+    <p>Common placeholders used in cryptography are <span class="keyword">Alice</span> (usually the originator of
+        message), <span class="keyword">Bob</span> (usually the recipient), <span class="keyword">Eve</span>
+        (eavesdropper: can only listen), <span class="keyword">Mallory</span> (malicious: can sniff, spoof, modify, and
+        drop messages)</p>
+
+    <h2>CIA Triad</h2>
+    <p><b><span class="keyword">Confidentiality</span>:</b> Prevention of unauthorized disclosure of information.
+        (<b>Primitives:</b> <span class="keyword">Symmetric Encryption</span> (e.g., <span class="keyword">AES</span>),
+        <span class="keyword">Public Key Encryption</span> (e.g., <span class="keyword">RSA</span>))
+    </p>
+    <p><b><span class="keyword">Integrity</span>:</b> Prevention of unauthorized modification of information or
+        processes. (<b>Primitives:</b> <span class="keyword">Hash Functions</span> (<span class="keyword">SHA-2</span>,
+        <span class="keyword">SHA-3</span>), <span class="keyword">Message Authentication Codes</span> (<span
+            class="keyword">MACs</span>))
+    </p>
+    <p><b><span class="keyword">Availability</span>:</b> Ensuring information and resources are accessible when needed
+        (prevention of denial of service or withholding). (<b>Primitives:</b> Not directly cryptographic — supported by
+        redundancy, fault tolerance, backups, and monitoring)</p>
+
+    <h3>Other Security Properties</h3>
+    <p><b><span class="keyword">Authenticity</span>:</b> Assurance that a <b>message</b> truly comes from the claimed
+        <b>sender</b> and hasn’t been <span class="keyword">altered</span>. (<b>Primitives:</b> <span
+            class="keyword">MACs</span> (for symmetric systems), <span class="keyword">Digital Signatures</span> (for
+        asymmetric systems))
+    </p>
+    <p><b><span class="keyword">Non-Repudiation</span>:</b> Assurance that a <b>sender</b> cannot <span
+            class="keyword">deny</span> sending a <b>message</b> or the <b>authenticity</b> of their <b>digital
+            signature</b>. (<b>Primitives:</b> <span class="keyword">Digital Signatures</span> (e.g., <span
+            class="keyword">RSA</span>, <span class="keyword">ECDSA</span>))</p>
+    <p><b><span class="keyword">Authorization</span>:</b> The <b>process</b> of <span class="keyword">granting</span> or
+        <span class="keyword">denying</span> <b>access</b> to <b>resources</b> based on verified <b>identity</b> and
+        defined <b>permissions</b>. (<b>Primitives:</b> <span class="keyword">PKI</span>, <span
+            class="keyword">Certificates</span>, <span class="keyword">Access Control Lists</span> (<span
+            class="keyword">ACLs</span>))
+    </p>
+    <p><b><span class="keyword">Accountability</span>:</b> The <b>ability</b> to <span class="keyword">trace</span>
+        <b>actions</b> to <b>individuals</b> for <b>auditing</b> and <b>forensic</b> <b>purposes</b>.
+        (<b>Primitives:</b> <span class="keyword">Digital Signatures</span>, <span class="keyword">Secure
+            Logging</span>, <span class="keyword">Audit Trails</span>)
+    </p>
+
+    <h2>Attack Models</h2>
+    <p><b>Attack Model:</b> One rigorous way to describe security achieved by a system is by describing the class of
+        attacks that it can prevent. The system which can protect against more attacks is the more secure system</p>
+    <p><b><span class="keyword">COA</span> (Ciphertext Only Attack):</b> The attacker has a collection of ciphertext c.
+        The attacker may know some properties of the plaintext, for e.g. the plaintext is an English sentence.</p>
+    <p class="counter"><b>COA Defense:</b> <span class="why"><b>Why:</b> Use ciphers resistant to known-plaintext
+            assumptions, like AES with secure modes, to prevent frequency analysis or pattern recognition without known
+            plaintext.</span></p>
+    <p><b><span class="keyword">KPA</span> (Known Plaintext Attack):</b> The attacker has a collection of plaintext m
+        and their corresponding ciphertext c</p>
+    <p class="counter"><b>KPA Defense:</b> <span class="why"><b>Why:</b> Use large key spaces (e.g., 128-bit AES) to
+            make brute force infeasible.</span></p>
+    <p class="counter"><b>KPA <span class="keyword">Brute-force</span>:</b> 64-bit key, 512 cycles/test. 4GHz single:
+        65k years. 4096 cores: 16 years. Bitcoin 100TH/s: 1.8 days. (Mining: solve puzzles for blocks/rewards. Hash
+        rate: TH/s global compute benchmark.)</p>
+    <p class="counter"><b>KPA Brute-force Defense:</b> <span class="why"><b>Why:</b> Use longer keys (128-bit+) to
+            exponentially increase computation required.</span></p>
+    <p><b><span class="keyword">CPA</span> (Chosen Plaintext Attack):</b> The attacker has access to an encryption
+        oracle. The attacker can choose and feed any plaintext m to the oracle and obtain the corresponding ciphertext c
+        (all encrypted with the same key). The attacker can access the oracle many times, as long as within the
+        attacker's compute power. He can see the ciphertext and then choose the next input..</p>
+    <p class="counter"><b>CPA Defense:</b> <span class="why"><b>Why:</b> Use CPA-secure modes like CBC, CTR to ensure
+            identical plaintexts produce different ciphertexts, preventing statistical attacks.</span></p>
+    <p><b><span class="keyword">CCA2</span> (Chosen Ciphertext Attack):</b> The attacker chooses the ciphertext and the
+        black-box outputs the plaintext. We call this a decryption oracle.</p>
+    <p class="counter"><b>CCA2 Defense:</b> <span class="why"><b>Why:</b> Use authenticated encryption like GCM to
+            prevent tampering and ensure integrity, making decryption oracle useless.</span></p>
+    <p>We want to design a secure system that can prevent attacker from achieving the "weakest" goal with highest
+        capabilities.</p>
+    <p><b><span class="keyword">Sniff</span>:</b> Intercept & read. Example: capture HTTP packet and extract
+        username/password.</p>
+    <p class="counter"><b>Sniff Defense:</b> <span class="why"><b>Why:</b> Encrypt all traffic (e.g., HTTPS) to make
+            intercepted data unreadable.</span></p>
+    <p><b><span class="keyword">Spoof</span>:</b> Impersonate & send. Example: forge packet with source IP 10.0.0.1 and
+        send it.</p>
+    <p class="counter"><b>Spoof Defense:</b> <span class="why"><b>Why:</b> Use authentication (MAC, signatures) to
+            verify sender identity.</span></p>
+    <p><b><span class="keyword">Modify</span>:</b> Alter header/payload. Example: change transaction amount in the
+        packet payload.</p>
+    <p class="counter"><b>Modify Defense:</b> <span class="why"><b>Why:</b> Use integrity checks (MAC, signatures) to
+            detect changes to data.</span></p>
+    <p><b><span class="keyword">Drop</span>:</b> Detect & discard. Example: identify packets to a server and silently
+        throw them away.</p>
+    <p class="counter"><b>Drop Defense:</b> <span class="why"><b>Why:</b> Use redundancy and monitoring to detect and
+            alert on drops, as full prevention is hard.</span></p>
+    <p><b><span class="keyword">Phishing</span> Example:</b> Spoof email as HR manager, steal password. Compromises CIA
+        + Authorization.</p>
+    <p class="counter"><b>Phishing Defense:</b> <span class="why"><b>Why:</b> Use user education and two-factor
+            authentication to prevent credential theft and add verification layer.</span></p>
+
+    <h2>Vulnerabilities</h2>
+    <p><b><span class="keyword">CVE</span> (Common Vulnerabilities and Exposures)</b> is a repository containing
+        discovered vulnerabilities. The repository is public, and thus the whole community is aware of vulnerabilities.
+        It is a list of entries—each containing an identification number, a description, and at least one public
+        reference</p>
+    <p class="counter"><b>CVE Defense:</b> <span class="why"><b>Why:</b> Regularly update and patch systems to fix known
+            weaknesses before exploitation.</span></p>
+    <p><b><span class="keyword">Zero-day</span> vulnerabilities</b> are discovered but not yet published. If an attacker
+        deploy attacks on zero-day vulnerabilities, the victims have "zero-day" to react.</p>
+    <p class="counter"><b>Zero-day Defense:</b> <span class="why"><b>Why:</b> Use intrusion detection systems and
+            air-gapping critical systems to detect anomalous behavior even without known signatures.</span></p>
+    <p><b><span class="keyword">Threat</span>:</b> A set of circumstances that has the potential to cause loss or harm.
+    </p>
+    <p><b><span class="keyword">Vulnerability</span>:</b> a weakness in the system.</p>
+    <p><b><span class="keyword">Precomputed Table Attack</span>:</b> Store decrypted prefixes for 42-bit keys (32TB for
+        64-bit prefix). Time-memory tradeoff.</p>
+    <p class="counter"><b>Precomputed Table Defense:</b> <span class="why"><b>Why:</b> Use longer keys (128-bit+) to
+            increase storage and computation requirements exponentially.</span></p>
+    <p><b><span class="keyword">Control</span>:</b> A control, countermeasure, security mechanism is a mean to counter
+        threats.</p>
+
+    <h2>Cryptography Basics</h2>
+    <h3>Substitution and Permutation Ciphers</h3>
+    <p><b>Substitution Cipher:</b> Key space size: 27! (total number of possible keys) Key size: log2(key space size) =
+        94 bits Not secure under <span class="keyword">COA</span> (<span class="keyword">Frequency Analysis</span>) and
+        <span class="keyword">KPA</span> Same for <span class="keyword">permutation cipher</span>
+    </p>
+    <p class="counter"><b>Substitution Cipher Defense:</b> <span class="why"><b>Why:</b> Use modern block/stream ciphers
+            to resist frequency analysis through confusion and diffusion.</span></p>
+
+    <h3>Block Ciphers</h3>
+    <p><b><span class="keyword">DES</span> (Data Encryption Standard, 56 Bit key)</b></p>
+    <p><b>DES Weaknesses:</b> Small key size makes it vulnerable to <span class="keyword">brute force attacks</span> (as
+        in KPA example).</p>
+    <p><b><span class="keyword">AES</span> (Advanced Encryption Standard)</b> block length is 128 input and output, and
+        key length can be 128, 192 or 256 bits</p>
+    <p><b>AES Security:</b> Considered secure, but future quantum computers may threaten it via Grover's algorithm.</p>
+
+    <h3>Block Cipher Modes</h3>
+    <p><b><span class="keyword">ECB</span> (Electronic Codebook) mode</b> (divides plaintext into blocks and then
+        applies block cipher) Leaks information as same plaintext is encrypted to same ciphertext (deterministic)</p>
+    <p class="counter"><b>ECB Defense:</b> <span class="why"><b>Why:</b> Use modes with IV like CBC, CTR to ensure
+            non-deterministic encryption.</span></p>
+    <p><b>ECB Steps:</b><br>
+        <span class="keyword">Encryption</span>: Divide plaintext into fixed-size blocks. <span
+            class="keyword">Encrypt</span> each block independently using the block cipher with the <span
+            class="keyword">secret key</span>. Concatenate the resulting ciphertexts.<br>
+        <span class="keyword">Decryption</span>: Divide ciphertext into blocks. <span class="keyword">Decrypt</span>
+        each block independently using the block cipher with the <span class="keyword">secret key</span>. Concatenate
+        the resulting plaintexts.
+    </p>
+
+    <p><b><span class="keyword">CBC</span> (Cipher Block Chaining)</b> Secure against <span class="keyword">CPA</span>
+        but vulnerable to <span class="keyword">padding oracle attack</span></p>
+    <p class="counter"><b>CBC Defense:</b> <span class="why"><b>Why:</b> Use authenticated encryption (GCM) to prevent
+            padding oracle by ensuring integrity.</span></p>
+    <p><b>CBC Steps:</b><br>
+        <span class="keyword">Encryption</span>: Choose a random IV. For the first block: <span
+            class="keyword">XOR</span> plaintext block with IV, then <span class="keyword">encrypt</span> with <span
+            class="keyword">key</span>. For subsequent blocks: <span class="keyword">XOR</span> plaintext block with
+        previous ciphertext block, then <span class="keyword">encrypt</span> with <span class="keyword">key</span>.
+        Output IV + ciphertexts.<br>
+        <span class="keyword">Decryption</span>: Extract IV. For the first block: <span class="keyword">Decrypt</span>
+        ciphertext block with <span class="keyword">key</span>, then <span class="keyword">XOR</span> with IV. For
+        subsequent blocks: <span class="keyword">Decrypt</span> ciphertext block with <span class="keyword">key</span>,
+        then <span class="keyword">XOR</span> with previous ciphertext block.
+    </p>
+
+    <p><b><span class="keyword">CTR</span> (Counter) mode</b> Secure against <span class="keyword">CPA</span> but
+        vulnerable to <span class="keyword">padding oracle attack</span></p>
+    <p class="counter"><b>CTR Defense:</b> <span class="why"><b>Why:</b> Use unique nonces to prevent keystream reuse,
+            which could leak information.</span></p>
+    <p><b>CTR Steps:</b><br>
+        <span class="keyword">Encryption</span>: Choose a random nonce. Set counter to 0. For each block: Create IV =
+        nonce || counter. <span class="keyword">Encrypt</span> IV with <span class="keyword">key</span> to get keystream
+        block. <span class="keyword">XOR</span> keystream with plaintext block to get ciphertext block. Increment
+        counter. Output nonce + ciphertexts.<br>
+        <span class="keyword">Decryption</span>: Extract nonce. Set counter to 0. For each block: Create IV = nonce ||
+        counter. <span class="keyword">Encrypt</span> IV with <span class="keyword">key</span> to get keystream block.
+        <span class="keyword">XOR</span> keystream with ciphertext block to get plaintext block. Increment counter.
+    </p>
+    <p><b><span class="keyword">GCM</span> (Galois/Counter Mode)</b> Secure in presence of decryption oracle (<span
+            class="keyword">CCA2</span>)</p>
+    <p class="counter"><b>GCM Defense:</b> <span class="why"><b>Why:</b> Use unique nonces to prevent nonce reuse, which
+            breaks security.</span></p>
+    <p><b>GCM Steps:</b><br>
+        <span class="keyword">Encryption</span>: Similar to CTR: Use nonce and counter to generate keystream via block
+        cipher, <span class="keyword">XOR</span> with plaintext. Additionally, compute authentication tag by hashing
+        (using Galois multiplication) the ciphertext and additional authenticated data (AAD). Output ciphertext +
+        tag.<br>
+        <span class="keyword">Decryption</span>: Generate keystream as in CTR, <span class="keyword">XOR</span> with
+        ciphertext to get plaintext. Verify tag by recomputing and comparing. If tag matches, output plaintext; else,
+        reject.
+    </p>
+
+    <h3>Stream Ciphers</h3>
+    <p><b><span class="keyword">OTP</span> (One-Time Pad, Unbreakable):</b> Key can only be used once and key must be
+        same size as plaintext. Impractical due to long key.</p>
+    <p class="counter"><b>OTP Defense:</b> <span class="why"><b>Why:</b> Never reuse key to prevent XOR of ciphertexts
+            revealing plaintext XOR.</span></p>
+    <p><b>Stream Cipher and One Time Pad:</b> Cannot leave out IV and it leaks information when attacker has 2
+        ciphertexts. IV makes encryption non-deterministic.</p>
+    <p><b>Tip:</b> The key space in a stream cipher depends only on the secret key, not the IV.</p>
+    <p class="counter"><b>Stream Cipher Defense:</b> <span class="why"><b>Why:</b> Use unique IV per message to prevent
+            keystream reuse, which leaks information via XOR of ciphertexts.</span></p>
+    <p><b>Stream Cipher Process:</b> <span class="keyword">Generate</span> random IV. <span
+            class="keyword">Encrypt</span> IV with <span class="keyword">key</span> to get seed. Use PRNG with seed to
+        produce keystream. <span class="keyword">XOR</span> keystream with plaintext to get ciphertext and prepend IV.
+        To <span class="keyword">decrypt</span>, extract IV, <span class="keyword">regenerate</span> keystream, <span
+            class="keyword">XOR</span> with ciphertext to get plaintext.</p>
+    <p><b>Example:</b> IV=101, Key=110. Seed=101 XOR 110=011. Keystream from PRNG=011010. Plaintext=100110.
+        Ciphertext=011010 XOR 100110=111100. Output=<span class="keyword">101</span>111100.</p>
+    <p><b><span class="keyword">Meet in the middle</span>:</b> Reduces the number of crypto operations to 2^(k+1) using
+        2^(k+1) storage as opposed to 2^k*2^k.</p>
+    <p class="counter"><b>Meet in the Middle Defense:</b> <span class="why"><b>Why:</b> Use single encryption with long
+            key (AES) to eliminate double encryption vulnerability.</span></p>
+    <p><b><span class="keyword">3DES</span> (Triple DES, 3 encryptions 2 keys, 1st and 3rd encryption key same)</b></p>
+    <p class="counter"><b>3DES Attack:</b> <span class="why"><b>Why:</b> How: Meet in the middle. Why: Reduces effective
+            key length.</span></p>
+    <p class="counter"><b>3DES Defense:</b> <span class="why"><b>Why:</b> How: Use AES. Why: More efficient and
+            secure.</span></p>
+    <p><b><span class="keyword">Padding Oracle</span> (Padding Oracle Attack):</b> Given the IV and the ciphertext, it
+        outputs whether the plaintext is in the correct format.</p>
+    <p class="counter"><b>Padding Oracle Defense:</b> <span class="why"><b>Why:</b> How: Use authenticated encryption.
+            Why: Prevents attacker from learning padding validity without integrity checks.</span></p>
+
+    <h2><span class="keyword">Initialization Vector</span> (IV)</h2>
+    <p><b>IV Facts:</b></p>
+    <p>- Stands for Initialization Vector or Initial Value.</p>
+    <p>- In stream ciphers, IV makes the keystream generator non-deterministic/probabilistic. <span
+            class="why"><b>Why:</b> Initializes PRNG with IV to generate unique keystream per message, preventing reuse
+            attacks.</span></p>
+    <p>- In modes like CBC and CTR, IV ensures encryption is non-deterministic (identical plaintexts produce different
+        ciphertexts). <span class="why"><b>Why:</b> XORs first block with random IV, chaining propagates randomness for
+            semantic security.</span></p>
+    <p>- IV does NOT have to be kept secret (can be public). <span class="why"><b>Why:</b> Sent in plaintext with
+            uniqueness per encryption ensuring security without secrecy.</span></p>
+
+    <h2>Principles and Authentication</h2>
+    <p><b><span class="keyword">Kerckhoffs</span>’s principle (Kerckhoffs's Principle):</b> A system should be secure
+        even if everything about the system, except the <span class="keyword">secret key</span>, is public knowledge</p>
+    <p><span class="why"><b>Why:</b> Design system with security dependent only on key secrecy to prevent reliance on
+            obscurity.</span></p>
+    <p><b>Security through <span class="keyword">Obscurity</span>:</b> To hide the design of the system to achieve
+        security</p>
+    <p class="counter"><b>Obscurity Attack:</b> <span class="why"><b>Why:</b> <span class="keyword">Reverse
+                engineering</span> discovers the design.</span></p>
+    <p class="counter"><b>Obscurity Defense:</b> <span class="why"><b>Why:</b> Follow Kerckhoffs to make security not
+            dependent on secrecy of design.</span></p>
+    <p><b><span class="keyword">Compression after Encryption</span>:</b> Meaningless—encrypted data is random, no
+        patterns. Compress before encrypting.</p>
+    <p><b><span class="keyword">Authentication</span>:</b> The process of assuring that the communicating entity, or
+        origin of a piece of information, is the one that it claims to be. It implies integrity.</p>
+    <p><b>Online <span class="keyword">dictionary attack</span>:</b> To test a password, attacker must interact with the
+        authentication system. To guard against, we need at least 29 bits of entropy, 49 bit for higher security</p>
+    <p class="counter"><b>Online Dictionary Defense:</b> <span class="why"><b>Why:</b> Rate limiting and account lockout
+            slow down automated attempts.</span></p>
+    <p><b>Offline <span class="keyword">dictionary attack</span>:</b> There are two phases. 1. The attacker obtains some
+        information D about the password, possibly by sniffing the login session of the authentic user, or by
+        interacting with the server. 2. Next, the attacker carries out dictionary attack using D without interacting
+        with the system. Need 128 bits of entropy</p>
+    <p class="counter"><b>Offline Dictionary Defense:</b> <span class="why"><b>Why:</b> Use salted hashes and high
+            entropy passwords to make precomputed tables useless and increase guess time.</span></p>
+    <p><b>Password <span class="keyword">Entropy</span>:</b> log2(N) where N is the total possible choices</p>
+    <p><b>n-factor <span class="keyword">Authentication</span></b> 1) Something you know: Password, Pin. 2) Something
+        you have: Security token, smart card, mobile phone, ATM card. 3) Who you are: Biometric.</p>
+
+    <h3>Passwords</h3>
+    <p><b><span class="keyword">Password System</span>:</b> User/server establish common password via bootstrapping
+        (e.g. server chooses, sends via secure channel; default password—change immediately). Server stores password
+        file (userid + password).</p>
+    <p><b>Vs Secret Key:</b> Human-generated (low entropy), memorable; keys machine-generated, random, infeasible to
+        remember. Use <span class="keyword">KDF</span> (Key Derivation Function) to derive key from password (e.g.
+        multiple hashes for slowness against offline attacks).</p>
+    <p><b><span class="keyword">Authentication Protocol</span>:</b> User → Server: ID + PW. Server checks. Vulnerable to
+        <span class="keyword">replay attack</span> (sniff PW, replay). Mitigate with crypto (Topic 4).
+    </p>
+    <p><b><span class="keyword">Password Reset</span>:</b> Use recovery email (ownership proves authenticity, "what you
+        have"); security questions (weakens security, low entropy). Avoid human involvement.</p>
+    <p><b><span class="keyword">Attacks on Passwords</span>:</b></p>
+    <p class="counter"><b>Bootstrapping Attacks:</b> Intercept password during setup; use default passwords (e.g. IP
+        cameras). <span class="why"><b>Defense:</b> Require password change after first login.</span></p>
+    <p class="counter"><b>Reset Attacks:</b> Social engineering (e.g. QR code phishing via group chat). <span
+            class="why"><b>Defense:</b> Secure reset mechanisms.</span></p>
+    <p class="counter"><b>Searching Attacks:</b> <span class="keyword">Guessing</span> (trial/error); <span
+            class="keyword">Dictionary</span> (common words, substitutions); <span class="keyword">Exhaustive</span>
+        (all possibilities). <span class="why"><b>Defense:</b> High entropy, rate limiting, account lockout.</span></p>
+    <p class="counter"><b>Stealing:</b> <span class="keyword">Sniffing</span> (unencrypted channels); <span
+            class="keyword">Phishing</span>/<span class="keyword">Spear-Phishing</span> (trick into revealing); <span
+            class="keyword">Spoofing</span> login screen; <span class="keyword">Keylogger</span> (software/hardware);
+        <span class="keyword">Cache</span> (shared devices); <span class="keyword">Lost File</span> (insider attack).
+        <span class="why"><b>Defense:</b> Encrypt traffic, user training, blacklisting, MFA.</span>
+    </p>
+
+    <h3>Biometrics</h3>
+    <p><b><span class="keyword">Biometric Authentication</span>:</b> "Who you are" (inherence factor). E.g. fingerprint,
+        iris, voice. Unique to individual.</p>
+    <p><b>Phases:</b> <span class="keyword">Enrollment</span> (capture/store template); <span
+            class="keyword">Verification</span> (compare presented feature).</p>
+    <p><b>Vs Password:</b> Intrinsic uniqueness (not shared); difficult revocability; high usability/non-repudiation;
+        low security if faked.</p>
+    <p><b>Challenges:</b> <span class="keyword">Error Rates</span> (FAR: false accept; FRR: false reject; EER: equal
+        rate); <span class="keyword">Template Security</span> (hash + salt); <span class="keyword">Faking</span> (e.g.
+        gummy finger)—use <span class="keyword">liveness detection</span>.</p>
+    <p class="counter"><b>Attack Example:</b> Bypass sensor, send stolen template to controller. <span
+            class="why"><b>Defense:</b> Mutual authentication, encrypt template.</span></p>
+    <p><b>Applications:</b> Smartphones (Secure Enclave); Payments (Apple Pay); <span class="keyword"></span>FIDO</span>
+        (passwordless: user authenticates locally, device signs challenge with private key, server verifies with public
+        key).</p>
+
+    <h3>Multi-Factor Authentication (MFA)</h3>
+    <p><b><span class="keyword">Authentication Factors</span>:</b> <span class="keyword">Knowledge</span> (what you
+        know: PW, PIN); <span class="keyword">Possession</span> (what you have: card, token); <span
+            class="keyword">Inherence</span> (who you are: biometric).</p>
+    <p><b><span class="keyword">MFA</span>:</b> Requires ≥2 independent factors. E.g. ATM (possession + knowledge);
+        Smartphone (knowledge + inherence).</p>
+    <p><b>Vs Multi-Step:</b> Multiple credentials, may be same factor. E.g. PW + security question (both knowledge).</p>
+    <p><b><span class="keyword">OTP</span> (One-Time Password):</b> Valid once. Hardware token
+        (synchronous/asynchronous); Software app; SMS (vulnerable to SIM-swap, malware).</p>
+    <p class="counter"><b>OTP Attacks:</b> Phishing, MITM. <span class="why"><b>Defense:</b> Transaction signing.</span>
+    </p>
+    <p><b>Advantages:</b> Mitigates single-point failure; high security for high-value accounts.</p>
+    <p><b>Example: ATM</b> (Simplified): Card + PIN. Offline: Decrypt stored E(PIN), compare. Online: Bank verifies.
+        Attacks: Replay, skimming.</p>
+
+    <h2>Symmetric vs Public Key</h2>
+    <p><b><span class="keyword">Symmetric</span> key:</b> We need a secure channel to establish the <span
+            class="keyword">secret key</span> for any two entities.</p>
+    <p><span class="why"><b>Why:</b> Share key via secure channel to avoid eavesdropping.</span></p>
+    <p><b><span class="keyword">Public</span> key:</b> We only need a secure broadcast channel to distribute the public
+        key.</p>
+    <p><b><span class="keyword">PKC</span> (Public Key Cryptography, <span class="keyword">ElGamal</span>, <span
+                class="keyword">RSA</span>, <span class="keyword">Paillier</span>)</b> 1 & 3 discrete-log based</p>
+    <p><b>ElGamal:</b> Discrete-log based (vs RSA factorization). Operates in groups (ECC for efficiency: ~300-bit key
+        ≈2048-bit RSA). Encryption: Choose g,p (public), private x, public y=g^x mod p. Encrypt m: Choose k, c1=g^k mod
+        p, c2=m*y^k mod p. Decrypt: m=c2*(c1^x)^{-1} mod p.</p>
+    <p><b>Paillier:</b> Discrete-log based, homomorphic w.r.t. addition (ElGamal multiplicative).</p>
+    <p><span class="why"><b>Why:</b> Use mathematical hard problems like discrete log to enable public key exchange
+            without secure channel.</span></p>
+
+    <h3>Password Strength</h3>
+    <p><b><span class="keyword">Entropy</span> Formula:</b> For random password from char set of size <b>S</b>, <span
+            class="keyword">entropy</span> per char = <b><span class="math">log₂(<b>S</b>)</span></b>. Total <span
+            class="keyword">entropy</span> = <b>n × <span class="math">log₂(<b>S</b>)</span></b>, where <b>n</b> =
+        length. For brute force, possibilities = <b><span class="math">Sⁿ</span></b>.</p>
+    <p><b>Guidelines on <span class="keyword">Password</span> Strength to Guard Against <span
+                class="keyword">Online</span>/<span class="keyword">Offline</span> Dictionary Attacks:</b> See <a
+            href="https://en.wikipedia.org/wiki/Password_strength#Guidelines_for_strong_passwords">Wikipedia</a>.
+        Human-generated passwords are not truly random. Difficult to estimate <span class="keyword">entropy</span> of
+        human-generated passwords. <span class="keyword">NIST</span> SP <b>800-63-2</b> suggested a way, but SP
+        <b>800-63</b> Revision <b>3</b> (<b>2017</b>) drops this approach.
+    </p>
+    <p><b><span class="keyword">Online</span> Attacks:</b> <span class="keyword">RFC</span> <b>4086</b> recommends at
+        least <b>29</b> bits of <span class="keyword">entropy</span> for security against <span
+            class="keyword">online</span> attacks, at least <b>49</b> bits for "higher security".</p>
+    <p><b><span class="keyword">Offline</span> Attacks:</b> Stricter requirement; equivalent to symmetric key strength.
+        <span class="keyword">NIST</span> recommends <b>128</b> bits for crypto keys, so use <b>128</b> bits <span
+            class="keyword">entropy</span>.
+    </p>
+
+    <div class="page-break"></div>
+
+    <h2><span class="keyword">RSA</span></h2>
+    <p><b>Textbook RSA Setup:</b> Owner chooses 2 large primes p,q, computes n=pq. Chooses e s.t. gcd(e, <span
+            class="math">(p-1)(q-1)</span>)=1. Finds d where de ≡1 mod <span class="math">(p-1)(q-1)</span> [<span
+            class="math">ϕ(n) = (p-1)(q-1)</span>, Euler’s totient function]. Publishes ⟨n,e⟩, keeps d secret.</p>
+    <p><b>Encryption:</b> c = <span class="math">m^e mod n</span>. <b>Decryption:</b> m = <span class="math">c^d mod
+            n</span>.</p>
+    <p><b>Correctness:</b> <span class="math">(m^e)^d ≡ m mod n</span>. Sketch: Euler's theorem m^{<span
+            class="math">ϕ(n)</span>} ≡1 mod n for gcd(m,n)=1; de≡1 mod <span class="math">ϕ(n)</span> so m^{de} ≡ m^1
+        mod n.</p>
+    <p><b>Example:</b> p=5, q=11, n=55, <span class="math">ϕ(n)</span>=40. e=3, d=27 (3*27=81≡1 mod 40). m=9, c=<span
+            class="math">9^3 mod 55</span>=729 mod 55=14. m=<span class="math">14^27 mod 55</span>=9.</p>
+    <p><b>Security:</b> Factorization ⟶ Private key ⟶ Plaintext. Difficulty hierarchy: Factor n hardest, then find d,
+        then decrypt.</p>
+    <p><b>Factorization History:</b> 640-bit (2005, 30 CPU-years); 768-bit (2009, 2 years); 829-bit (2020). NIST:
+        3072-bit RSA ≈128-bit AES.</p>
+    <p><b>Post-Quantum:</b> Shor's algorithm factors in poly time on quantum computers. PQC: Lattice-based (shortest
+        vector), Code-based (decoding), Multivariate, Hash-based. NIST winners: Lattice (Kyber), Hash (Dilithium).</p>
+    <p><b>Padding:</b> Textbook RSA homomorphic (c1*c2 = (m1*m2)^e), vulnerable to attacks. Use PKCS#1 (OAEP) for
+        padding to destroy properties. Pitfall: CWE-780 (using textbook RSA).</p>
+    <p><b>Efficiency:</b> Slower than AES (3072-bit RSA ≈128-bit AES speed). Hybrid: Encrypt AES key with RSA, encrypt
+        data with AES. <span class="why"><b>Root:</b> Symmetric uses fast ops (XOR, shifts, S-boxes on small blocks);
+            asymmetric uses modular exponentiation on large numbers.</span></p>
+    <p><b>Interchangeable Keys:</b> RSA allows d for encryption, e for decryption (swap roles). Useful for signatures.
+    </p>
+    <p class="counter"><b>RSA Attacks:</b> <span class="why"><b>Why:</b> Factorization via quantum/Shor's; padding
+            oracle leaks info.</span></p>
+    <p class="counter"><b>RSA Defense:</b> <span class="why"><b>Why:</b> Large n (2048+ bits), OAEP padding, avoid
+            textbook RSA.</span></p>
+
+    <h2><span class="keyword">Hash</span>, <span class="keyword">MAC</span>, <span class="keyword">Signature</span></h2>
+    <p><b>Unkeyed <span class="keyword">Hash</span> Security Requirements:</b> <b>Collision-resistant:</b> Hard to find
+        m1≠m2 s.t. h(m1)=h(m2). <b>2nd pre-image-resistant:</b> Given m1, hard to find m2≠m1 s.t. h(m1)=h(m2).
+        <b>One-way:</b> Given h, hard to find m s.t. h(m)=h.
+    </p>
+    <p><b>Popular Hashes:</b> SHA-0 (160-bit, withdrawn); SHA-1 (160-bit, collisions 2^63 ops, SHAttered 2017); SHA-2
+        (224/256/384/512-bit, no known attacks); SHA-3 (Keccak, 2012 winner). MD5 (128-bit, collisions 1 min on PC).</p>
+    <p><b>Hash Applications:</b> Integrity check (e.g., VLC: download file, compute SHA-256, compare to trusted site).
+        Secure channel for digest (HTTPS). Password file protection (hash+salt, Topic 2).</p>
+    <p><b>Unkeyed <span class="keyword">Hash</span>:</b> Obtain hash through secure channel, Hash the file F and
+        compare the hashes.</p>
+    <p><b>2nd pre-image attack on H():</b> Given a F, find a F’ s.t. H(F) = H(F’), and F≠F’</p>
+    <p><b>one-way on H():</b> Given a h, find a F’ s.t. H(F’) = h</p>
+    <p><b>Collision attack on H:</b> Find F and F’ s.t. H(F)= H(F’), and F ≠F’</p>
+    <p><b>A <span class="keyword">Hash</span> function H() is called <span
+                class="keyword">collision-resistant</span></b> if it is computationally difficult to solve
+        “collision attack” problem.</p>
+    <p>- If an algorithm A can solve one-way or 2nd pre-image attack, we can modify the algorithm A to solve the
+        collision attack. if a hash function is secure against collision, then the hash function is also secure
+        against 2nd pre-image attack and one-way attack.</p>
+    <p class="counter"><b>Hash Attacks:</b> <span class="why"><b>Why:</b> <span class="keyword">Birthday
+                attack</span> enables probabilistic collision finding.</span></p>
+    <p class="counter"><b>Hash Defense:</b> <span class="why"><b>Why:</b> Use SHA-256 or stronger to make longer
+            digest harder for birthday attack.</span></p>
+    <p><b><span class="keyword">Birthday</span> Attack:</b> ⎡ 1.17* 2k/2⎤ and prob(collision) > 0.5 K = bit
+        length of digest (If k =256, infeasible)</p>
+    <p class="counter"><b>Birthday Defense:</b> Use 256-bit hashes. <span class="why"><b>Why:</b> Birthday
+            paradox requires ~2^{128} operations to find collisions efficiently.</span></p>
+    <p><b>Keyed-<span class="keyword">Hash</span> (aka <span class="keyword">MAC</span>)</b> (a <span
+            class="keyword">secret key</span> is involved): A keyed-hash is a function that takes an arbitrary
+        large message and a <span class="keyword">secret key</span> as input, and outputs a fixed size (say 160
+        bits) mac (message authentication code)</p>
+    <p><b>MAC Constructions:</b> CBC-MAC (AES in CBC, output last block); HMAC (RFC 2104: HMAC_k(m) = SHA((k⊕opad) ||
+        SHA((k⊕ipad) || m)), opad=5C5C..., ipad=3636...).</p>
+    <p><b>MAC Applications:</b> Protect digest without secure channel (e.g., symmetric key shared, MAC digest instead of
+        plain hash).</p>
+    <p><b>MAC vs Signature Speed:</b> MAC (e.g., HMAC) faster than signatures (e.g., RSA). <span class="why"><b>Why:</b>
+            MAC uses symmetric ops (fast AES/SHA); signatures use PKC modular exponentiation (slow on large
+            numbers).</span></p>
+    <p>Protects against forgery. After seen multiple valid pairs of messages and their corresponding mac, it is
+        difficult for the attacker to forge the mac of a message not seen before</p>
+    <p class="counter"><b>MAC Attacks:</b> <span class="why"><b>Why:</b> If key compromised, forgeable because
+            keyed hash depends on secret key.</span></p>
+    <p class="counter"><b>MAC Defense:</b> <span class="why"><b>Why:</b> Protect key secrecy to make forging
+            hard without key.</span></p>
+    <p><b><span class="keyword">Signature</span>:</b> The owner uses the <span class="keyword">private
+            key</span> to generate the signature. The public can use the <span class="keyword">public key</span>
+        to verify the signature Anyone can verify the authenticity of the data. Uses <span
+            class="keyword">hash-and-sign</span> (hash message, sign hash). Use secure hashes like <span
+            class="keyword">SHA-256</span>, not <span class="keyword">MD5</span> (vulnerable to collisions). RSA special
+        property: interchangeable keys (encrypt with d, decrypt with e for signing).</p>
+    <p class="counter"><b>Signature Attacks:</b> <span class="why"><b>Why:</b> Private key compromise allows
+            forging signatures.</span></p>
+    <p class="counter"><b>Signature Defense:</b> <span class="why"><b>Why:</b> Secure key storage prevents key
+            theft.</span></p>
+    <p><b><span class="keyword">Non-Repudiation</span>:</b> Assurance that someone cannot deny previous
+        commitments or actions. (<span class="keyword">MAC</span> CANNOT)</p>
+    <p><span class="why"><b>Why:</b> Use signatures for binding proof to prevent denial of actions.</span></p>
+
+    <h2>Attacks & Pitfalls</h2>
+    <p><b>Birthday Attack on Hash:</b> Probabilistic collision finding. For k-bit hash, ~<span
+            class="math">2^{k/2}</span> operations. E.g., SHA-1 (160-bit) ~<span class="math">2^80</span>, feasible.</p>
+    <p class="counter"><b>Birthday Defense:</b> <span class="why"><b>Why:</b> Use 256-bit+ hashes to make 2^128
+            operations infeasible.</span></p>
+    <p><b>Design Flaw: Using Encryption for Authenticity:</b> Encryption ≠ integrity. E.g., CBC mode leaks padding info
+        without MAC.</p>
+    <p class="counter"><b>Design Defense:</b> <span class="why"><b>Why:</b> Use authenticated encryption (GCM) for both
+            confidentiality and integrity.</span></p>
+    <p><b>Time-Space Tradeoff:</b> Precompute tables for inverting hash (e.g., rainbow tables for passwords).
+        Time-memory tradeoff.</p>
+    <p class="counter"><b>Time-Space Defense:</b> <span class="why"><b>Why:</b> Use salts and slow KDFs to increase
+            computation cost.</span></p>
+
+    <h2><span class="keyword">PKI</span> and Certificates</h2>
+    <p><b>Key Usage Summary:</b> <b>A (Sender) to B (Recipient):</b> <span class="keyword">Encrypt</span> with B's <span
+            class="keyword">public key</span>, <span class="keyword">sign</span> with A's <span class="keyword">private
+            key</span>, send certificate for trust. <b>B Receiving from A:</b> <span class="keyword">Verify</span>
+        certificate with <span class="keyword">CA</span>'s <span class="keyword">public key</span>, <span
+            class="keyword">decrypt</span> with B's <span class="keyword">private key</span>, <span
+            class="keyword">verify</span> signature with A's <span class="keyword">public key</span>. To get B's cert, A
+        searches <span class="keyword">CA</span>'s directory. <span class="keyword">CA</span> and certificates provide
+        trust by binding public keys to identities.</p>
+    <p><b>Public Key Infrastructure <span class="keyword">PKI</span></b> is a standardized system that
+        distribute public key A main objective is to be deployable on a large scale.</p>
+    <p><b><span class="keyword">Certificate</span> Authority:</b> <span class="keyword">CA</span> is a trusted
+        authority that manages a directory of public keys Certificates facilitate checking/querying to be done
+        in an offline manner</p>
+    <p><b>A <span class="keyword">certificate</span></b> is a digital document that contains <span
+            class="keyword">subject</span> name, <span class="keyword">issuer</span> name, validity period, <span
+            class="keyword">subject's public key</span>, and <span class="keyword">CA signature</span>. <span
+            class="keyword">CA</span> will <span class="keyword">sign</span> the message and pass to sender. <span
+            class="why"><b>Why:</b> Issuer's public key is not included because it's obtained via chain of trust
+            (issuer's cert contains it).</span></p>
+    <p><b>A self-signed <span class="keyword">certificate</span> (root-certificate)</b> is <span
+            class="keyword">signed</span> by the sender. It is <span class="keyword">verified</span> using
+        public key listed in the certificate.</p>
+    <p><b><span class="keyword">Certificate</span> Chain-of-trust:</b> If the receiver does not recognise the
+        <span class="keyword">CA</span> sent by sender, the sender can send the <span class="keyword">CA</span>’s
+        certificate along so that the receiver can <span class="keyword">verify</span> chain of trust.
+    </p>
+    <p><b><span class="keyword">PKI</span> Entity Types:</b> <span class="keyword">End-entity</span> (uses certificates
+        for authentication), <span class="keyword">Intermediate CA</span> (issues certificates to end-entities), <span
+            class="keyword">Root CA</span> (self-signed, trusted anchor for chain validation). <span
+            class="why"><b>Why:</b> Hierarchical structure ensures scalability and trust delegation.</span></p>
+    <p><b><span class="keyword">Certificate</span> Revocation:</b> Non-expired certificates to be revoked if
+        private key compromised due to breaches, insider attack, vulnerability in choosing private keys System
+        admin left an organization Business entity closed Issuing <span class="keyword">CA</span> was
+        compromised</p>
+    <p><b><span class="keyword">Certificate</span> Revocation List (<span class="keyword">CRL</span>):</b> <span
+            class="keyword">CA</span> periodically <span class="keyword">signs</span> and publishes revocation
+        list. Need online <span class="keyword">CRL</span> Distribution Point.</p>
+    <p class="counter"><b>PKI Attacks:</b> <span class="why"><b>Why:</b> <span class="keyword">Certificate
+                spoofing</span> and <span class="keyword">CA compromise</span> allow fake certificates to be
+            issued.</span></p>
+    <p class="counter"><b>PKI Defense:</b> <span class="why"><b>Why:</b> Use CRL/OCSP and verify chain to check
+            revocation and authenticity.</span></p>
+    <p><b>Online <span class="keyword">Certificate</span> Status Protocol (<span class="keyword">OCSP</span>):</b> <span
+            class="keyword">OCSP</span> Responder validates a cert
+        in question. Need an online <span class="keyword">OCSP</span> Responder.</p>
+
+    <h2>Authentication and Key Exchange</h2>
+    <p><b>Unilateral authentication (Prove Sender Authenticity)</b></p>
+    <p><b><span class="keyword">MAC</span>:</b> Receiver can challenge sender to output the mac of any message.
+        Eve cannot forge mac</p>
+    <p><b><span class="keyword">PKC</span>:</b> Receiver can challenge sender to sign any message. Receiver can
+        use public key to verify authenticity</p>
+    <p><b><span class="keyword">PKC</span> Based Key Exchange (Same as AE)</b> Alice send <span class="keyword">public
+            key</span> and certificate to bob Bob randomly chooses k, <span class="keyword">encrypts</span> k with alice
+        <span class="keyword">public key</span> Alice <span class="keyword">decrypts</span> ciphertext with <span
+            class="keyword">private key</span> to obtain
+        key
+    </p>
+    <p><b><span class="keyword">DH</span> (Diffie-Hellman) Key exchange (generator g, large prime p not
+            secret)</b> Alice randomly chooses a, computes x = g^a mod p sends bob Bob randomly chooses b,
+        computes y=g^b mod p sends alice Alice computes k = y^a mod p, Bob computes k= x^b mod p Given g,p,x,y
+        it is computationally infeasible to obtain k</p>
+    <p class="counter"><b>DH Attacks:</b> <span class="why"><b>Why:</b> <span class="keyword">Man-in-the-middle</span>
+            if no authentication allows attacker to intercept and
+            modify x/y.</span></p>
+    <p class="counter"><b>DH Defense:</b> <span class="why"><b>Why:</b> Sign exchanges (station-to-station) to
+            verify identities.</span></p>
+    <p><b><span class="keyword">DH</span> based method meets the <span class="keyword">Forward Secrecy</span>
+            requirement.</b></p>
+    <p><b>Session vs Long-term Keys:</b> Attackers target 42-bit <span class="keyword">session</span> (2^42
+        feasible) over 128-bit <span class="keyword">long-term</span> (2^128 infeasible), immediate payoff.</p>
+    <p class="counter"><b>Session Key Defense:</b> <span class="why"><b>Why:</b> Use ephemeral keys to prevent
+            compromised session from affecting long-term.</span></p>
+    <p><b>Station-to-station protocol (Authenticated KE) same as <span class="keyword">DH</span></b> Bob signs y
+        to obtain s, send y and s to alice for verification</p>
+
+    <h2><span class="keyword">TLS</span>/SSL (Transport Layer Security/Secure Sockets Layer)</h2>
+    <p><b><span class="keyword">TLS</span> (<span class="keyword">HTTPS</span>, HyperText Transfer Protocol
+            Secure) secure the public channel in this way:</b></p>
+    <p>(1) Using long-term keys (i.e. Alice’s <span class="keyword">public</span> and <span class="keyword">private
+            key</span>), carry out authenticated key-exchange (aka handshake in <span class="keyword">TLS</span>).
+        Outcomes are:</p>
+    <ul>
+        <li>Bob is convinced that he is interacting with Alice.</li>
+        <li>Both Alice and Bob have a shared <span class="keyword">session key</span>. (mac + Symmetric key)
+        </li>
+    </ul>
+    <p>(2) Subsequent communication protected by the <span class="keyword">session key</span>.</p>
+    <p class="counter"><b>TLS Attacks:</b> <span class="why"><b>Why:</b> <span class="keyword">Downgrade
+                attacks</span> and <span class="keyword">weak ciphers</span> exploit older versions'
+            vulnerabilities.</span></p>
+    <p class="counter"><b>TLS Defense:</b> <span class="why"><b>Why:</b> Use latest TLS version and strong
+            ciphers to patch known vulnerabilities.</span></p>
+</body>
+
+</html>

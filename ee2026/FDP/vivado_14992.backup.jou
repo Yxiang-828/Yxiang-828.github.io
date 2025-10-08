@@ -1,0 +1,17 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Mon Oct  6 16:07:50 2025
+# Process ID: 14992
+# Current directory: C:/Users/xiang/y2/ee2026/FDP
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent22812 C:\Users\xiang\y2\ee2026\FDP\FDP.xpr
+# Log file: C:/Users/xiang/y2/ee2026/FDP/vivado.log
+# Journal file: C:/Users/xiang/y2/ee2026/FDP\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/xiang/y2/ee2026/FDP/FDP.xpr
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1

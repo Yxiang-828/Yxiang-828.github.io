@@ -1,0 +1,78 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Mon Oct  6 14:13:13 2025
+# Process ID: 41096
+# Current directory: C:/Users/rkoh2/AppData/Roaming/Xilinx/Vivado
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent25528
+# Log file: C:/Users/rkoh2/AppData/Roaming/Xilinx/Vivado/vivado.log
+# Journal file: C:/Users/rkoh2/AppData/Roaming/Xilinx/Vivado\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026_Project/FDP.xpr/FDP/FDP.xpr
+update_compile_order -fileset sources_1
+open_hw
+connect_hw_server
+open_hw_target
+set_property PROGRAM.FILE {C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026_Project/FDP.xpr/FDP/FDP.runs/impl_1/Top_Student.bit} [get_hw_devices xc7a35t_0]
+current_hw_device [get_hw_devices xc7a35t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a35t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026_Project/FDP.xpr/FDP/FDP.runs/impl_1/Top_Student.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+disconnect_hw_server localhost:3121
+connect_hw_server
+disconnect_hw_server localhost:3121
+connect_hw_server
+open_hw_target
+set_property PROGRAM.FILE {C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026_Project/FDP.xpr/FDP/FDP.runs/impl_1/Top_Student.bit} [get_hw_devices xc7a35t_0]
+current_hw_device [get_hw_devices xc7a35t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a35t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026_Project/FDP.xpr/FDP/FDP.runs/impl_1/Top_Student.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+close_hw
+archive_project C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026_Project/FDP.xpr/FDP.xpr.zip -temp_dir C:/Users/rkoh2/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-41096-LAPTOP-TABE59UT -force -include_local_ip_cache -include_config_settings
+open_project C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026_Project_2/Project.xpr/FDP/FDP.xpr
+update_compile_order -fileset sources_1
+current_project FDP
+archive_project C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026_Project/FDP.xpr/FDP.xpr.zip -temp_dir C:/Users/rkoh2/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-41096-LAPTOP-TABE59UT -force -include_local_ip_cache -include_config_settings
+y PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.runs/impl_1/Main.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+close_hw
+open_hw
+connect_hw_server
+open_hw_target
+set_property PROGRAM.FILE {C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.runs/impl_1/Main.bit} [get_hw_devices xc7a35t_0]
+current_hw_device [get_hw_devices xc7a35t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a35t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.runs/impl_1/Main.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+disconnect_hw_server localhost:3121
+connect_hw_server
+disconnect_hw_server localhost:3121
+connect_hw_server
+open_hw_target
+set_property PROGRAM.FILE {C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.runs/impl_1/Main.bit} [get_hw_devices xc7a35t_0]
+current_hw_device [get_hw_devices xc7a35t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a35t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/Week 7_Task/Week 7_Task.runs/impl_1/Main.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+open_project C:/Users/rkoh2/OneDrive/Desktop/Personal/EE2026/monitor_test/monitor_test.xpr
+current_project {Week 7_Task}
+close_project
+update_compile_order -fileset sources_1

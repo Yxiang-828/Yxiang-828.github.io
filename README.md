@@ -4,7 +4,7 @@
 
 [Innovative Computer Engineering student at NUS (Year 2) bridging hardware and software worlds with Verilog, Arduino, C/C++, while pioneering AI automation and efficient systems through Python, Java, JavaScript, and TypeScript.]
 
-🌐 Website: https://yxiang-828.github.io/Yxiang-828/website/
+🌐 Website: https://yxiang-828.github.io/
 
 ## 📂 Repos
 - [Wingman](https://github.com/Yxiang-828/Wingman) - Personal Assistant Desktop App 🤖

@@ -17,13 +17,13 @@
 
 <img src="images/7409.png" width="400" alt="Wingman Screenshot">
 
-This is my flagship project, showcasing expertise in AI integration, full-stack development, and user-centric design for productivity applications.
+This is my flagship project, showcasing expertise in **AI integration**, **full-stack development**, and **user-centric design** for productivity applications.
 
-Wingman is a sophisticated, local-first personal assistant application for desktop, designed for productivity enthusiasts who value privacy and performance. It seamlessly integrates essential tools like a task manager, a multi-view calendar, and a mood-aware diary with a powerful AI chat assistant. The AI is powered by local LLMs through Ollama, ensuring all personal data and conversations remain on the user's machine. Key features include a smart background notification system, automated recurring task generation, and extensive customization with six unique themes and AI personalities.
+Wingman is a sophisticated, local-first personal assistant application for desktop, designed for productivity enthusiasts who value privacy and performance. It seamlessly integrates essential tools like a task manager, a multi-view calendar, and a mood-aware diary with a powerful **AI chat assistant**. The AI is powered by local LLMs through **Ollama**, ensuring all personal data and conversations remain on the user's machine. Key features include a smart background notification system, automated recurring task generation, and extensive customization with six unique themes and AI personalities.
 
-Notably, Wingman is a fully packaged, downloadable desktop application built with Electron, combining full-stack development (React/TypeScript frontend and Python backend) for a seamless, cross-platform user experience.
+Notably, Wingman is a fully packaged, downloadable desktop application built with **Electron**, combining full-stack development (**React**/**TypeScript** frontend and **Python** backend) for a seamless, cross-platform user experience.
 
-Architecturally, Wingman is a hybrid application built with React, TypeScript, and Electron for the frontend, and a Python/FastAPI backend for AI processing and data management. It features a robust local-first design using SQLite, with secure cloud authentication via Supabase. The project includes a complete, automated build system that handles Python environment setup and packages the entire application for cross-platform distribution, demonstrating a strong focus on both advanced functionality and a polished user experience.
+Architecturally, Wingman is a hybrid application built with **React**, **TypeScript**, and **Electron** for the frontend, and a **Python**/**FastAPI** backend for AI processing and data management. It features a robust local-first design using **SQLite**, with secure cloud authentication via **Supabase**. The project includes a complete, automated build system that handles Python environment setup and packages the entire application for cross-platform distribution, demonstrating a strong focus on both advanced functionality and a polished user experience.
 
 ## 🎨 Theme Backgrounds
 

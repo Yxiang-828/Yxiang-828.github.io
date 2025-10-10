@@ -1,31 +1,46 @@
 // Smooth scrolling for navigation links
-document.querySelectorAll('nav a').forEach(anchor => {
+document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        
-        if (targetSection) {
-            const offsetTop = targetSection.offsetTop - 70; // Account for fixed header
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
         }
     });
 });
 
-// Add scroll effect to header
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('header');
-    if (window.scrollY > 100) {
-        header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+// Typing effect for hero text
+const heroText = "Hi, I'm Xiang! A passionate developer and student.";
+const heroElement = document.querySelector('#hero h2');
+let i = 0;
+
+function typeWriter() {
+    if (i < heroText.length) {
+        heroElement.innerHTML += heroText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 100);
     } else {
-        header.style.backgroundColor = '#fff';
+        // Add cursor blinking effect
+        heroElement.innerHTML += '<span class="cursor">|</span>';
+        setInterval(() => {
+            const cursor = document.querySelector('.cursor');
+            if (cursor) {
+                cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+            }
+        }, 500);
     }
+}
+
+// Start typing effect when page loads
+window.addEventListener('load', () => {
+    heroElement.innerHTML = '';
+    typeWriter();
 });
 
-// Simple animation for project cards
+// Scroll animations
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -34,34 +49,88 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.classList.add('animate-in');
         }
     });
 }, observerOptions);
 
-document.querySelectorAll('.project-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
+// Observe all sections
+document.querySelectorAll('section').forEach(section => {
+    observer.observe(section);
 });
 
-// Typing effect for hero text (optional)
-const heroText = document.querySelector('#hero p');
-if (heroText) {
-    const text = heroText.textContent;
-    heroText.textContent = '';
-    let i = 0;
-    
-    function typeWriter() {
-        if (i < text.length) {
-            heroText.textContent += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 50);
-        }
+// Add particle effect to hero background
+function createParticles() {
+    const hero = document.getElementById('hero');
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 20 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        hero.appendChild(particle);
     }
-    
-    // Start typing effect after a delay
-    setTimeout(typeWriter, 1000);
+}
+
+createParticles();
+
+// Add hover effects to project cards
+document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-10px) scale(1.02)';
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0) scale(1)';
+    });
+});
+
+// Add skill progress bars animation
+function animateSkillBars() {
+    const skillItems = document.querySelectorAll('.skill-category li');
+    skillItems.forEach((item, index) => {
+        setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateX(0)';
+        }, index * 100);
+    });
+}
+
+// Trigger skill animation when skills section is in view
+const skillsSection = document.getElementById('skills');
+const skillsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animateSkillBars();
+        }
+    });
+}, { threshold: 0.5 });
+
+if (skillsSection) {
+    skillsObserver.observe(skillsSection);
+}
+
+// Add dynamic background color change on scroll
+window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+    const body = document.body;
+    const hue = (scrollPosition / 10) % 360;
+    body.style.background = `linear-gradient(135deg, hsl(${hue}, 50%, 10%) 0%, hsl(${hue + 60}, 50%, 15%) 50%, hsl(${hue + 120}, 50%, 20%) 100%)`;
+});
+
+// Add click effect to CTA button
+const ctaButton = document.querySelector('.cta-button');
+if (ctaButton) {
+    ctaButton.addEventListener('click', (e) => {
+        // Create ripple effect
+        const ripple = document.createElement('div');
+        ripple.className = 'ripple';
+        ripple.style.left = e.offsetX + 'px';
+        ripple.style.top = e.offsetY + 'px';
+        ctaButton.appendChild(ripple);
+
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    });
 }

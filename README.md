@@ -73,4 +73,4 @@ Architecturally, Wingman is a hybrid application built with **React**, **TypeScr
 ## 📬 Get in touch
 - 🌐 Website: [Your Website URL]
 - 💼 LinkedIn: [linkedin.com/in/yourprofile]
-- 📧 Email: [your.email@example.com]
+- 📧 Email: xiangyao888@gmail.com

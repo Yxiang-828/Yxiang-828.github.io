@@ -13,7 +13,7 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
 });
 
 // Typing effect for hero text
-const heroText = "Hi, I'm Xiang! A passionate developer and student.";
+const heroText = "Hi, I'm Yao Xiang! A passionate developer and student.";
 const heroElement = document.querySelector('#hero h2');
 let i = 0;
 

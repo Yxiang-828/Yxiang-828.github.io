@@ -55,7 +55,7 @@ Task manager, calendar, mood diary with Ollama-powered AI chat. SQLite + Supabas
 
 Built to solve daily workflow bottlenecks: find/delete large files, upscale images, extract video content, transcribe audio. Offline, fast, no GUI overhead.
 
-> **Note:** Showing 2 of 8 tools above. [View repository](https://github.com/Yxiang-828/Helper_Tools) for all tools and documentation.
+> **Note:** Showing 2 of 8 tools below. [View repository](https://github.com/Yxiang-828/Helper_Tools) for all tools and documentation.
 
 #### AI Image Upscaler  Real-ESRGAN + EDSR
 

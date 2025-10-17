@@ -1,10 +1,27 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video to GIF Converter - Yao Xiang</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .detail-container { max-width: 1200px; margin: 100px auto 50px; padding: 50px; background: rgba(15, 15, 35, 0.9); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        .back-link { display: inline-block; margin-bottom: 30px; color: #00d4ff; text-decoration: none; font-weight: bold; transition: all 0.3s; }
+        .back-link:hover { transform: translateX(-5px); }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+        .tech-badge { background: linear-gradient(45deg, #00d4ff, #090979); color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; }
+        .param-table { width: 100%; margin: 30px 0; border-collapse: collapse; }
+        .param-table th, .param-table td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .param-table th { background: rgba(0, 212, 255, 0.1); color: #00d4ff; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0; }
+        .feature-box { background: rgba(0, 212, 255, 0.05); padding: 20px; border-radius: 10px; border-left: 3px solid #00d4ff; }
+        code { background: rgba(0,0,0,0.4); padding: 3px 8px; border-radius: 4px; color: #ff6b6b; font-family: 'Courier New', monospace; }
+        pre { background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px; overflow-x: auto; border-left: 3px solid #00d4ff; }
+        pre code { background: none; padding: 0; color: #e0e0e0; }
+        .section-title { color: #00d4ff; margin-top: 50px; padding-bottom: 10px; border-bottom: 2px solid rgba(0, 212, 255, 0.3); }
+        .use-case { background: rgba(0, 212, 255, 0.05); padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 3px solid #00d4ff; }
+    </style>
 </head>
 <body>
     <header>
@@ -20,22 +37,196 @@
             </div>
         </nav>
     </header>
-    <div style="max-width: 1200px; margin: 100px auto 50px; padding: 40px; background: rgba(15, 15, 35, 0.8); border-radius: 20px;">
-        <a href="index.html#projects" style="color: #00d4ff; text-decoration: none; font-weight: bold;">← Back to Projects</a>
-        <h1 style="color: #00d4ff; margin: 30px 0;">🎞️ Video to GIF Converter</h1>
-        <p style="color: #b0b0b0; font-size: 1.2rem;">Convert MP4 videos to optimized GIFs with exact size and speed constraints. Perfect for web-ready animations.</p>
-        <h2 style="color: #00d4ff; margin-top: 40px;">Key Features</h2>
+
+    <div class="detail-container">
+        <a href="index.html#projects" class="back-link"> Back to Projects</a>
+        
+        <h1 style="color: #00d4ff; margin-bottom: 20px;"> Video to GIF Converter</h1>
+        
+        <div class="tech-stack">
+            <span class="tech-badge">FFmpeg</span>
+            <span class="tech-badge">Python 3.13</span>
+            <span class="tech-badge">MoviePy</span>
+            <span class="tech-badge">Batch Automation</span>
+        </div>
+
+        <p style="font-size: 1.2rem; color: #b0b0b0; margin: 30px 0;">
+            Convert MP4 videos to optimized GIFs with exact size and speed constraints. Automatically scales resolution and adjusts frame rates to meet target file sizes (1-50MB). Perfect for social media, presentations, and web content.
+        </p>
+
+        <h2 class="section-title"> Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">Exact Size Control</h3>
+                <p style="color: #b0b0b0;">Specify target size (1-50MB) - tool automatically optimizes to meet constraint</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">Speed Adjustment</h3>
+                <p style="color: #b0b0b0;">0.1x to 2.0x playback speed control for dramatic or time-lapse effects</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">Smart Resolution Scaling</h3>
+                <p style="color: #b0b0b0;">Automatically reduces resolution to fit size while maintaining quality</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">Frame Rate Optimization</h3>
+                <p style="color: #b0b0b0;">Adjusts FPS dynamically based on target size and video length</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">Constraint Validation</h3>
+                <p style="color: #b0b0b0;">Warns if target size is unrealistic for video duration</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">Batch Processing</h3>
+                <p style="color: #b0b0b0;">Process multiple videos with same settings</p>
+            </div>
+        </div>
+
+        <h2 class="section-title"> Parameters</h2>
+        <table class="param-table">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Range</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Target Size</strong></td>
+                    <td>1 - 50 MB</td>
+                    <td>10 MB</td>
+                    <td>Maximum GIF file size</td>
+                </tr>
+                <tr>
+                    <td><strong>Speed</strong></td>
+                    <td>0.1x - 2.0x</td>
+                    <td>1.0x</td>
+                    <td>Playback speed multiplier</td>
+                </tr>
+                <tr>
+                    <td><strong>Resolution</strong></td>
+                    <td>Auto-scaled</td>
+                    <td>Original</td>
+                    <td>Reduced automatically if needed</td>
+                </tr>
+                <tr>
+                    <td><strong>FPS</strong></td>
+                    <td>5 - 30 fps</td>
+                    <td>15 fps</td>
+                    <td>Frames per second (auto-adjusted)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="section-title"> Usage</h2>
+        <h3 style="color: #ff6b6b;">Batch File (Recommended)</h3>
+        <pre><code>mp4togif.bat "path\to\video.mp4"</code></pre>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Python Script (Advanced)</h3>
+        <pre><code># Basic conversion (10MB, 1.0x speed)
+py converter.py "video.mp4"
+
+# Custom size and speed
+py converter.py "video.mp4" --size 5 --speed 1.5
+
+# Slow motion
+py converter.py "video.mp4" --size 20 --speed 0.5</code></pre>
+
+        <h2 class="section-title"> Optimization Examples</h2>
+        
+        <div class="use-case">
+            <h3 style="color: #00d4ff; margin-top: 0;">Social Media (Twitter/Discord)</h3>
+            <pre style="margin-bottom: 0;"><code>py converter.py "clip.mp4" --size 10 --speed 1.0
+# Result: 480p @ 15fps, perfect for social platforms</code></pre>
+        </div>
+
+        <div class="use-case">
+            <h3 style="color: #00d4ff; margin-top: 0;">High Quality Presentation</h3>
+            <pre style="margin-bottom: 0;"><code>py converter.py "demo.mp4" --size 50 --speed 1.0
+# Result: 720p @ 24fps, excellent quality for slides</code></pre>
+        </div>
+
+        <div class="use-case">
+            <h3 style="color: #00d4ff; margin-top: 0;">Thumbnail/Preview</h3>
+            <pre style="margin-bottom: 0;"><code>py converter.py "preview.mp4" --size 2 --speed 1.5
+# Result: 360p @ 10fps, fast-loading preview</code></pre>
+        </div>
+
+        <div class="use-case">
+            <h3 style="color: #00d4ff; margin-top: 0;">Slow Motion Effect</h3>
+            <pre style="margin-bottom: 0;"><code>py converter.py "action.mp4" --size 30 --speed 0.5
+# Result: Half-speed playback, maintains quality</code></pre>
+        </div>
+
+        <h2 class="section-title"> Output Structure</h2>
+        <pre><code>Video_to_GIF_Converter/
+ extracted_gifs/
+    video_name_10MB_1.0x.gif
+    video_name_5MB_1.5x.gif
+    ...</code></pre>
+
+        <h2 class="section-title"> How It Works</h2>
+        <ol style="color: #b0b0b0; line-height: 2;">
+            <li><strong>Load Video:</strong> Read video using MoviePy, extract duration and dimensions</li>
+            <li><strong>Validate Constraints:</strong> Check if target size is realistic (warns if < 0.5MB/sec)</li>
+            <li><strong>Calculate Parameters:</strong>
+                <ul>
+                    <li>Estimate required resolution based on size/duration ratio</li>
+                    <li>Adjust FPS dynamically (lower for long videos, higher for short clips)</li>
+                    <li>Apply speed multiplier to duration</li>
+                </ul>
+            </li>
+            <li><strong>Generate GIF:</strong> Use FFmpeg with optimized palette for compression</li>
+            <li><strong>Verify Output:</strong> Check final size, warn if significantly over/under target</li>
+        </ol>
+
+        <h2 class="section-title"> Troubleshooting</h2>
+        
+        <h3 style="color: #ff6b6b;">GIF is too large</h3>
         <ul style="color: #b0b0b0; line-height: 2;">
-            <li>Exact size constraints (1-50MB)</li>
-            <li>Speed control (0.1x-2.0x playback)</li>
-            <li>Auto-resolution scaling</li>
-            <li>Smart frame rate optimization</li>
-            <li>Batch processing support</li>
+            <li>Reduce target size parameter</li>
+            <li>Increase speed (shorter duration = smaller file)</li>
+            <li>Trim video before conversion</li>
         </ul>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">GIF looks pixelated</h3>
+        <ul style="color: #b0b0b0; line-height: 2;">
+            <li>Increase target size (allows higher resolution)</li>
+            <li>Use shorter video clips</li>
+            <li>Start with higher-resolution source video</li>
+        </ul>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Conversion fails</h3>
+        <ul style="color: #b0b0b0; line-height: 2;">
+            <li>Ensure FFmpeg is installed (<code>C:\ffmpeg\bin\ffmpeg.exe</code>)</li>
+            <li>Check video file is not corrupted</li>
+            <li>Verify Python 3.13.x with MoviePy installed</li>
+        </ul>
+
+        <h2 class="section-title"> Use Cases</h2>
+        <ul style="color: #b0b0b0; line-height: 2;">
+            <li><strong>Social Media:</strong> Twitter/Discord embeds (10MB limit)</li>
+            <li><strong>Presentations:</strong> High-quality animated slides (50MB)</li>
+            <li><strong>Documentation:</strong> Tutorial demonstrations (20MB)</li>
+            <li><strong>Gaming:</strong> Highlight reels and replays (30MB)</li>
+            <li><strong>Memes:</strong> Quick reaction clips (5MB)</li>
+        </ul>
+
+        <h2 class="section-title"> Requirements</h2>
+        <ul style="color: #b0b0b0; line-height: 2;">
+            <li><strong>FFmpeg:</strong> <code>C:\ffmpeg\bin\ffmpeg.exe</code></li>
+            <li><strong>Python:</strong> 3.13.x</li>
+            <li><strong>Libraries:</strong> moviepy, ffmpeg-python</li>
+            <li><strong>OS:</strong> Windows 10/11</li>
+        </ul>
+
         <div style="text-align: center; margin-top: 50px;">
-            <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/Video_to_GIF_Converter" target="_blank" class="cta-button">View on GitHub →</a>
+            <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/Video_to_GIF_Converter" target="_blank" class="cta-button">View on GitHub </a>
         </div>
     </div>
+
     <footer><div class="container"><p>&copy; 2025 Yao Xiang. All rights reserved.</p></div></footer>
 </body>
 </html>

@@ -98,6 +98,8 @@ Total Size (Top 10): 53.38 GB
 | **Unity Extractor** | Extract assets from .unity3d files | UnityPy parser |
 | **S&B Extractor** | Parse game asset bundles | Custom binary parser |
 
+> **Note:** Showing 2 of 8 tools above. [View repository](https://github.com/Yxiang-828/Helper_Tools) for all tools and documentation.
+
 [View Repository](https://github.com/Yxiang-828/Helper_Tools) 
 
 ---
@@ -132,4 +134,5 @@ Total Size (Top 10): 53.38 GB
 -  Website: https://yxiang-828.github.io/
 -  LinkedIn: [linkedin.com/in/yourprofile]
 -  Email: xiangyao888@gmail.com
+
 

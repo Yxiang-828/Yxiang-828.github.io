@@ -97,7 +97,7 @@ Total Size (Top 10): 53.38 GB
 | **Video Upscaler** | AI frame enhancement for videos | Real-ESRGAN + FFmpeg |
 | **Subtitle/MP3 Extractor** | Extract embedded subs + mp3 from videos | FFmpeg automation |
 | **Audio Transcriber** | Convert mp3 to text transcripts | Whisper AI (GPU 3-5x faster) |
-| **Video to GIF** | Create size&speed-optimized GIFs | MoviePy + auto-scaling |
+| **Video to GIF** | Convert videos to GIFs (speed & quality customisable) | MoviePy + auto-scaling |
 | **Unity Extractor** | Extract assets from .unity3d files and convert to PNG | UnityPy parser |
 
 

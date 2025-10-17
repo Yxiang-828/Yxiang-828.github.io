@@ -1,120 +1,279 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yao Xiang - Computer Engineering Student</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <div class="nav-container">
-                <h1>Yao Xiang</h1>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
+<!DOCTYPE html><!DOCTYPE html>
+
+<html lang="en"><html lang="en">
+
+<head><head>
+
+    <meta charset="UTF-8">    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Yao Xiang - Computer Engineering @ NUS</title>    <title>Yao Xiang - Computer Engineering Student</title>
+
+    <link rel="stylesheet" href="styles.css">    <link rel="stylesheet" href="styles.css">
+
+</head></head>
+
+<body><body>
+
+    <header>    <header>
+
+        <div class="container">        <nav>
+
+            <h1>Yao Xiang</h1>            <div class="nav-container">
+
+            <p class="subtitle">Computer Engineering @ NUS (Year 2)</p>                <h1>Yao Xiang</h1>
+
+            <p class="intro">Hardware design (Verilog, Arduino, C/C++) + software automation (Python, Java, JavaScript, TypeScript). Building AI tools and efficient systems.</p>                <ul>
+
+        </div>                    <li><a href="#about">About</a></li>
+
+    </header>                    <li><a href="#projects">Projects</a></li>
+
                     <li><a href="#skills">Skills</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
 
-    <section id="hero">
-        <div class="hero-container">
-            <h2></h2>
-            <p>Innovative Computer Engineering student at NUS bridging hardware and software worlds</p>
-            <a href="#contact" class="cta-button">Get In Touch</a>
+    <section id="projects">                    <li><a href="#contact">Contact</a></li>
+
+        <div class="container">                </ul>
+
+            <h2>Personal Projects</h2>            </div>
+
+                    </nav>
+
+            <div class="project-featured">    </header>
+
+                <h3>Wingman — AI Personal Assistant</h3>
+
+                <img src="images/7409.png" alt="Wingman Screenshot" class="project-image">    <section id="hero">
+
+                <p class="tech-stack">Local-first desktop app | React + TypeScript + Electron + Python/FastAPI</p>        <div class="hero-container">
+
+                <p>Task manager, calendar, mood diary with Ollama-powered AI chat. SQLite + Supabase auth. 6 custom themes. Full privacy, packaged cross-platform distribution.</p>            <h2></h2>
+
+                <a href="https://github.com/Yxiang-828/Wingman" class="btn">View Repository</a>            <p>Innovative Computer Engineering student at NUS bridging hardware and software worlds</p>
+
+            </div>            <a href="#contact" class="cta-button">Get In Touch</a>
+
         </div>
-    </section>
 
-    <section id="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>I'm a Year 2 Computer Engineering student at the National University of Singapore, passionate about creating innovative solutions that combine hardware and software. My expertise spans from Verilog and Arduino for embedded systems to Python, Java, JavaScript, and TypeScript for modern applications.</p>
-            <p>When I'm not coding, you can find me exploring new technologies, working on personal projects, or contributing to open-source communities.</p>
-        </div>
-    </section>
+            <div class="project-featured">    </section>
 
-    <section id="projects">
-        <div class="container">
-            <h2>Featured Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>Wingman</h3>
-                    <p>A sophisticated personal assistant desktop app built with <strong>Electron</strong>, <strong>React</strong>, <strong>TypeScript</strong>, and <strong>Python</strong>. Features AI integration, task management, and cross-platform support.</p>
-                    <a href="https://github.com/Yxiang-828/Wingman" target="_blank">View on GitHub</a>
-                </div>
-                <div class="project-card">
-                    <h3>Project 2</h3>
+                <h3>Helper Tools — Self-Efficiency CLI Tools</h3>
+
+                <p class="tech-stack">7 automation tools | PowerShell + Python + .NET + AI Models</p>    <section id="about">
+
+                <p>Built to solve daily workflow bottlenecks: find/delete large files, upscale images, extract video content, transcribe audio. Offline, fast, no GUI overhead.</p>        <div class="container">
+
+                            <h2>About Me</h2>
+
+                <div class="tool-showcase">            <p>I'm a Year 2 Computer Engineering student at the National University of Singapore, passionate about creating innovative solutions that combine hardware and software. My expertise spans from Verilog and Arduino for embedded systems to Python, Java, JavaScript, and TypeScript for modern applications.</p>
+
+                    <h4>AI Image Upscaler — Real-ESRGAN + EDSR</h4>            <p>When I'm not coding, you can find me exploring new technologies, working on personal projects, or contributing to open-source communities.</p>
+
+                    <div class="comparison-images">        </div>
+
+                        <div class="comparison-item">    </section>
+
+                            <img src="https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/realesrgan_1.png" alt="Real-ESRGAN 4x">
+
+                            <p><strong>Real-ESRGAN 4x (GPU 2-5s)</strong></p>    <section id="projects">
+
+                            <p class="caption">Left: Blurry • Right: GAN upscaled</p>        <div class="container">
+
+                        </div>            <h2>Featured Projects</h2>
+
+                        <div class="comparison-item">            <div class="project-grid">
+
+                            <img src="https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/edsr_1.png" alt="EDSR 4x">                <div class="project-card">
+
+                            <p><strong>EDSR 4x (CPU 15-30s)</strong></p>                    <h3>Wingman</h3>
+
+                            <p class="caption">Left: Blurry • Right: CNN upscaled</p>                    <p>A sophisticated personal assistant desktop app built with <strong>Electron</strong>, <strong>React</strong>, <strong>TypeScript</strong>, and <strong>Python</strong>. Features AI integration, task management, and cross-platform support.</p>
+
+                        </div>                    <a href="https://github.com/Yxiang-828/Wingman" target="_blank">View on GitHub</a>
+
+                    </div>                </div>
+
+                    <p class="tech-note">AMD Vulkan acceleration. GAN for dramatic recovery, CNN for precise sharpening.</p>                <div class="project-card">
+
+                </div>                    <h3>Project 2</h3>
+
                     <p>Description of another project.</p>
-                    <a href="#" target="_blank">View Project</a>
-                </div>
-                <div class="project-card">
-                    <h3>Project 3</h3>
+
+                <div class="tool-showcase">                    <a href="#" target="_blank">View Project</a>
+
+                    <h4>File Scanner — O(M log K) Min-Heap</h4>                </div>
+
+                    <div class="code-block">                <div class="project-card">
+
+                        <pre>PS C:\> .\file_scanner.ps1 -FileType game -TopCount 10                    <h3>Project 3</h3>
+
                     <p>Description of another project.</p>
-                    <a href="#" target="_blank">View Project</a>
-                </div>
+
+Target Type  : GAME Files                    <a href="#" target="_blank">View Project</a>
+
+Extensions   : .unity3d, .pak, .wad, .bsa, .esp, .esm                </div>
+
             </div>
-        </div>
+
+[81.4s] Found 95,551 files | 1,173 files/sec        </div>
+
     </section>
 
-    <section id="skills">
-        <div class="container">
-            <h2>Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
+Total Size (Top 10): 53.38 GB
+
+  1. (11.61 GB) pakchunk26-WindowsNoEditor.pak    <section id="skills">
+
+  2. (9.14 GB) pakchunk34-WindowsNoEditor.pak</pre>        <div class="container">
+
+                    </div>            <h2>Skills & Technologies</h2>
+
+                    <p class="tech-note">.NET BFS traversal + SortedSet min-heap. Scans entire C:\ in ~2min vs Windows Explorer's 40min.</p>            <div class="skills-grid">
+
+                </div>                <div class="skill-category">
+
                     <h3>Programming Languages</h3>
-                    <ul>
-                        <li>Python</li>
-                        <li>Java</li>
-                        <li>JavaScript</li>
-                        <li>TypeScript</li>
-                        <li>C/C++</li>
-                        <li>Verilog</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Frameworks & Libraries</h3>
-                    <ul>
-                        <li>React</li>
-                        <li>Node.js</li>
-                        <li>FastAPI</li>
-                        <li>Electron</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Tools & Technologies</h3>
-                    <ul>
-                        <li>Git</li>
-                        <li>SQLite</li>
-                        <li>Supabase</li>
-                        <li>Arduino</li>
-                    </ul>
-                </div>
+
+                <div class="tools-table">                    <ul>
+
+                    <h4>All 7 Tools</h4>                        <li>Python</li>
+
+                    <table>                        <li>Java</li>
+
+                        <thead>                        <li>JavaScript</li>
+
+                            <tr>                        <li>TypeScript</li>
+
+                                <th>Tool</th>                        <li>C/C++</li>
+
+                                <th>Purpose</th>                        <li>Verilog</li>
+
+                                <th>Tech</th>                    </ul>
+
+                            </tr>                </div>
+
+                        </thead>                <div class="skill-category">
+
+                        <tbody>                    <h3>Frameworks & Libraries</h3>
+
+                            <tr>                    <ul>
+
+                                <td><strong>File Scanner</strong></td>                        <li>React</li>
+
+                                <td>Find/delete large files for storage cleanup</td>                        <li>Node.js</li>
+
+                                <td>.NET + Min-Heap (1,173-8,821 files/sec)</td>                        <li>FastAPI</li>
+
+                            </tr>                        <li>Electron</li>
+
+                            <tr>                    </ul>
+
+                                <td><strong>Image Upscaler</strong></td>                </div>
+
+                                <td>Restore blurry images with AI</td>                <div class="skill-category">
+
+                                <td>Real-ESRGAN + Vulkan (2-5s/image)</td>                    <h3>Tools & Technologies</h3>
+
+                            </tr>                    <ul>
+
+                            <tr>                        <li>Git</li>
+
+                                <td><strong>Video Upscaler</strong></td>                        <li>SQLite</li>
+
+                                <td>AI frame enhancement for videos</td>                        <li>Supabase</li>
+
+                                <td>Real-ESRGAN + FFmpeg</td>                        <li>Arduino</li>
+
+                            </tr>                    </ul>
+
+                            <tr>                </div>
+
+                                <td><strong>Subtitle/MP3 Extractor</strong></td>            </div>
+
+                                <td>Extract embedded subs + audio from videos</td>        </div>
+
+                                <td>FFmpeg automation</td>    </section>
+
+                            </tr>
+
+                            <tr>    <section id="contact">
+
+                                <td><strong>Audio Transcriber</strong></td>        <div class="container">
+
+                                <td>Convert audio to text transcripts</td>            <h2>Get In Touch</h2>
+
+                                <td>Whisper AI (GPU 3-5x faster)</td>            <p>I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology!</p>
+
+                            </tr>            <div class="contact-info">
+
+                            <tr>                <p><strong>Email:</strong> xiangyao888@gmail.com</p>
+
+                                <td><strong>Video to GIF</strong></td>                <p><strong>GitHub:</strong> <a href="https://github.com/Yxiang-828" target="_blank">github.com/Yxiang-828</a></p>
+
+                                <td>Create size-optimized GIFs</td>                <p><strong>LinkedIn:</strong> <a href="#" target="_blank">linkedin.com/in/yourprofile</a></p>
+
+                                <td>MoviePy + auto-scaling</td>            </div>
+
+                            </tr>        </div>
+
+                            <tr>    </section>
+
+                                <td><strong>Unity Extractor</strong></td>
+
+                                <td>Extract assets from .unity3d files</td>    <footer>
+
+                                <td>UnityPy parser</td>        <div class="container">
+
+                            </tr>            <p>&copy; 2025 Yao Xiang. All rights reserved.</p>
+
+                        </tbody>        </div>
+
+                    </table>    </footer>
+
+                    <p class="note"><strong>Note:</strong> Showing 2 of 7 tools above. <a href="https://github.com/Yxiang-828/Helper_Tools">View repository</a> for all tools and documentation.</p>
+
+                </div>    <script src="script.js"></script>
+
+</body>
+
+                <a href="https://github.com/Yxiang-828/Helper_Tools" class="btn">View Repository</a></html>
+            </div>
+        </div>
+    </section>
+
+    <section id="tech-stack">
+        <div class="container">
+            <h2>Tech Stack</h2>
+            <div class="tech-badges">
+                <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" alt="C">
+                <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+                <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
+                <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React">
+                <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js">
+                <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+                <img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++">
+                <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java">
+                <img src="https://img.shields.io/badge/Verilog-000000?style=for-the-badge&logo=verilog&logoColor=white" alt="Verilog">
+                <img src="https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white" alt="Arduino">
             </div>
         </div>
     </section>
 
     <section id="contact">
         <div class="container">
-            <h2>Get In Touch</h2>
-            <p>I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology!</p>
-            <div class="contact-info">
-                <p><strong>Email:</strong> xiangyao888@gmail.com</p>
-                <p><strong>GitHub:</strong> <a href="https://github.com/Yxiang-828" target="_blank">github.com/Yxiang-828</a></p>
-                <p><strong>LinkedIn:</strong> <a href="#" target="_blank">linkedin.com/in/yourprofile</a></p>
+            <h2>Get in touch</h2>
+            <div class="contact-links">
+                <p>🌐 Website: <a href="https://yxiang-828.github.io/">yxiang-828.github.io</a></p>
+                <p>📧 Email: <a href="mailto:xiangyao888@gmail.com">xiangyao888@gmail.com</a></p>
+                <p>💼 GitHub: <a href="https://github.com/Yxiang-828">github.com/Yxiang-828</a></p>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Yao Xiang. All rights reserved.</p>
+            <p>&copy; 2025 Yao Xiang</p>
         </div>
     </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>

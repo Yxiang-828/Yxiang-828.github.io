@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wingman - Yao Xiang</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .detail-container { max-width: 1200px; margin: 100px auto 50px; padding: 50px; background: rgba(15, 15, 35, 0.9); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        .back-link { display: inline-block; margin-bottom: 30px; color: #00d4ff; text-decoration: none; font-weight: bold; transition: all 0.3s; }
+        .back-link:hover { transform: translateX(-5px); }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+        .tech-badge { background: linear-gradient(45deg, #00d4ff, #090979); color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; }
+        .theme-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 30px 0; }
+        .theme-box { background: rgba(0, 212, 255, 0.05); padding: 15px; border-radius: 10px; text-align: center; border: 1px solid rgba(0, 212, 255, 0.2); }
+        .theme-box img { width: 100%; max-width: 140px; border-radius: 8px; margin-bottom: 10px; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 30px 0; }
+        .feature-box { background: rgba(0, 212, 255, 0.05); padding: 20px; border-radius: 10px; border-left: 3px solid #00d4ff; }
+        .personality-table { width: 100%; margin: 30px 0; border-collapse: collapse; }
+        .personality-table th, .personality-table td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .personality-table th { background: rgba(0, 212, 255, 0.1); color: #00d4ff; }
+        code { background: rgba(0,0,0,0.4); padding: 3px 8px; border-radius: 4px; color: #ff6b6b; font-family: 'Courier New', monospace; }
+        pre { background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px; overflow-x: auto; border-left: 3px solid #00d4ff; white-space: pre-wrap; word-wrap: break-word; }
+        pre code { background: none; padding: 0; color: #e0e0e0; }
+        .section-title { color: #00d4ff; margin-top: 50px; padding-bottom: 10px; border-bottom: 2px solid rgba(0, 212, 255, 0.3); }
+        .mermaid-container { background: rgba(0,0,0,0.4); padding: 20px; border-radius: 10px; margin: 20px 0; text-align: center; color: #b0b0b0; }
+        .alert-box { background: rgba(255, 107, 107, 0.1); border-left: 4px solid #ff6b6b; padding: 20px; margin: 20px 0; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <h1><a href="index.html" style="color: inherit; text-decoration: none;">Yao Xiang</a></h1>
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="detail-container">
+        <a href="index.html#projects" class="back-link">← Back to Projects</a>
+
+        <h1 style="color: #00d4ff; margin-bottom: 20px;">🤖 Wingman</h1>
+
+        <div class="tech-stack">
+            <span class="tech-badge">React 18</span>
+            <span class="tech-badge">TypeScript 5.2</span>
+            <span class="tech-badge">Electron</span>
+            <span class="tech-badge">FastAPI</span>
+            <span class="tech-badge">Supabase</span>
+            <span class="tech-badge">Ollama</span>
+            <span class="tech-badge">SQLite</span>
+        </div>
+
+        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Team Project (NUS Orbital Apollo 2025)</p>
+
+        <p style="font-size: 1.2rem; color: #b0b0b0; margin: 30px 0;">
+            Local-first desktop AI assistant built with modern web technologies. Features task management, calendar integration, mood diary, and intelligent AI chat powered by Ollama. Cross-platform support with SQLite persistence and Supabase authentication.
+        </p>
+
+        <h2 class="section-title">🖼️ Custom Themes (6 Available)</h2>
+        <div class="theme-grid">
+            <div class="theme-box">
+                <img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/dark-theme.png" alt="Dark Theme" loading="lazy">
+                <strong>🌙 Dark</strong>
+            </div>
+            <div class="theme-box">
+                <img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/light-theme.png" alt="Light Theme" loading="lazy">
+                <strong>☀️ Light</strong>
+            </div>
+            <div class="theme-box">
+                <img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/yandere-theme.png" alt="Yandere Theme" loading="lazy">
+                <strong>🌸 Yandere</strong>
+            </div>
+            <div class="theme-box">
+                <img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/kuudere-theme.png" alt="Kuudere Theme" loading="lazy">
+                <strong>❄️ Kuudere</strong>
+            </div>
+            <div class="theme-box">
+                <img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/tsundere-theme.png" alt="Tsundere Theme" loading="lazy">
+                <strong>🧡 Tsundere</strong>
+            </div>
+            <div class="theme-box">
+                <img src="https://raw.githubusercontent.com/Yxiang-828/Wingman/main/src/assets/backgrounds/dandere-theme.png" alt="Dandere Theme" loading="lazy">
+                <strong>💜 Dandere</strong>
+            </div>
+        </div>
+
+        <h2 class="section-title">🎭 AI Personality System</h2>
+        <p style="color: #b0b0b0;">Wingman features 6 distinct AI personalities that synchronize with your selected theme:</p>
+
+        <table class="personality-table">
+            <thead>
+                <tr>
+                    <th>Personality</th>
+                    <th>Name</th>
+                    <th>Traits</th>
+                    <th>Response Style</th>
+                    <th>Emoji Usage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Light</strong></td>
+                    <td>Lumen</td>
+                    <td>Optimistic, encouraging, warm</td>
+                    <td>Positive reinforcement</td>
+                    <td>Moderate (☀️, ✨, 💫)</td>
+                </tr>
+                <tr>
+                    <td><strong>Dark</strong></td>
+                    <td>Umbra</td>
+                    <td>Analytical, direct, efficient</td>
+                    <td>Minimal but insightful</td>
+                    <td>Minimal (🌑, ⚡, 🔍)</td>
+                </tr>
+                <tr>
+                    <td><strong>Yandere</strong></td>
+                    <td>Velvet</td>
+                    <td>Intensely loyal, protective</td>
+                    <td>Highly personalized</td>
+                    <td>Selective (💖, 👁️, 🔒)</td>
+                </tr>
+                <tr>
+                    <td><strong>Kuudere</strong></td>
+                    <td>Frost</td>
+                    <td>Reserved, logical, professional</td>
+                    <td>Analytical with hidden care</td>
+                    <td>Rare (❄️, 📊, 💙)</td>
+                </tr>
+                <tr>
+                    <td><strong>Dandere</strong></td>
+                    <td>Echo</td>
+                    <td>Gentle, shy, soft-spoken</td>
+                    <td>Quiet encouragement</td>
+                    <td>Sweet (🌸, 💕, 🌼)</td>
+                </tr>
+                <tr>
+                    <td><strong>Tsundere</strong></td>
+                    <td>Blaze</td>
+                    <td>Initially distant, caring underneath</td>
+                    <td>Reluctant but thorough</td>
+                    <td>Conflicted (😤, 💢, 💖)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="section-title">🚀 Core Features</h2>
+        <div class="feature-grid">
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">🤖 AI Chat Assistant</h3>
+                <p style="color: #b0b0b0;">Intelligent conversations with personality-driven responses. Supports slash commands for instant data access (/t for tasks, /e for events, /d for diary).</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">📅 Task Management</h3>
+                <p style="color: #b0b0b0;">Complete task lifecycle with recurring tasks, priorities, and deadlines. Smart scheduling with AI-powered suggestions.</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">📊 Mood Diary</h3>
+                <p style="color: #b0b0b0;">Daily mood tracking with sentiment analysis. Visual charts and insights for mental wellness monitoring.</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">🔔 Background Notifications</h3>
+                <p style="color: #b0b0b0;">Smart notification system with 30-minute and 5-minute reminders. Continues running when app is minimized or closed.</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">🔒 Privacy-First</h3>
+                <p style="color: #b0b0b0;">Local-first architecture with SQLite database. Optional Supabase sync. Your data stays completely private.</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">🎨 6 Custom Themes</h3>
+                <p style="color: #b0b0b0;">Beautiful themes with unique personalities. Each theme has synchronized AI personality and avatar.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">⚡ Slash Commands</h2>
+        <p style="color: #b0b0b0;">Wingman supports instant data access through slash commands:</p>
+        <pre><code>/t - Tasks        /e - Events       /d - Diary        /u - Users</code></pre>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Command Examples:</h3>
+        <ul style="color: #b0b0b0; line-height: 2;">
+            <li><code>/t /date 2025-01-15</code> - Tasks on specific date</li>
+            <li><code>/e /month jan</code> - Events in January</li>
+            <li><code>/d /mood happy</code> - Diary entries by mood</li>
+            <li><code>/more</code> - Additional results (pagination)</li>
+        </ul>
+
+        <h2 class="section-title">🛠️ Technology Stack</h2>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Frontend (Electron + React)</h3>
+        <ul style="color: #b0b0b0; line-height: 2;">
+            <li><strong>React 18:</strong> Modern component architecture with hooks and concurrent features</li>
+            <li><strong>TypeScript 5.2:</strong> Type-safe development with latest language features</li>
+            <li><strong>Electron:</strong> Cross-platform desktop app framework with native OS integration</li>
+            <li><strong>Tailwind CSS:</strong> Utility-first styling with custom theme system</li>
+        </ul>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Backend (FastAPI + Python)</h3>
+        <ul style="color: #b0b0b0; line-height: 2;">
+            <li><strong>FastAPI:</strong> High-performance async web framework for AI processing</li>
+            <li><strong>Ollama Integration:</strong> Local LLM inference with model management</li>
+            <li><strong>SQLite:</strong> Embedded database for local data persistence</li>
+            <li><strong>Supabase:</strong> Optional cloud sync with real-time subscriptions</li>
+        </ul>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">AI Models (Ollama)</h3>
+        <ul style="color: #b0b0b0; line-height: 2;">
+            <li><strong>DeepSeek R1:</strong> 1.5B, 7B, 14B variants optimized for reasoning</li>
+            <li><strong>Llama 3.2:</strong> 1B, 3B, 8B variants for general tasks</li>
+            <li><strong>Mistral 7B:</strong> Multilingual and instruction-following tasks</li>
+            <li><strong>Automatic Recommendations:</strong> RAM-based model suggestions</li>
+        </ul>
+
+        <h2 class="section-title">🎯 My Contributions</h2>
+        <div class="feature-grid">
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">AI Integration Pipeline</h3>
+                <p style="color: #b0b0b0;">Architected the Ollama integration system with model switching, context management, and intelligent response parsing.</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">Theme System Design</h3>
+                <p style="color: #b0b0b0;">Created the 6-theme system with CSS variables and smooth transitions. Implemented theme persistence and dynamic switching.</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">Personality AI System</h3>
+                <p style="color: #b0b0b0;">Built the personality-driven AI responses with theme synchronization and context-aware interactions.</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">Notification Architecture</h3>
+                <p style="color: #b0b0b0;">Designed the background notification system with smart timing and cross-platform OS integration.</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">Task Management Logic</h3>
+                <p style="color: #b0b0b0;">Built the core task scheduling algorithm with priority queuing and deadline tracking.</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">Cross-Platform Packaging</h3>
+                <p style="color: #b0b0b0;">Set up Electron Builder configuration for Windows, macOS, and Linux distributions.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">📊 Project Metrics</h2>
+        <ul style="color: #b0b0b0; line-height: 2;">
+            <li><strong>Team Size:</strong> 2 developers (Orbital Apollo 2025)</li>
+            <li><strong>Tech Stack:</strong> 7 major technologies integrated</li>
+            <li><strong>Features:</strong> 15+ core functionalities implemented</li>
+            <li><strong>Themes:</strong> 6 custom UI themes with animations</li>
+            <li><strong>AI Personalities:</strong> 6 distinct personality types</li>
+            <li><strong>Platforms:</strong> Windows, macOS, Linux support</li>
+            <li><strong>Database:</strong> SQLite with local-first architecture</li>
+        </ul>
+
+        <h2 class="section-title">🚀 Getting Started</h2>
+        <h3 style="color: #ff6b6b;">Prerequisites</h3>
+        <ul style="color: #b0b0b0; line-height: 2;">
+            <li>Node.js 18+ and npm</li>
+            <li>Python 3.8+ with pip</li>
+            <li>Ollama installed and running</li>
+            <li>Git for version control</li>
+        </ul>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Quick Start</h3>
+        <pre><code># Clone the repository
+git clone https://github.com/Yxiang-828/Wingman.git
+cd Wingman
+
+# Install dependencies
+npm install
+pip install -r requirements.txt
+
+# Start Ollama service
+ollama serve
+
+# Run in development
+npm run dev:electron</code></pre>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Production Build</h3>
+        <pre><code># Complete build process
+.\complete-build.bat</code></pre>
+
+        <h2 class="section-title">💻 Development Setup</h2>
+        <h3 style="color: #ff6b6b;">Development Mode</h3>
+        <pre><code>npm run dev:electron    # Starts Vite dev server + Electron + FastAPI backend</code></pre>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Available Scripts</h3>
+        <ul style="color: #b0b0b0; line-height: 2;">
+            <li><code>npm run dev</code> - Frontend only development</li>
+            <li><code>npm run build</code> - Production build</li>
+            <li><code>npm run package</code> - Package for current platform</li>
+            <li><code>npm run dist</code> - Build distributables for all platforms</li>
+        </ul>
+
+        <h2 class="section-title">🔧 Supported AI Models</h2>
+        <div class="alert-box">
+            <h3 style="color: #ff6b6b; margin-top: 0;">📋 Model Recommendations by RAM:</h3>
+            <ul style="color: #b0b0b0; margin-bottom: 0; line-height: 2;">
+                <li><strong>≥12GB RAM:</strong> DeepSeek R1 14B (Logic Master)</li>
+                <li><strong>≥8GB RAM:</strong> DeepSeek R1 7B (Reasoning Pro) - Recommended</li>
+                <li><strong>≥4GB RAM:</strong> Llama 3.2 3B (Balanced)</li>
+                <li><strong><4GB RAM:</strong> DeepSeek R1 1.5B (Ultra Fast)</li>
+            </ul>
+        </div>
+
+        <h2 class="section-title">🔧 Troubleshooting</h2>
+
+        <h3 style="color: #ff6b6b;">AI Model Download Issues</h3>
+        <pre><code># Check available models
+ollama list
+
+# Download model manually
+ollama run "deepseek-r1:7b"
+
+# Then return to Wingman app</code></pre>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Ollama Installation</h3>
+        <p style="color: #b0b0b0;">Download from: <a href="https://ollama.com/download/OllamaSetup.exe" style="color: #00d4ff;">https://ollama.com/download/OllamaSetup.exe</a></p>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Port Conflicts</h3>
+        <p style="color: #b0b0b0;">If port 8080 is busy, the app will automatically find an available port.</p>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="https://github.com/Yxiang-828/Wingman" target="_blank" class="cta-button" style="margin-right: 20px;">View on GitHub →</a>
+            <a href="https://github.com/Yxiang-828/Wingman/releases" target="_blank" class="cta-button">Download Latest Release →</a>
+        </div>
+    </div>
+
+    <footer><div class="container"><p>&copy; 2025 Yao Xiang. All rights reserved.</p></div></footer>
+</body>
+</html>

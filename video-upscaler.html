@@ -37,8 +37,6 @@
                     <li><a href="index.html#contact">Contact</a></li>
                 </ul>
             </div>
-
-        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
         </nav>
     </header>
 
@@ -55,11 +53,7 @@
             <span class="tech-badge">OpenCV</span>
             <span class="tech-badge">Vulkan</span>
             <span class="tech-badge">Python 3.13</span>
-        </div>
-
-        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
-
-        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
+        </div>\n\n        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
 
         <p style="font-size: 1.2rem; color: #b0b0b0; margin: 30px 0;">
             I engineered a frame-by-frame video upscaling pipeline optimized for AMD GPUs on Windows. My architecture supports dual AI methods (Real-ESRGAN GAN-based vs EDSR CNN-based), implements AMD VCE hardware encoding with automatic CPU fallback for high-resolution outputs (>4000px), and processes videos sequentially to bypass VRAM limitations. The tool handles 30+ minute videos at 4x upscale (1080p  4K) while preserving audio tracks.
@@ -87,41 +81,27 @@
                 <h3 style="color: #00d4ff;">1. Frame Extraction</h3>
                 <p style="color: #b0b0b0;">Extract all video frames to PNG files using FFmpeg <code>-vf fps=original_fps</code>, storing in timestamped directories (e.g., <code>output/20251018-1200-12345_frames/</code>)</p>
             </div>
-
-        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
             <div class="feature-box">
                 <h3 style="color: #00d4ff;">2. Sequential Upscaling</h3>
                 <p style="color: #b0b0b0;">Process each frame individually with Real-ESRGAN or EDSR. My progress bar tracks <code>frame_current/frame_total</code> with real-time ETA calculation</p>
             </div>
-
-        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
             <div class="feature-box">
                 <h3 style="color: #00d4ff;">3. Dimension Verification</h3>
                 <p style="color: #b0b0b0;">My code checks upscaled frame dimensions using OpenCV <code>imread()</code> to ensure <code>width == original_width * scale</code> before reassembly</p>
             </div>
-
-        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
             <div class="feature-box">
                 <h3 style="color: #00d4ff;">4. Video Reassembly</h3>
                 <p style="color: #b0b0b0;">Combine upscaled frames using FFmpeg with AMD VCE encoding. My fallback logic detects VCE failures via exit codes and retries with CPU encoding</p>
             </div>
-
-        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
             <div class="feature-box">
                 <h3 style="color: #00d4ff;">5. Audio Preservation</h3>
                 <p style="color: #b0b0b0;">Extract original audio with <code>-vn -acodec copy</code>, then mux back using <code>-i upscaled_video.mp4 -i original_audio.aac -c copy</code></p>
             </div>
-
-        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
             <div class="feature-box">
                 <h3 style="color: #00d4ff;">6. Cleanup Management</h3>
                 <p style="color: #b0b0b0;">Prompt user to keep/delete frame folders. My batch interface asks: "Keep extracted frames? (y/n)" with automatic cleanup on '"'n'"'</p>
             </div>
-
-        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
         </div>
-
-        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
 
         <div class="alert-box">
             <h3 style="color: #ff6b6b; margin-top: 0;"> Problem I Solved: VRAM Limitations</h3>
@@ -136,8 +116,6 @@
             </p>
         </div>
 
-        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
-
         <h2 class="section-title"> Upscaling Methods Comparison</h2>
         <div class="comparison-grid">
             <div class="method-card">
@@ -151,8 +129,6 @@
                     <li><strong>My Implementation:</strong> Calls <code>realesrgan-ncnn-vulkan.exe</code> with model selection based on scale (2x/3x/4x)</li>
                 </ul>
             </div>
-
-        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
             <div class="method-card">
                 <h3 style="color: #00d4ff; margin-top: 0;"> EDSR (AI - CNN)</h3>
                 <ul style="color: #b0b0b0; line-height: 2;">
@@ -164,11 +140,7 @@
                     <li><strong>My Implementation:</strong> Loads <code>EDSR_x{scale}.pb</code> models via OpenCV DNN module</li>
                 </ul>
             </div>
-
-        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
         </div>
-
-        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
 
         <h2 class="section-title"> AMD Hardware Encoding with Intelligent Fallback</h2>
         <p style="color: #b0b0b0;">I engineered automatic encoding strategy selection based on resolution:</p>
@@ -358,10 +330,9 @@ Encoding: AMD VCE (h264_amf)
         <div style="text-align: center; margin-top: 50px;">
             <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/video_upscaler" target="_blank" class="cta-button">View on GitHub </a>
         </div>
-
-        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
     </div>
 
     <footer><div class="container"><p>&copy; 2025 Yao Xiang. All rights reserved.</p></div></footer>
 </body>
 </html>
+

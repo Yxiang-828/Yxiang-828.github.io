@@ -185,14 +185,15 @@ nav ul li a:hover::before {
 
 .cta-button {
     display: inline-block;
-    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-    color: white;
+    background: linear-gradient(45deg, #00d4ff, #0099cc);
+    color: #0a0a1a;
     padding: 15px 40px;
     text-decoration: none;
     border-radius: 50px;
     font-weight: bold;
+    font-size: 1rem;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+    box-shadow: 0 5px 15px rgba(0,212,255,0.4);
     position: relative;
     overflow: hidden;
     animation: fadeInUp 1s ease-out 0.6s backwards;
@@ -200,7 +201,8 @@ nav ul li a:hover::before {
 
 .cta-button:hover {
     transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 12px 35px rgba(255,107,107,0.7);
+    box-shadow: 0 12px 35px rgba(0,212,255,0.7);
+    background: linear-gradient(45deg, #00ffff, #00d4ff);
 }
 
 .cta-button:active {

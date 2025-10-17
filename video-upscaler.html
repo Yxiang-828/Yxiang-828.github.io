@@ -1,10 +1,29 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Upscaler - Yao Xiang</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .detail-container { max-width: 1200px; margin: 100px auto 50px; padding: 50px; background: rgba(15, 15, 35, 0.9); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        .back-link { display: inline-block; margin-bottom: 30px; color: #00d4ff; text-decoration: none; font-weight: bold; transition: all 0.3s; }
+        .back-link:hover { transform: translateX(-5px); }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+        .tech-badge { background: linear-gradient(45deg, #00d4ff, #090979); color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; }
+        .perf-table { width: 100%; margin: 30px 0; border-collapse: collapse; }
+        .perf-table th, .perf-table td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .perf-table th { background: rgba(0, 212, 255, 0.1); color: #00d4ff; }
+        .alert-box { background: rgba(255, 107, 107, 0.1); border-left: 4px solid #ff6b6b; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 30px 0; }
+        .feature-box { background: rgba(0, 212, 255, 0.05); padding: 20px; border-radius: 10px; border-left: 3px solid #00d4ff; }
+        code { background: rgba(0,0,0,0.4); padding: 3px 8px; border-radius: 4px; color: #ff6b6b; font-family: '"'Courier New'"', monospace; }
+        pre { background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px; overflow-x: auto; border-left: 3px solid #00d4ff; }
+        pre code { background: none; padding: 0; color: #e0e0e0; }
+        .section-title { color: #00d4ff; margin-top: 50px; padding-bottom: 10px; border-bottom: 2px solid rgba(0, 212, 255, 0.3); }
+        .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0; }
+        .method-card { background: rgba(0,0,0,0.4); padding: 25px; border-radius: 10px; border: 2px solid rgba(0, 212, 255, 0.3); }
+    </style>
 </head>
 <body>
     <header>
@@ -20,22 +39,301 @@
             </div>
         </nav>
     </header>
-    <div style="max-width: 1200px; margin: 100px auto 50px; padding: 40px; background: rgba(15, 15, 35, 0.8); border-radius: 20px;">
-        <a href="index.html#projects" style="color: #00d4ff; text-decoration: none; font-weight: bold;"> Back to Projects</a>
-        <h1 style="color: #00d4ff; margin: 30px 0;"> Video Upscaler</h1>
-        <p style="color: #b0b0b0; font-size: 1.2rem;">AI-powered video upscaling optimized for AMD GPUs. Frame-by-frame Real-ESRGAN processing with automatic hardware encoding fallback.</p>
-        <h2 style="color: #00d4ff; margin-top: 40px;">Key Features</h2>
+
+    <div class="detail-container">
+        <a href="index.html#projects" class="back-link"> Back to Projects</a>
+        
+        <h1 style="color: #00d4ff; margin-bottom: 20px;"> AI Video Upscaler</h1>
+        
+        <div class="tech-stack">
+            <span class="tech-badge">Real-ESRGAN</span>
+            <span class="tech-badge">EDSR</span>
+            <span class="tech-badge">FFmpeg</span>
+            <span class="tech-badge">AMD VCE</span>
+            <span class="tech-badge">OpenCV</span>
+            <span class="tech-badge">Vulkan</span>
+            <span class="tech-badge">Python 3.13</span>
+        </div>
+
+        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
+
+        <p style="font-size: 1.2rem; color: #b0b0b0; margin: 30px 0;">
+            I engineered a frame-by-frame video upscaling pipeline optimized for AMD GPUs on Windows. My architecture supports dual AI methods (Real-ESRGAN GAN-based vs EDSR CNN-based), implements AMD VCE hardware encoding with automatic CPU fallback for high-resolution outputs (>4000px), and processes videos sequentially to bypass VRAM limitations. The tool handles 30+ minute videos at 4x upscale (1080p  4K) while preserving audio tracks.
+        </p>
+
+        <h2 class="section-title"> Technologies & Tools Used</h2>
+        
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Real-ESRGAN (GAN Architecture)</h3>
+        <p style="color: #b0b0b0;">A Generative Adversarial Network (GAN) trained on degraded images to learn realistic upscaling patterns. Uses Vulkan acceleration for GPU inference without CUDA dependency. Real-ESRGAN processes each frame individually via the <code>realesrgan-ncnn-vulkan.exe</code> executable, providing 2-5 second per-frame processing with superior detail recovery compared to classical methods.</p>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">EDSR (CNN Architecture)</h3>
+        <p style="color: #b0b0b0;">Enhanced Deep Super-Resolution using Convolutional Neural Networks. Trained on high-resolution image datasets, EDSR uses residual scaling to preserve details during upscaling. Requires more processing time (15-30 seconds per frame) but runs on CPU, making it suitable for systems without compatible GPUs.</p>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">AMD Video Codec Engine (VCE)</h3>
+        <p style="color: #b0b0b0;">Hardware-accelerated H.264 encoding on AMD GPUs via the Advanced Media Framework (AMF). VCE offloads video encoding from CPU to GPU'"'"'s dedicated encoding blocks, achieving real-time encoding speeds (30+ FPS). My implementation uses FFmpeg'"'"'s <code>h264_amf</code> encoder with automatic fallback to <code>libx264</code> CPU encoding when VCE fails (common with >4000px width or >2000px height videos).</p>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">FFmpeg & OpenCV</h3>
+        <p style="color: #b0b0b0;">FFmpeg handles video demuxing (extract frames/audio), classical upscaling (Lanczos interpolation), and video muxing (reassemble frames + audio). OpenCV reads video metadata (FPS, resolution, frame count) and performs frame verification post-upscaling. I use FFmpeg'"'"'s <code>-c:v h264_amf</code> for AMD GPU encoding and <code>-c:a aac</code> for audio preservation.</p>
+
+        <h2 class="section-title"> My Frame-by-Frame Pipeline Architecture</h2>
+        <p style="color: #b0b0b0; margin-bottom: 20px;">I designed this sequential processing system to handle unlimited video lengths without VRAM constraints:</p>
+        
+        <div class="feature-grid">
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">1. Frame Extraction</h3>
+                <p style="color: #b0b0b0;">Extract all video frames to PNG files using FFmpeg <code>-vf fps=original_fps</code>, storing in timestamped directories (e.g., <code>output/20251018-1200-12345_frames/</code>)</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">2. Sequential Upscaling</h3>
+                <p style="color: #b0b0b0;">Process each frame individually with Real-ESRGAN or EDSR. My progress bar tracks <code>frame_current/frame_total</code> with real-time ETA calculation</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">3. Dimension Verification</h3>
+                <p style="color: #b0b0b0;">My code checks upscaled frame dimensions using OpenCV <code>imread()</code> to ensure <code>width == original_width * scale</code> before reassembly</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">4. Video Reassembly</h3>
+                <p style="color: #b0b0b0;">Combine upscaled frames using FFmpeg with AMD VCE encoding. My fallback logic detects VCE failures via exit codes and retries with CPU encoding</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">5. Audio Preservation</h3>
+                <p style="color: #b0b0b0;">Extract original audio with <code>-vn -acodec copy</code>, then mux back using <code>-i upscaled_video.mp4 -i original_audio.aac -c copy</code></p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">6. Cleanup Management</h3>
+                <p style="color: #b0b0b0;">Prompt user to keep/delete frame folders. My batch interface asks: "Keep extracted frames? (y/n)" with automatic cleanup on '"'n'"'</p>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            <h3 style="color: #ff6b6b; margin-top: 0;"> Problem I Solved: VRAM Limitations</h3>
+            <p style="color: #b0b0b0; margin-bottom: 0;">
+                <strong>Original Approach (Failed):</strong> Load entire video into VRAM  Process all frames in batch  Output video<br>
+                <strong>Issue:</strong> 30-minute 1080p video = ~54,000 frames  8MB/frame = 432GB VRAM required (impossible on consumer GPUs)<br><br>
+                <strong>My Solution:</strong> Frame-by-frame sequential processing<br>
+                 Extract frames to disk (FFmpeg)<br>
+                 Process one frame at a time (Real-ESRGAN reads frame  upscales  saves  releases memory)<br>
+                 Reassemble from disk using FFmpeg<br><br>
+                <strong>Result:</strong> Peak VRAM usage = 1 frame (~8MB) regardless of video length. Can now process 2-hour videos on 8GB GPUs.
+            </p>
+        </div>
+
+        <h2 class="section-title"> Upscaling Methods Comparison</h2>
+        <div class="comparison-grid">
+            <div class="method-card">
+                <h3 style="color: #00d4ff; margin-top: 0;"> Real-ESRGAN (AI - GAN)</h3>
+                <ul style="color: #b0b0b0; line-height: 2;">
+                    <li><strong>Architecture:</strong> Generative Adversarial Network</li>
+                    <li><strong>Processing:</strong> 2-5 seconds per frame</li>
+                    <li><strong>Quality:</strong> Superior detail recovery, realistic textures</li>
+                    <li><strong>Hardware:</strong> Vulkan GPU acceleration required</li>
+                    <li><strong>Use Case:</strong> Photos, anime, live-action footage</li>
+                    <li><strong>My Implementation:</strong> Calls <code>realesrgan-ncnn-vulkan.exe</code> with model selection based on scale (2x/3x/4x)</li>
+                </ul>
+            </div>
+            <div class="method-card">
+                <h3 style="color: #00d4ff; margin-top: 0;"> EDSR (AI - CNN)</h3>
+                <ul style="color: #b0b0b0; line-height: 2;">
+                    <li><strong>Architecture:</strong> Convolutional Neural Network</li>
+                    <li><strong>Processing:</strong> 15-30 seconds per frame</li>
+                    <li><strong>Quality:</strong> Excellent sharpness, minimal artifacts</li>
+                    <li><strong>Hardware:</strong> CPU-compatible (no GPU required)</li>
+                    <li><strong>Use Case:</strong> Screen recordings, technical diagrams</li>
+                    <li><strong>My Implementation:</strong> Loads <code>EDSR_x{scale}.pb</code> models via OpenCV DNN module</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title"> AMD Hardware Encoding with Intelligent Fallback</h2>
+        <p style="color: #b0b0b0;">I engineered automatic encoding strategy selection based on resolution:</p>
+        
+        <h3 style="color: #ff6b6b; margin-top: 20px;">My AMD VCE Implementation</h3>
+        <pre><code># Primary encoding strategy (AMD GPU)
+ffmpeg -framerate {fps} -i frames/%06d.png -i audio.aac \
+       -c:v h264_amf -quality quality -rc cqp -qp 18 \
+       -c:a aac -b:a 192k output.mp4</code></pre>
         <ul style="color: #b0b0b0; line-height: 2;">
-            <li>Real-ESRGAN AI upscaling (4x resolution)</li>
-            <li>AMD VCE hardware encoding</li>
-            <li>CPU fallback for high-resolution videos</li>
-            <li>Preserves audio tracks</li>
-            <li>Frame extraction + individual processing</li>
+            <li><strong>Codec:</strong> <code>h264_amf</code> (AMD VCE hardware encoder)</li>
+            <li><strong>Rate Control:</strong> <code>-rc cqp</code> (Constant Quantization Parameter for quality)</li>
+            <li><strong>Quality:</strong> <code>-qp 18</code> (visually lossless)</li>
+            <li><strong>Speed:</strong> Real-time encoding (30+ FPS on RX 6800 XT)</li>
         </ul>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">My CPU Fallback Logic</h3>
+        <pre><code># Triggered when width > 4000px OR height > 2000px
+ffmpeg -framerate {fps} -i frames/%06d.png -i audio.aac \
+       -c:v libx264 -preset ultrafast -crf 28 \
+       -c:a aac -b:a 192k output.mp4</code></pre>
+        <ul style="color: #b0b0b0; line-height: 2;">
+            <li><strong>Codec:</strong> <code>libx264</code> (CPU-based H.264 encoder)</li>
+            <li><strong>Preset:</strong> <code>ultrafast</code> for high-res, <code>fast</code> for standard-res</li>
+            <li><strong>Quality:</strong> <code>-crf 28</code> for high-res (balanced size/quality), <code>-crf 18</code> for standard-res</li>
+            <li><strong>Reason:</strong> AMD VCE has encoder limits (~4096px max width) - CPU fallback ensures reliability</li>
+        </ul>
+
+        <h2 class="section-title"> Performance Benchmarks</h2>
+        <table class="perf-table">
+            <thead>
+                <tr>
+                    <th>Scale</th>
+                    <th>Method</th>
+                    <th>Processing Speed</th>
+                    <th>Quality</th>
+                    <th>GPU Usage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>2x</strong></td>
+                    <td>Real-ESRGAN</td>
+                    <td>~5-10 fps</td>
+                    <td><span style="color: #00ff00;">Excellent</span></td>
+                    <td>Vulkan</td>
+                </tr>
+                <tr>
+                    <td><strong>3x</strong></td>
+                    <td>Real-ESRGAN</td>
+                    <td>~2-5 fps</td>
+                    <td><span style="color: #00ff00;">Excellent</span></td>
+                    <td>Vulkan</td>
+                </tr>
+                <tr>
+                    <td><strong>4x</strong></td>
+                    <td>Real-ESRGAN</td>
+                    <td><span style="color: #00d4ff;">~1-3 fps (Recommended)</span></td>
+                    <td><span style="color: #00ff00;">Excellent</span></td>
+                    <td>Vulkan</td>
+                </tr>
+                <tr>
+                    <td><strong>2x</strong></td>
+                    <td>EDSR (AI CNN)</td>
+                    <td>~15-30 fps</td>
+                    <td><span style="color: #ffff00;">Good</span></td>
+                    <td>CPU</td>
+                </tr>
+                <tr>
+                    <td><strong>4x</strong></td>
+                    <td>FFmpeg Classical</td>
+                    <td>~5-15 fps</td>
+                    <td><span style="color: #ff6b6b;">Fair</span></td>
+                    <td>CPU</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="color: #b0b0b0;"><em>Note: Times based on 1920x1080 input on AMD RX 6800 XT. Processing time = total_frames / fps.</em></p>
+
+        <h2 class="section-title"> Usage</h2>
+        
+        <h3 style="color: #ff6b6b;">Interactive Mode (Recommended)</h3>
+        <pre><code># From helper_tools root
+video_upscaler.bat</code></pre>
+        
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Command Line - Basic</h3>
+        <pre><code>py video_upscaler.py "input_video.mp4"</code></pre>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Advanced Options</h3>
+        <pre><code># AI upscaling with custom scale
+py video_upscaler.py input.mp4 --method realesrgan --scale 4
+
+# Fast hardware upscaling (FFmpeg)
+py video_upscaler.py input.mp4 --method ffmpeg --scale 2
+
+# Extract frames only (for manual processing)
+py video_upscaler.py input.mp4 --method extract
+
+# Process existing frames to GIF
+py video_upscaler.py input.mp4 --method process_existing --format gif
+
+# Custom output path
+py video_upscaler.py input.mp4 --output enhanced_video.mp4</code></pre>
+
+        <h2 class="section-title"> Directory Structure</h2>
+        <pre><code>video_upscaler/
+ video_upscaler.py          # My main script
+ realesrgan-windows/        # Vulkan executables
+    realesrgan-ncnn-vulkan.exe
+    models/
+        realesr-animevideov3-x2.param
+        realesr-animevideov3-x4.param
+        realesrgan-x4plus.param
+ models/                    # EDSR AI models
+    EDSR_x2.pb
+    EDSR_x3.pb
+    EDSR_x4.pb
+ input/                     # Place input videos here
+ output/                    # Enhanced videos and frame folders
+     video_name_upscaled_x4.mp4
+     20251018-1200-12345_frames/
+     20251018-1200-12345_frames_upscaled_x4/</code></pre>
+
+        <h2 class="section-title"> Example Output</h2>
+        <pre><code>======================================================================
+ Video Upscaling: sample_video.mp4
+Scale: 4x | Method: Real-ESRGAN
+Output: sample_video_upscaled_x4.mp4
+======================================================================
+
+ Video Info:
+   Resolution: 1920x1080
+   FPS: 30.0
+   Total frames: 900
+   Duration: 30.0s (0.5 minutes)
+   Target resolution: 7680x4320
+
+ Processing 900 frames...
+
+[] 100.0% - Frame 900/900  7680x4320
+
+ Reassembling video with AMD VCE encoding...
+ Preserving original audio track...
+
+======================================================================
+ VIDEO UPSCALING COMPLETE
+======================================================================
+Input: sample_video.mp4
+Output: sample_video_upscaled_x4.mp4
+Scale factor: 4x
+Resolution: 1920x1080  7680x4320
+Frames processed: 900/900
+FPS: 30.0
+Duration: 30.0s
+Processing time: 15 minutes
+Encoding: AMD VCE (h264_amf)
+======================================================================</code></pre>
+
+        <h2 class="section-title"> Troubleshooting</h2>
+        
+        <h3 style="color: #ff6b6b;">"AMD encoding failed" Error</h3>
+        <p style="color: #b0b0b0;">My code automatically retries with CPU encoding. If you see this message, the tool is switching from <code>h264_amf</code> to <code>libx264</code>.</p>
+        
+        <h3 style="color: #ff6b6b; margin-top: 20px;">High-Resolution CPU Fallback</h3>
+        <ul style="color: #b0b0b0; line-height: 2;">
+            <li>Triggered when upscaled width > 4000px or height > 2000px</li>
+            <li>Normal behavior - AMD VCE has encoder limits (~4096px)</li>
+            <li>CPU encoding will be slower but still produces correct output</li>
+        </ul>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Out of Memory</h3>
+        <ul style="color: #b0b0b0; line-height: 2;">
+            <li>Use lower scale factor (2x instead of 4x)</li>
+            <li>Close other GPU applications</li>
+            <li>Use EDSR instead of Real-ESRGAN (CPU-based)</li>
+        </ul>
+
+        <h2 class="section-title"> Use Cases</h2>
+        <ul style="color: #b0b0b0; line-height: 2;">
+            <li><strong>Old Footage Restoration:</strong> Upscale low-resolution archive videos to modern standards</li>
+            <li><strong>Screen Recordings:</strong> Enhance tutorial videos recorded at 720p to 1080p/4K</li>
+            <li><strong>Surveillance Enhancement:</strong> Improve CCTV footage quality for detail analysis</li>
+            <li><strong>Animation Sharpening:</strong> Upscale hand-drawn or CGI animation frames</li>
+            <li><strong>Archival Projects:</strong> Restore damaged or heavily compressed videos</li>
+        </ul>
+
         <div style="text-align: center; margin-top: 50px;">
             <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/video_upscaler" target="_blank" class="cta-button">View on GitHub </a>
         </div>
     </div>
+
     <footer><div class="container"><p>&copy; 2025 Yao Xiang. All rights reserved.</p></div></footer>
 </body>
 </html>

@@ -48,11 +48,21 @@
             <span class="tech-badge">Batch Automation</span>
         </div>
 
+        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
+
         <p style="font-size: 1.2rem; color: #b0b0b0; margin: 30px 0;">
             I built a smart Python wrapper around FFmpeg that implements intelligent fallback logic: check for subtitles → extract if found → fallback to MP3 audio if not. My design philosophy: <strong>never fail empty</strong> - always produce usable output regardless of input video structure.
         </p>
 
-        <h2 class="section-title">� My Implementation Logic</h2>
+        <h2 class="section-title">🧰 Technologies & Tools Used</h2>
+        
+        <h3 style="color: #ff6b6b; margin-top: 20px;">FFmpeg</h3>
+        <p style="color: #b0b0b0;">A complete cross-platform solution for recording, converting, and streaming audio/video. FFmpeg can decode virtually any media format, probe file metadata, extract individual streams (audio, video, subtitles), and transcode between formats. It's the industry-standard tool for media manipulation, used by YouTube, VLC, and thousands of applications. I use it for two operations: extracting SRT subtitle tracks from video containers, and converting audio streams to MP3 format.</p>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Python Subprocess</h3>
+        <p style="color: #b0b0b0;">Python's subprocess module allows me to spawn new processes and connect to their input/output/error pipes. I use it to execute FFmpeg commands, capture output, and parse results. This lets me integrate FFmpeg's powerful media processing into a Python workflow with error handling and conditional logic.</p>
+
+        <h2 class="section-title">🔧 My Implementation Logic</h2>
         <div class="workflow">
             <div class="step">
                 <div class="step-number">1</div>

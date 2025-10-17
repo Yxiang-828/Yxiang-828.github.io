@@ -1,4 +1,4 @@
-﻿# Hi, I'm Yao Xiang 
+# Hi, I'm Yao Xiang 
 
 [![Profile Views](https://komarev.com/ghpvc/?username=Yxiang-828&color=blue)](https://yxiang-828.github.io)
 
@@ -18,6 +18,7 @@ Computer Engineering @ NUS (Year 2). Hardware design (Verilog, Arduino, C/C++) +
 ##  Personal Projects
 
 ### Wingman  AI Personal Assistant
+**Team Project - NUS Orbital Apollo 2025**
 
 <img src="images/7409.png" width="400" alt="Wingman Screenshot">
 
@@ -50,6 +51,7 @@ Task manager, calendar, mood diary with Ollama-powered AI chat. SQLite + Supabas
 ---
 
 ### Helper Tools  -- Self-Efficiency CLI Tools
+**Individual Project**
 
 **7 automation tools** | PowerShell + Python + .NET + AI Models
 

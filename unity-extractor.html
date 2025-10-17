@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unity Image Extractor - Yao Xiang</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .detail-container { max-width: 1200px; margin: 100px auto 50px; padding: 50px; background: rgba(15, 15, 35, 0.9); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        .back-link { display: inline-block; margin-bottom: 30px; color: #00d4ff; text-decoration: none; font-weight: bold; transition: all 0.3s; }
+        .back-link:hover { transform: translateX(-5px); }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+        .tech-badge { background: linear-gradient(45deg, #00d4ff, #090979); color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0; }
+        .feature-box { background: rgba(0, 212, 255, 0.05); padding: 20px; border-radius: 10px; border-left: 3px solid #00d4ff; }
+        .alert-box { background: rgba(255, 107, 107, 0.1); border-left: 4px solid #ff6b6b; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        code { background: rgba(0,0,0,0.4); padding: 3px 8px; border-radius: 4px; color: #ff6b6b; font-family: 'Courier New', monospace; }
+        pre { background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px; overflow-x: auto; border-left: 3px solid #00d4ff; }
+        pre code { background: none; padding: 0; color: #e0e0e0; }
+        .section-title { color: #00d4ff; margin-top: 50px; padding-bottom: 10px; border-bottom: 2px solid rgba(0, 212, 255, 0.3); }
+        .flow-diagram { background: rgba(0,0,0,0.4); padding: 30px; border-radius: 10px; margin: 20px 0; border: 1px solid rgba(0, 212, 255, 0.3); }
+        .flow-step { background: rgba(0, 212, 255, 0.1); padding: 15px 20px; border-radius: 8px; margin: 10px 0; border-left: 3px solid #00d4ff; position: relative; }
+        .flow-arrow { text-align: center; color: #00d4ff; font-size: 1.5rem; margin: 5px 0; }
+    </style>
 </head>
 <body>
     <header>
@@ -20,27 +37,134 @@
             </div>
         </nav>
     </header>
-    <div style="max-width: 1200px; margin: 100px auto 50px; padding: 40px; background: rgba(15, 15, 35, 0.8); border-radius: 20px;">
-        <a href="index.html#projects" style="color: #00d4ff; text-decoration: none; font-weight: bold;">← Back to Projects</a>
-        <h1 style="color: #00d4ff; margin: 30px 0;">🎮 Unity Image Extractor</h1>
-        <p style="color: #b0b0b0; font-size: 1.2rem;">Extract texture assets from Unity game files and convert them to PNG format. Perfect for developers, artists, and researchers.</p>
-        <h2 style="color: #00d4ff; margin-top: 40px;">Key Features</h2>
+    <div class="detail-container">
+        <a href="index.html#projects" class="back-link">← Back to Projects</a>
+        
+        <h1 style="color: #00d4ff; margin-bottom: 20px;">🎮 Unity Image Extractor</h1>
+        
+        <div class="tech-stack">
+            <span class="tech-badge">UnityPy</span>
+            <span class="tech-badge">Python 3.13</span>
+            <span class="tech-badge">PIL/Pillow</span>
+            <span class="tech-badge">Batch Processing</span>
+        </div>
+
+        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
+
+        <p style="font-size: 1.2rem; color: #b0b0b0; margin: 30px 0;">
+            I built a command-line tool that automates texture extraction from Unity game files. My implementation uses UnityPy to parse proprietary Unity asset bundles, identifies Texture2D and Sprite objects, and converts them to standard PNG format. The tool supports batch processing with recursive directory scanning and maintains organized output structures.
+        </p>
+
+        <h2 class="section-title">🧰 Technologies & Tools Used</h2>
+        
+        <h3 style="color: #ff6b6b; margin-top: 20px;">UnityPy</h3>
+        <p style="color: #b0b0b0;">A Python library that reverse-engineers Unity's proprietary asset bundle format (UnityFS). UnityPy reads the binary file structure, parses object type definitions, and extracts asset data without requiring Unity Editor. It handles various Unity versions (5.x - 2022.x) and supports multiple asset types including textures, sprites, audio, and meshes. For this project, I specifically target Texture2D and Sprite objects.</p>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">PIL/Pillow</h3>
+        <p style="color: #b0b0b0;">Python Imaging Library (Pillow) handles the image format conversion. UnityPy extracts raw pixel data from Unity's internal texture format, then Pillow converts it to standard PNG with proper color channels (RGB/RGBA). It also handles image metadata like dimensions and compression.</p>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">My Batch Processing Architecture</h3>
+        <p style="color: #b0b0b0;">I engineered a recursive directory scanner with the <code>-r</code> flag that traverses folder hierarchies, identifies Unity bundle files by signature detection, and maintains source-to-output directory mapping. This allows processing entire game folders (500+ files) in one command while preserving the original file organization.</p>
+        <h2 class="section-title">🔄 How It Works: Processing Pipeline</h2>
+        <div class="flow-diagram">
+            <div class="flow-step">
+                <strong style="color: #00d4ff;">1. Input Detection</strong>
+                <p style="color: #b0b0b0; margin: 10px 0 0 0;">Accepts Unity3D file or directory path. With <code>-r</code> flag, recursively scans for .unity3d, .bundle, .assets files</p>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <strong style="color: #00d4ff;">2. UnityFS Signature Check</strong>
+                <p style="color: #b0b0b0; margin: 10px 0 0 0;">Validates file header for UnityFS magic bytes (0x55 0x6E 0x69 0x74 0x79 0x46 0x53). Skips non-Unity files automatically</p>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <strong style="color: #00d4ff;">3. Bundle Extraction</strong>
+                <p style="color: #b0b0b0; margin: 10px 0 0 0;">UnityPy decompresses bundle data (LZ4/LZMA), parses type tree, and loads object containers</p>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <strong style="color: #00d4ff;">4. Asset Scanning</strong>
+                <p style="color: #b0b0b0; margin: 10px 0 0 0;">Iterates through all objects, filters for Texture2D and Sprite types, extracts image data and metadata (dimensions, format)</p>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <strong style="color: #00d4ff;">5. PNG Conversion</strong>
+                <p style="color: #b0b0b0; margin: 10px 0 0 0;">Pillow converts raw pixel data to PNG format with proper color channels. Maintains transparency (RGBA) for sprites</p>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <strong style="color: #00d4ff;">6. Organized Output</strong>
+                <p style="color: #b0b0b0; margin: 10px 0 0 0;">Saves to <code>extracted_images/</code> directory with structure mirroring source. Example: <code>source/characters/hero.unity3d</code> → <code>extracted_images/characters/hero_texture1.png</code></p>
+            </div>
+        </div>
+
+        <h2 class="section-title">🔧 My Implementation</h2>
+        <div class="feature-grid">
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">Intelligent File Detection</h3>
+                <p style="color: #b0b0b0;">My code automatically identifies Unity bundle files by signature, not extension - handles renamed or obfuscated files</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">Recursive Directory Processing</h3>
+                <p style="color: #b0b0b0;">I built the <code>-r</code> flag to traverse entire game folders, processing 500+ files while maintaining source organization</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">Custom Output Paths</h3>
+                <p style="color: #b0b0b0;">My <code>-o</code> parameter allows flexible output destinations, useful for batch processing multiple games to separate folders</p>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">CLI Automation Ready</h3>
+                <p style="color: #b0b0b0;">I designed the interface for scripting - no interactive prompts, clean exit codes, perfect for batch files or automated workflows</p>
+            </div>
+        </div>
+        <h2 class="section-title">💻 Usage</h2>
+        
+        <h3 style="color: #ff6b6b;">Extract from Single File</h3>
+        <pre><code>py unity_image_extractor.py "path\to\file.unity3d"</code></pre>
+        
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Extract from Entire Folder (Recursive)</h3>
+        <pre><code>py unity_image_extractor.py "path\to\game_directory" -r</code></pre>
+        
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Custom Output Directory</h3>
+        <pre><code>py unity_image_extractor.py "source" -o "custom_output_dir" -r</code></pre>
+
+        <h2 class="section-title">📁 Output Structure</h2>
+        <p style="color: #b0b0b0;">Images are saved to <code>Unity_Image_Extractor/extracted_images/</code>, organized by source file structure:</p>
+        <pre><code>extracted_images/
+├── characters/
+│   ├── hero_texture_001.png
+│   ├── hero_texture_002.png
+│   └── enemy_sprite_001.png
+├── ui/
+│   ├── button_normal.png
+│   └── icon_health.png
+└── environment/
+    └── background_001.png</code></pre>
+
+        <h2 class="section-title">🛠️ Getting Started</h2>
+        
+        <h3 style="color: #ff6b6b;">Prerequisites</h3>
         <ul style="color: #b0b0b0; line-height: 2;">
-            <li>Direct extraction from Unity3D bundles</li>
-            <li>PNG conversion for all Texture2D and Sprite assets</li>
-            <li>Batch processing with recursive directory support</li>
-            <li>CLI interface for automation</li>
-            <li>Organized output by source structure</li>
+            <li><strong>Python 3.6+</strong> (tested on 3.13)</li>
+            <li><strong>UnityPy:</strong> <code>pip install UnityPy</code></li>
+            <li><strong>Pillow:</strong> <code>pip install Pillow</code></li>
         </ul>
-        <h2 style="color: #00d4ff; margin-top: 40px;">Usage</h2>
-        <pre style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; color: #e0e0e0;"># Single file
-py unity_image_extractor.py "file.unity3d"
 
-# Entire folder (recursive)
-py unity_image_extractor.py "directory" -r
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Installation</h3>
+        <pre><code>pip install UnityPy Pillow</code></pre>
 
-# Custom output
-py unity_image_extractor.py "source" -o "output_dir" -r</pre>
+        <div class="alert-box">
+            <h3 style="color: #ff6b6b; margin-top: 0;">⚠️ Educational Use Only</h3>
+            <p style="color: #b0b0b0; margin-bottom: 0;">
+                <strong>Important Disclaimer:</strong> This tool is intended for educational and personal research purposes only. All extracted assets are the intellectual property of their respective creators and copyright holders.<br><br>
+                <strong>Do NOT:</strong><br>
+                • Use extracted assets for commercial purposes<br>
+                • Redistribute assets without permission<br>
+                • Violate copyright or EULA agreements<br><br>
+                <strong>Recommended Use:</strong> Personal learning, asset analysis, modding with developer permission, educational research.
+            </p>
+        </div>
+
         <div style="text-align: center; margin-top: 50px;">
             <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/Unity_Image_Extractor" target="_blank" class="cta-button">View on GitHub →</a>
         </div>

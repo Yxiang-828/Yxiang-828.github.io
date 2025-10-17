@@ -4,10 +4,10 @@
 
 [Innovative Computer Engineering student at NUS (Year 2) bridging hardware and software worlds with Verilog, Arduino, C/C++, while pioneering AI automation and efficient systems through Python, Java, JavaScript, and TypeScript.]
 
-🌐 Website: [https://yxiang-828.github.io/Yxiang-828/](https://yxiang-828.github.io/Yxiang-828/)
+🌐 Website: https://yxiang-828.github.io/
 
 ## 📂 Repos
-- [Wingman](https://yxiang-828.github.io/Yxiang-828/) - Personal Assistant Desktop App 🤖
+- [Wingman](https://github.com/Yxiang-828/Wingman) - Personal Assistant Desktop App 🤖
 - [Repo 2]
 - [Repo 3]
 - [Repo 4]
@@ -49,8 +49,8 @@ Architecturally, Wingman is a hybrid application built with **React**, **TypeScr
 - **[Internship/Job Title] @ [Company]** ([Dates]) — [Description of your work and technologies used]
 
 ## 🏆 Highlights & Hackathons
-- **[Hackathon Name] [Year]** — [Project Name]  
-  [Brief description of the project and your role]  
+- **[Hackathon Name] [Year]** — [Project Name]
+  [Brief description of the project and your role]
   [Repo Link]
 
 - **[Hackathon Name] [Year]** — [Achievement, e.g., Finalist, Best Usage of Data]

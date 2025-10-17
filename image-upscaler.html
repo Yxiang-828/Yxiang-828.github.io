@@ -36,14 +36,14 @@
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
-        .feature-list {
+        .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             margin: 30px 0;
         }
-        .feature-item {
-            background: rgba(0, 212, 255, 0.1);
+        .feature-box {
+            background: rgba(0, 212, 255, 0.05);
             padding: 20px;
             border-radius: 10px;
             border-left: 3px solid #00d4ff;
@@ -62,18 +62,30 @@
             font-size: 0.9rem;
             font-weight: bold;
         }
+        .section-title {
+            color: #00d4ff;
+            margin-top: 50px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+        }
         code {
-            background: rgba(0,0,0,0.3);
-            padding: 2px 8px;
+            background: rgba(0,0,0,0.4);
+            padding: 3px 8px;
             border-radius: 4px;
             color: #ff6b6b;
+            font-family: 'Courier New', monospace;
         }
         pre {
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.6);
             padding: 20px;
             border-radius: 10px;
             overflow-x: auto;
             border-left: 3px solid #00d4ff;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+            color: #e0e0e0;
         }
     </style>
 </head>
@@ -95,112 +107,179 @@
     <div class="project-detail">
         <a href="index.html#projects" class="back-link">← Back to Projects</a>
         
-        <h1 style="color: #00d4ff; margin-bottom: 20px;">🎨 AMD GPU Image Upscaler</h1>
+        <h1 style="color: #00d4ff; margin-bottom: 20px;">🎨 AI Image Upscaler</h1>
         
-        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
+        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project</p>
 
         <div class="tech-stack">
-            <span class="tech-badge">Real-ESRGAN</span>
-            <span class="tech-badge">EDSR</span>
+            <span class="tech-badge">Python 3.13</span>
             <span class="tech-badge">OpenCV</span>
-            <span class="tech-badge">Python</span>
+            <span class="tech-badge">Real-ESRGAN</span>
+            <span class="tech-badge">EDSR CNN</span>
             <span class="tech-badge">Vulkan</span>
             <span class="tech-badge">AMD GPU</span>
         </div>
 
         <p style="font-size: 1.2rem; color: #b0b0b0; margin: 30px 0;">
-            Transform blurry, low-resolution images into stunning high-quality visuals with AI-powered upscaling. 
-            Built specifically for AMD RX 6000+ GPUs with native Vulkan support.
+            I built a dual-AI image upscaling pipeline from scratch optimized for AMD GPUs. My implementation integrates Real-ESRGAN's GAN architecture via Vulkan and EDSR's CNN model through OpenCV DNN, providing both GPU-accelerated (2-5 sec) and CPU fallback (15-30 sec) processing paths. The tool handles batch processing with automatic model selection and classical enhancement fallback.
         </p>
 
-        <h2 style="color: #00d4ff; margin-top: 40px;">⚡ Key Features</h2>
-        <div class="feature-list">
-            <div class="feature-item">
-                <h3 style="color: #00d4ff;">Lightning Fast</h3>
-                <p>GPU-accelerated processing: 2-5 seconds per image with Vulkan</p>
+        <h2 class="section-title">🔧 Technical Implementation</h2>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Dual-AI Pipeline Architecture</h3>
+        <p style="color: #b0b0b0;">I engineered a Python-based upscaling system with two independent AI paths:</p>
+        
+        <div class="feature-grid">
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">1. Real-ESRGAN Vulkan Integration</h3>
+                <p style="color: #b0b0b0;">Built executable wrapper calling <code>realesrgan-ncnn-vulkan.exe</code> with dynamic model loading (<code>realesr-animevideov3-x{scale}.param</code> or <code>realesrgan-x4plus.param</code>). Achieves 2-5 second processing via AMD GPU Vulkan acceleration.</p>
             </div>
-            <div class="feature-item">
-                <h3 style="color: #00d4ff;">Dual AI Models</h3>
-                <p>Real-ESRGAN (GAN) for dramatic improvements, EDSR (CNN) for precision</p>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">2. EDSR OpenCV DNN Pipeline</h3>
+                <p style="color: #b0b0b0;">Implemented <code>opencv_edsr.py</code> using <code>cv2.dnn_superres.DnnSuperResImpl_create()</code> to load TensorFlow models (<code>EDSR_x2.pb</code>, <code>EDSR_x3.pb</code>, <code>EDSR_x4.pb</code>). CPU-based processing with 15-30 second execution time.</p>
             </div>
-            <div class="feature-item">
-                <h3 style="color: #00d4ff;">Multiple Scales</h3>
-                <p>2x, 3x, or 4x resolution increase with maintained quality</p>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">3. Classical Enhancement Fallback</h3>
+                <p style="color: #b0b0b0;">Designed fallback pipeline using Lanczos interpolation (<code>cv2.INTER_LANCZOS4</code>), CLAHE adaptive contrast (<code>cv2.createCLAHE(clipLimit=3.0)</code>), and unsharp masking with Gaussian blur for AI-independent upscaling.</p>
             </div>
-            <div class="feature-item">
-                <h3 style="color: #00d4ff;">Batch Processing</h3>
-                <p>Command-line interface for automating multiple images</p>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">4. Batch Interface</h3>
+                <p style="color: #b0b0b0;">Created <code>image_upscaler.bat</code> Windows batch interface with method selection (1=Real-ESRGAN, 2=EDSR), scale selection (2x/3x/4x), automatic model path resolution, and output file naming (<code>filename_method_x{scale}.ext</code>).</p>
             </div>
         </div>
 
-        <h2 style="color: #00d4ff; margin-top: 40px;">📊 Visual Comparisons</h2>
+        <h2 class="section-title">💻 Code Architecture</h2>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">opencv_edsr.py - EDSR AI Pipeline</h3>
+        <pre><code># My EDSR implementation workflow:
+def enhance_image_ai(image_path, scale, output_path):
+    image = cv2.imread(image_path)  # Load RGB image
+    model_path = f"models/EDSR_x{scale}.pb"  # Dynamic model selection
+    
+    # Create DNN super-resolution object
+    sr = cv2.dnn_superres.DnnSuperResImpl_create()
+    sr.readModel(model_path)  # Load pre-trained TensorFlow model
+    sr.setModel("edsr", scale)  # Configure EDSR with scale factor
+    
+    upscaled = sr.upsample(image)  # Execute CNN upscaling (15-30s)
+    cv2.imwrite(output_path, upscaled)  # Save enhanced image
+
+# Classical fallback if AI fails:
+def enhance_image_classical(image, scale):
+    # Step 1: Lanczos4 interpolation upscaling
+    resized = cv2.resize(image, (w*scale, h*scale), 
+                         interpolation=cv2.INTER_LANCZOS4)
+    
+    # Step 2: CLAHE adaptive contrast in LAB color space
+    lab = cv2.cvtColor(resized, cv2.COLOR_BGR2LAB)
+    clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8,8))
+    lab[:,:,0] = clahe.apply(lab[:,:,0])
+    enhanced = cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
+    
+    # Step 3: Unsharp masking for sharpness
+    blurred = cv2.GaussianBlur(enhanced, (5,5), 1.0)
+    sharpened = cv2.addWeighted(enhanced, 1.5, blurred, -0.5, 0)
+    return sharpened</code></pre>
+
+        <h3 style="color: #ff6b6b; margin-top: 30px;">resize_images.py - Utility Script</h3>
+        <p style="color: #b0b0b0;">Built image preprocessing tool for sample generation:</p>
+        <pre><code>def resize_image_to_square(input_path, output_path, size=256):
+    img = cv2.imread(str(input_path))
+    height, width = img.shape[:2]
+    
+    # Calculate scaling to fit within square
+    scale = size / max(width, height)
+    new_width, new_height = int(width * scale), int(height * scale)
+    
+    # Resize with Lanczos interpolation
+    resized = cv2.resize(img, (new_width, new_height), 
+                        interpolation=cv2.INTER_LANCZOS4)
+    
+    # Add white padding to create exact square
+    top_pad = (size - new_height) // 2
+    bottom_pad = size - new_height - top_pad
+    left_pad = (size - new_width) // 2
+    right_pad = size - new_width - left_pad
+    
+    square_img = cv2.copyMakeBorder(
+        resized, top_pad, bottom_pad, left_pad, right_pad,
+        borderType=cv2.BORDER_CONSTANT, value=[255,255,255]
+    )
+    cv2.imwrite(str(output_path), square_img)</code></pre>
+
+        <h2 class="section-title">📊 Visual Comparisons</h2>
         <p style="color: #b0b0b0;">Each image is split 50/50: <strong>Left = Original</strong>, <strong>Right = AI Upscaled (4x)</strong></p>
         
         <div class="comparison-grid">
             <div>
                 <h3 style="color: #ff6b6b;">Real-ESRGAN Sample 1</h3>
+                <p style="color: #b0b0b0; font-size: 0.9rem;">GAN-based dramatic enhancement</p>
                 <img src="https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/realesrgan_1.png" alt="Real-ESRGAN Sample 1" class="comparison-img">
             </div>
             <div>
                 <h3 style="color: #ff6b6b;">EDSR Sample 1</h3>
+                <p style="color: #b0b0b0; font-size: 0.9rem;">CNN-based precise sharpening</p>
                 <img src="https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/edsr_1.png" alt="EDSR Sample 1" class="comparison-img">
             </div>
             <div>
                 <h3 style="color: #ff6b6b;">Real-ESRGAN Sample 2</h3>
+                <p style="color: #b0b0b0; font-size: 0.9rem;">Texture recovery and detail generation</p>
                 <img src="https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/realesrgan_2.png" alt="Real-ESRGAN Sample 2" class="comparison-img">
             </div>
             <div>
                 <h3 style="color: #ff6b6b;">EDSR Sample 2</h3>
+                <p style="color: #b0b0b0; font-size: 0.9rem;">Edge sharpening and artifact reduction</p>
                 <img src="https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/edsr_2.png" alt="EDSR Sample 2" class="comparison-img">
-            </div>
-            <div>
-                <h3 style="color: #ff6b6b;">Real-ESRGAN Sample 3</h3>
-                <img src="https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/realesrgan_3.png" alt="Real-ESRGAN Sample 3" class="comparison-img">
-            </div>
-            <div>
-                <h3 style="color: #ff6b6b;">EDSR Sample 3</h3>
-                <img src="https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/edsr_3.png" alt="EDSR Sample 3" class="comparison-img">
             </div>
         </div>
 
-        <h2 style="color: #00d4ff; margin-top: 40px;">💻 Usage Example</h2>
-        <pre><code style="color: #e0e0e0;">image_upscaler.bat "path\to\your\image.png"
-
-# Interactive workflow:
-1. Choose method: 1 (Real-ESRGAN GPU) or 2 (EDSR CPU)
-2. Select scale: 2x, 3x, or 4x
-3. Wait 2-30 seconds for processing
-4. Find enhanced image in output/ folder
-
-# Output example:
-✅ Success! Output: output\image_realesrgan_x4.jpg
-</code></pre>
-
-        <h2 style="color: #00d4ff; margin-top: 40px;">🔧 Technical Details</h2>
+        <h2 class="section-title">🎯 Method Selection Strategy</h2>
         
-        <h3 style="color: #ff6b6b;">Real-ESRGAN (GPU-Accelerated GAN)</h3>
-        <p style="color: #b0b0b0;">
-            <strong>Best for:</strong> Major quality improvements, blurry/low-quality images<br>
-            <strong>Technology:</strong> Generative Adversarial Networks trained on millions of images<br>
-            <strong>Speed:</strong> 2-5 seconds per image (GPU)<br>
-            <strong>VRAM Usage:</strong> ~1-4GB depending on image size
-        </p>
+        <div class="feature-grid">
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">Real-ESRGAN (GAN Architecture)</h3>
+                <ul style="color: #b0b0b0; line-height: 2;">
+                    <li><strong>Processing:</strong> 2-5 seconds per image (Vulkan GPU)</li>
+                    <li><strong>Best for:</strong> Severely degraded images, blurry photos</li>
+                    <li><strong>Strengths:</strong> Dramatic detail recovery, natural textures, complex scene handling</li>
+                    <li><strong>Limitations:</strong> Can over-enhance near-complete images</li>
+                    <li><strong>My Implementation:</strong> Subprocess execution of <code>realesrgan-ncnn-vulkan.exe</code> with automatic model selection based on scale factor</li>
+                </ul>
+            </div>
+            <div class="feature-box">
+                <h3 style="color: #00d4ff;">EDSR (CNN Architecture)</h3>
+                <ul style="color: #b0b0b0; line-height: 2;">
+                    <li><strong>Processing:</strong> 15-30 seconds per image (CPU)</li>
+                    <li><strong>Best for:</strong> Already decent images, precise refinement</li>
+                    <li><strong>Strengths:</strong> Sharp edges, careful detail preservation, minimal artifacts</li>
+                    <li><strong>Limitations:</strong> Slower, less dramatic improvements</li>
+                    <li><strong>My Implementation:</strong> OpenCV DNN module with pre-trained TensorFlow <code>.pb</code> models, automatic fallback to classical enhancement if model loading fails</li>
+                </ul>
+            </div>
+        </div>
 
-        <h3 style="color: #ff6b6b; margin-top: 20px;">EDSR (CPU-Based CNN)</h3>
-        <p style="color: #b0b0b0;">
-            <strong>Best for:</strong> Precise sharpening, near-complete images<br>
-            <strong>Technology:</strong> Deep Convolutional Neural Networks with TensorFlow<br>
-            <strong>Speed:</strong> 15-30 seconds per image (CPU)<br>
-            <strong>Note:</strong> More conservative - better for subtle improvements
-        </p>
+        <h2 class="section-title">🚀 Usage</h2>
+        <pre><code># Batch interface workflow:
+image_upscaler.bat "path\to\image.png"
 
-        <h2 style="color: #00d4ff; margin-top: 40px;">📦 Requirements</h2>
+# Interactive prompts:
+Choose method:
+1. Real-ESRGAN Vulkan (GPU - 2-5s, dramatic quality boost)
+2. EDSR OpenCV (CPU - 15-30s, precise sharpening)
+Enter 1 or 2: 1
+
+Choose scale (2, 3, or 4): 4
+
+# Output:
+✅ Success! Output: output\image_realesrgan_x4.jpg</code></pre>
+
+        <h2 class="section-title">📦 Requirements</h2>
         <ul style="color: #b0b0b0; line-height: 2;">
-            <li>AMD Radeon RX 6000/7000/8000 series GPU (for Real-ESRGAN)</li>
-            <li>Python 3.13+</li>
-            <li>OpenCV (pip install opencv-python)</li>
-            <li>Real-ESRGAN Vulkan executable (included in realesrgan-windows/)</li>
-            <li>TensorFlow models (EDSR_x2.pb, EDSR_x3.pb, EDSR_x4.pb)</li>
+            <li><strong>Python 3.13+</strong> with pip package manager</li>
+            <li><strong>OpenCV:</strong> <code>pip install opencv-python opencv-contrib-python</code></li>
+            <li><strong>AMD GPU:</strong> RX 6000/7000 series for Vulkan acceleration (Real-ESRGAN)</li>
+            <li><strong>Models:</strong> EDSR TensorFlow models (<code>EDSR_x2.pb</code>, <code>EDSR_x3.pb</code>, <code>EDSR_x4.pb</code>) and Real-ESRGAN ncnn models (<code>realesr-animevideov3-x{scale}.param</code>)</li>
+            <li><strong>Windows:</strong> Batch interface optimized for Windows 10/11</li>
         </ul>
 
         <div style="text-align: center; margin-top: 50px;">
@@ -215,4 +294,3 @@
     </footer>
 </body>
 </html>
-

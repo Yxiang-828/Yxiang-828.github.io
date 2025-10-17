@@ -50,29 +50,22 @@ Architecturally, Wingman is a hybrid application built with **React**, **TypeScr
 
 **8 Production CLI Tools**  PowerShell + Python + .NET + AI Models
 
+### AI Image Upscaler  Real-ESRGAN + EDSR (GPU 2-5s | CPU 15-30s)
+
 <div align="center">
 
-### AI Image Upscaler  Real-ESRGAN + EDSR
-GPU-accelerated (2-5s) | CPU fallback (15-30s)
+| **Real-ESRGAN 4x (GPU-Accelerated GAN)** | **EDSR 4x (CPU-Based CNN)** |
+|:---:|:---:|
+| ![Real-ESRGAN](https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/realesrgan_1.png) | ![EDSR](https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/edsr_1.png) |
+| *Left: Original blurry  Right: GAN upscaled* | *Left: Original blurry  Right: CNN upscaled* |
+| **Dramatic detail recovery, natural textures** | **Sharp edges, precise enhancement** |
 
-<table>
-<tr>
-<td align="center"><b>Original</b></td>
-<td align="center"><b>Real-ESRGAN 4x</b></td>
-<td align="center"><b>EDSR 4x</b></td>
-</tr>
-<tr>
-<td><img src="https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/image.png" width="200"/></td>
-<td><img src="https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/realesrgan_1.png" width="200"/></td>
-<td><img src="https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/edsr_1.png" width="200"/></td>
-</tr>
-<tr>
-<td colspan="3" align="center"><i>AMD Vulkan acceleration: 960x540  3840x2160 in 3.2s</i></td>
-</tr>
-</table>
+**AMD Vulkan Acceleration**  Tested on diverse image types with proven quality improvements
+
+</div>
 
 ### File Scanner  O(M log K) Min-Heap Algorithm
-95,551 files scanned in 81s (1,173 files/sec avg, peaked at 8,821 files/sec)
+95,551 files in 81s (avg 1,173 files/sec, peaked 8,821 files/sec)
 
 ```powershell
 PS C:\> .\file_scanner.ps1 -FileType game -TopCount 10
@@ -104,8 +97,6 @@ Total Size (Top 10): 53.38 GB
 | **Video to GIF** | MoviePy | Size optimization |
 | **Unity Extractor** | UnityPy | .unity3d parsing |
 | **S&B Extractor** | Custom parser | Game assets |
-
-</div>
 
 [View Repository](https://github.com/Yxiang-828/Helper_Tools) 
 

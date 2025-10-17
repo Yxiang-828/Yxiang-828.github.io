@@ -8,7 +8,7 @@ Computer Engineering @ NUS (Year 2). Hardware design (Verilog, Arduino, C/C++) +
 
 ##  Repos
 - [Wingman](https://github.com/Yxiang-828/Wingman) - Personal Assistant Desktop App 
-- [Helper Tools](https://github.com/Yxiang-828/Helper_Tools) - 8 CLI Tools (File Scanner, AI Upscalers, Media Processors) 
+- [Helper Tools](https://github.com/Yxiang-828/Helper_Tools) - 7 CLI Tools (File Scanner, AI Upscalers, Media Processors) 
 - [Repo 3]
 - [Repo 4]
 - [Repo 5]
@@ -51,11 +51,11 @@ Task manager, calendar, mood diary with Ollama-powered AI chat. SQLite + Supabas
 
 ### Helper Tools  Self-Efficiency CLI Tools
 
-**8 automation tools** | PowerShell + Python + .NET + AI Models
+**7 automation tools** | PowerShell + Python + .NET + AI Models
 
 Built to solve daily workflow bottlenecks: find/delete large files, upscale images, extract video content, transcribe audio. Offline, fast, no GUI overhead.
 
-> **Note:** Showing 2 of 8 tools below. [View repository](https://github.com/Yxiang-828/Helper_Tools) for all tools and documentation.
+> **Note:** Showing 2 of 7 tools below. [View repository](https://github.com/Yxiang-828/Helper_Tools) for all tools and documentation.
 
 #### AI Image Upscaler  Real-ESRGAN + EDSR
 
@@ -98,7 +98,6 @@ Total Size (Top 10): 53.38 GB
 | **Audio Transcriber** | Convert audio to text transcripts | Whisper AI (GPU 3-5x faster) |
 | **Video to GIF** | Create size-optimized GIFs | MoviePy + auto-scaling |
 | **Unity Extractor** | Extract assets from .unity3d files | UnityPy parser |
-| **S&B Extractor** | Parse game asset bundles | Custom binary parser |
 
 
 [View Repository](https://github.com/Yxiang-828/Helper_Tools) 
@@ -135,5 +134,9 @@ Total Size (Top 10): 53.38 GB
 -  Website: https://yxiang-828.github.io/
 -  LinkedIn: [linkedin.com/in/yourprofile]
 -  Email: xiangyao888@gmail.com
+
+
+
+
 
 

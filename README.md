@@ -13,19 +13,20 @@
 - [Repo 4]
 - [Repo 5]
 
-##  Featured Project: Wingman
+---
+
+##  Personal Projects
+
+### Wingman  AI Personal Assistant
 
 <img src="images/7409.png" width="400" alt="Wingman Screenshot">
 
-This is my flagship project, showcasing expertise in **AI integration**, **full-stack development**, and **user-centric design** for productivity applications.
+**Local-first desktop app** | React + TypeScript + Electron + Python/FastAPI
 
-Wingman is a sophisticated, local-first personal assistant application for desktop, designed for productivity enthusiasts who value privacy and performance. It seamlessly integrates essential tools like a task manager, a multi-view calendar, and a mood-aware diary with a powerful **AI chat assistant**. The AI is powered by local LLMs through **Ollama**, ensuring all personal data and conversations remain on the user''s machine. Key features include a smart background notification system, automated recurring task generation, and extensive customization with six unique themes and AI personalities.
+Task manager, calendar, mood diary with Ollama-powered AI chat. SQLite + Supabase auth. 6 custom themes. Full privacy, packaged cross-platform distribution.
 
-Notably, Wingman is a fully packaged, downloadable desktop application built with **Electron**, combining full-stack development (**React**/**TypeScript** frontend and **Python** backend) for a seamless, cross-platform user experience.
-
-Architecturally, Wingman is a hybrid application built with **React**, **TypeScript**, and **Electron** for the frontend, and a **Python**/**FastAPI** backend for AI processing and data management. It features a robust local-first design using **SQLite**, with secure cloud authentication via **Supabase**. The project includes a complete, automated build system that handles Python environment setup and packages the entire application for cross-platform distribution, demonstrating a strong focus on both advanced functionality and a polished user experience.
-
-##  Theme Backgrounds
+<details>
+<summary><b> Themes</b></summary>
 
 <div align="center">
 <table>
@@ -42,61 +43,60 @@ Architecturally, Wingman is a hybrid application built with **React**, **TypeScr
 </table>
 </div>
 
-[View on GitHub](https://github.com/Yxiang-828/Wingman) 
+</details>
+
+[View Repository](https://github.com/Yxiang-828/Wingman) 
 
 ---
 
-##  Featured Project: Helper Tools
+### Helper Tools  Self-Efficiency CLI Tools
 
-**8 Production CLI Tools**  PowerShell + Python + .NET + AI Models
+**8 automation tools** | PowerShell + Python + .NET + AI Models
 
-### AI Image Upscaler  Real-ESRGAN + EDSR (GPU 2-5s | CPU 15-30s)
+Built to solve daily workflow bottlenecks: find/delete large files, upscale images, extract video content, transcribe audio. Offline, fast, no GUI overhead.
+
+#### AI Image Upscaler  Real-ESRGAN + EDSR
 
 <div align="center">
 
-| **Real-ESRGAN 4x (GPU-Accelerated GAN)** | **EDSR 4x (CPU-Based CNN)** |
+| **Real-ESRGAN 4x (GPU 2-5s)** | **EDSR 4x (CPU 15-30s)** |
 |:---:|:---:|
 | ![Real-ESRGAN](https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/realesrgan_1.png) | ![EDSR](https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/edsr_1.png) |
-| *Left: Original blurry  Right: GAN upscaled* | *Left: Original blurry  Right: CNN upscaled* |
-| **Dramatic detail recovery, natural textures** | **Sharp edges, precise enhancement** |
+| *Left: Blurry  Right: GAN upscaled* | *Left: Blurry  Right: CNN upscaled* |
 
-**AMD Vulkan Acceleration**  Tested on diverse image types with proven quality improvements
+AMD Vulkan acceleration. GAN for dramatic recovery, CNN for precise sharpening.
 
 </div>
 
-### File Scanner  O(M log K) Min-Heap Algorithm
-95,551 files in 81s (avg 1,173 files/sec, peaked 8,821 files/sec)
+#### File Scanner  O(M log K) Min-Heap
 
 ```powershell
 PS C:\> .\file_scanner.ps1 -FileType game -TopCount 10
 
-================================================
-    UNIVERSAL FILE SCANNER v2.0
-================================================
 Target Type  : GAME Files
 Extensions   : .unity3d, .pak, .wad, .bsa, .esp, .esm
 
-[81.4s] Found 95551 files | 1173 files/sec
+[81.4s] Found 95,551 files | 1,173 files/sec
 
 Total Size (Top 10): 53.38 GB
   1. (11.61 GB) pakchunk26-WindowsNoEditor.pak
   2. (9.14 GB) pakchunk34-WindowsNoEditor.pak
 ```
 
-**Tech**: `.NET System.IO.Directory.EnumerateFiles` + BFS + `SortedSet<T>` min-heap
+.NET BFS traversal + SortedSet min-heap. Scans entire C:\ in ~2min vs Windows Explorer's 40min.
 
-### All 8 Tools
+#### All 8 Tools
 
-| Tool | Tech | Performance |
-|------|------|-------------|
-| **File Scanner** | .NET BFS + Min-Heap | 1,173-8,821 files/sec |
-| **Image Upscaler** | Real-ESRGAN + Vulkan | 2-5s/image (GPU) |
-| **Video Upscaler** | Real-ESRGAN + FFmpeg | Frame AI enhancement |
-| **Subtitle/MP3 Extractor** | FFmpeg | Dual output |
-| **Audio Transcriber** | Whisper AI | GPU 3-5x speedup |
-| **Video to GIF** | MoviePy | Size optimization |
-| **Unity Extractor** | UnityPy | .unity3d parsing |
-| **S&B Extractor** | Custom parser | Game assets |
+| Tool | Purpose | Tech |
+|------|---------|------|
+| **File Scanner** | Find/delete large files for storage cleanup | .NET + Min-Heap (1,173-8,821 files/sec) |
+| **Image Upscaler** | Restore blurry images with AI | Real-ESRGAN + Vulkan (2-5s/image) |
+| **Video Upscaler** | AI frame enhancement for videos | Real-ESRGAN + FFmpeg |
+| **Subtitle/MP3 Extractor** | Extract embedded subs + audio from videos | FFmpeg automation |
+| **Audio Transcriber** | Convert audio to text transcripts | Whisper AI (GPU 3-5x faster) |
+| **Video to GIF** | Create size-optimized GIFs | MoviePy + auto-scaling |
+| **Unity Extractor** | Extract assets from .unity3d files | UnityPy parser |
+| **S&B Extractor** | Parse game asset bundles | Custom binary parser |
 
 [View Repository](https://github.com/Yxiang-828/Helper_Tools) 
 

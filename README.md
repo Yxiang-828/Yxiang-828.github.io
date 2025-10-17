@@ -1,6 +1,6 @@
 ﻿# Hi, I'm Yao Xiang 
 
-[![Profile Views](https://komarev.com/ghpvc/?username=Yxiang-828&color=blue)]([https://github.com/Yxiang-828](https://yxiang-828.github.io/Yxiang-828/))
+[![Profile Views](https://komarev.com/ghpvc/?username=Yxiang-828&color=blue)](https://yxiang-828.github.io/Yxiang-828/)
 
 Computer Engineering @ NUS (Year 2). Hardware design (Verilog, Arduino, C/C++) + software automation (Python, Java, JavaScript, TypeScript). Building AI tools and efficient systems.
 

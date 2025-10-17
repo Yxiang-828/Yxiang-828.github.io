@@ -49,7 +49,7 @@ Task manager, calendar, mood diary with Ollama-powered AI chat. SQLite + Supabas
 
 ---
 
-### Helper Tools  Self-Efficiency CLI Tools
+### Helper Tools  -- Self-Efficiency CLI Tools
 
 **7 automation tools** | PowerShell + Python + .NET + AI Models
 

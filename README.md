@@ -2,7 +2,7 @@
 
 [![Profile Views](https://komarev.com/ghpvc/?username=Yxiang-828&color=blue)](https://github.com/Yxiang-828)
 
-[Innovative Computer Engineering student at NUS (Year 2) bridging hardware and software worlds with Verilog, Arduino, C/C++, while pioneering AI automation and efficient systems through Python, Java, JavaScript, and TypeScript.]
+Computer Engineering @ NUS (Year 2). Hardware design (Verilog, Arduino, C/C++) + software automation (Python, Java, JavaScript, TypeScript). Building AI tools and efficient systems.
 
  Website: https://yxiang-828.github.io/
 
@@ -132,3 +132,4 @@ Total Size (Top 10): 53.38 GB
 -  Website: https://yxiang-828.github.io/
 -  LinkedIn: [linkedin.com/in/yourprofile]
 -  Email: xiangyao888@gmail.com
+

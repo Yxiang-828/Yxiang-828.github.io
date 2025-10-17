@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Scanner - Yao Xiang</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .project-detail { max-width: 1200px; margin: 100px auto 50px; padding: 40px; background: rgba(15, 15, 35, 0.8); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        .back-link { display: inline-block; margin-bottom: 30px; color: #00d4ff; text-decoration: none; font-weight: bold; transition: all 0.3s; }
+        .back-link:hover { transform: translateX(-5px); }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+        .tech-badge { background: linear-gradient(45deg, #00d4ff, #090979); color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; }
+        .benchmark-table { width: 100%; margin: 30px 0; border-collapse: collapse; }
+        .benchmark-table th, .benchmark-table td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .benchmark-table th { background: rgba(0, 212, 255, 0.1); color: #00d4ff; }
+        code { background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; color: #ff6b6b; }
+        pre { background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; overflow-x: auto; border-left: 3px solid #00d4ff; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <h1><a href="index.html" style="color: inherit; text-decoration: none;">Yao Xiang</a></h1>
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="project-detail">
+        <a href="index.html#projects" class="back-link">← Back to Projects</a>
+        
+        <h1 style="color: #00d4ff; margin-bottom: 20px;">🔍 File Scanner</h1>
+        
+        <div class="tech-stack">
+            <span class="tech-badge">.NET Framework</span>
+            <span class="tech-badge">PowerShell</span>
+            <span class="tech-badge">Min-Heap Algorithm</span>
+            <span class="tech-badge">BFS Traversal</span>
+        </div>
+
+        <p style="font-size: 1.2rem; color: #b0b0b0; margin: 30px 0;">
+            High-performance file discovery tool engineered for rapid filesystem analysis on Windows. Leverages .NET Framework APIs 
+            and advanced data structures to identify the largest files across entire drives with performance exceeding standard 
+            PowerShell cmdlets by <strong>16-50x</strong>.
+        </p>
+
+        <h2 style="color: #00d4ff; margin-top: 40px;">📊 Benchmark Results</h2>
+        <p style="color: #b0b0b0;">Tested on: 16-core CPU, 32GB RAM, 1.82TB HDD</p>
+        
+        <table class="benchmark-table">
+            <thead>
+                <tr>
+                    <th>Scan Target</th>
+                    <th>Files Discovered</th>
+                    <th>Execution Time</th>
+                    <th>Throughput</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Complete C:\ drive (media filter)</td>
+                    <td>469,385</td>
+                    <td>151 seconds</td>
+                    <td><strong>3,107 files/sec</strong></td>
+                </tr>
+                <tr>
+                    <td>User Downloads folder (video filter)</td>
+                    <td>76</td>
+                    <td>2.1 seconds</td>
+                    <td>36 files/sec</td>
+                </tr>
+                <tr>
+                    <td>User Music folder (audio filter)</td>
+                    <td>621</td>
+                    <td>0.07 seconds</td>
+                    <td><strong>8,821 files/sec</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 style="color: #00d4ff; margin-top: 40px;">⚡ Performance Comparison</h2>
+        <table class="benchmark-table">
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>Time to Scan C:\</th>
+                    <th>Throughput</th>
+                    <th>Performance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>File Scanner (.NET APIs)</strong></td>
+                    <td>151 seconds</td>
+                    <td>3,107 files/sec</td>
+                    <td style="color: #00d4ff;"><strong>Baseline (1x)</strong></td>
+                </tr>
+                <tr>
+                    <td>PowerShell Get-ChildItem</td>
+                    <td>2,500+ seconds</td>
+                    <td>~188 files/sec</td>
+                    <td style="color: #ff6b6b;">16-50x slower</td>
+                </tr>
+                <tr>
+                    <td>Get-ChildItem with filters</td>
+                    <td>1,800+ seconds</td>
+                    <td>~260 files/sec</td>
+                    <td style="color: #ff6b6b;">12x slower</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 style="color: #00d4ff; margin-top: 40px;">🏗️ Core Architecture</h2>
+        
+        <h3 style="color: #ff6b6b;">1. Min-Heap (Priority Queue)</h3>
+        <p style="color: #b0b0b0;">
+            Implements a min-heap via .NET's <code>SortedSet&lt;T&gt;</code> to maintain the top N largest files.<br>
+            <strong>Time complexity:</strong> O(M log K) where M = total files, K = top files to track<br>
+            <strong>Space complexity:</strong> O(K) - constant regardless of total file count
+        </p>
+        <pre><code style="color: #e0e0e0;">$minHeap = [System.Collections.Generic.SortedSet[object]]::new(
+    [System.Collections.Generic.Comparer[object]]::Create({
+        param($a, $b)
+        $a.Length.CompareTo($b.Length)  # Ascending order
+    })
+)
+
+# Insert if heap not full or file larger than minimum
+if ($minHeap.Count -lt $TopCount) {
+    $minHeap.Add($fileInfo)
+} elseif ($fileInfo.Length -gt $minHeap.Min.Length) {
+    $minHeap.Remove($minHeap.Min)
+    $minHeap.Add($fileInfo)
+}</code></pre>
+
+        <h3 style="color: #ff6b6b; margin-top: 30px;">2. Breadth-First Search (BFS)</h3>
+        <p style="color: #b0b0b0;">
+            Directory traversal uses FIFO queue for BFS instead of recursive DFS.<br>
+            <strong>Advantages:</strong><br>
+            • Prevents stack overflow (Windows can have 10,000+ nested directories)<br>
+            • Better cache locality (processes all files in directory before moving)<br>
+            • Predictable memory usage: O(D) where D = directory count
+        </p>
+        <pre><code style="color: #e0e0e0;">$queue = [System.Collections.Generic.Queue[string]]::new()
+$queue.Enqueue($RootPath)
+
+while ($queue.Count -gt 0) {
+    $currentPath = $queue.Dequeue()
+    foreach ($dir in [System.IO.Directory]::EnumerateDirectories($currentPath)) {
+        $queue.Enqueue($dir)
+    }
+    foreach ($file in [System.IO.Directory]::EnumerateFiles($currentPath)) {
+        # Process file
+    }
+}</code></pre>
+
+        <h2 style="color: #00d4ff; margin-top: 40px;">💻 Usage</h2>
+        <pre><code style="color: #e0e0e0;"># Scan C:\ drive for top 73 largest media files
+.\file_scanner.ps1 -RootPath "C:\" -TopCount 73 -FileTypes @(".mp4",".mkv",".avi")
+
+# Scan Downloads folder for videos
+.\file_scanner.ps1 -RootPath "$env:USERPROFILE\Downloads" -FileTypes @(".mp4",".mov")
+
+# Quick scan of Pictures folder
+.\file_scanner.ps1 -RootPath "$env:USERPROFILE\Pictures" -TopCount 20
+</code></pre>
+
+        <h2 style="color: #00d4ff; margin-top: 40px;">📦 Requirements</h2>
+        <ul style="color: #b0b0b0; line-height: 2;">
+            <li>PowerShell 5.1+ (Windows 10/11)</li>
+            <li>.NET Framework 4.5+ (built into Windows)</li>
+            <li>No external dependencies required</li>
+        </ul>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/File_Scanner" target="_blank" class="cta-button">View on GitHub →</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Yao Xiang. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

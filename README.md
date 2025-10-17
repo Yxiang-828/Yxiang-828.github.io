@@ -57,6 +57,7 @@ Built to solve daily workflow bottlenecks: find/delete large files, upscale imag
 
 > **Note:** Showing 2 of 7 tools below. [View repository](https://github.com/Yxiang-828/Helper_Tools) for all tools and documentation.
 
+## Examples
 #### AI Image Upscaler  Real-ESRGAN + EDSR
 
 <div align="center">
@@ -92,12 +93,12 @@ Total Size (Top 10): 53.38 GB
 | Tool | Purpose | Tech |
 |------|---------|------|
 | **File Scanner** | Find/delete large files for storage cleanup | .NET + Min-Heap (1,173-8,821 files/sec) |
-| **Image Upscaler** | Restore blurry images with AI | Real-ESRGAN + Vulkan (2-5s/image) |
+| **Image Upscaler** | Restore/Sharpen images with AI | Real-ESRGAN + Vulkan (2-5s/image) |
 | **Video Upscaler** | AI frame enhancement for videos | Real-ESRGAN + FFmpeg |
-| **Subtitle/MP3 Extractor** | Extract embedded subs + audio from videos | FFmpeg automation |
-| **Audio Transcriber** | Convert audio to text transcripts | Whisper AI (GPU 3-5x faster) |
-| **Video to GIF** | Create size-optimized GIFs | MoviePy + auto-scaling |
-| **Unity Extractor** | Extract assets from .unity3d files | UnityPy parser |
+| **Subtitle/MP3 Extractor** | Extract embedded subs + mp3 from videos | FFmpeg automation |
+| **Audio Transcriber** | Convert mp3 to text transcripts | Whisper AI (GPU 3-5x faster) |
+| **Video to GIF** | Create size&speed-optimized GIFs | MoviePy + auto-scaling |
+| **Unity Extractor** | Extract assets from .unity3d files and convert to PNG | UnityPy parser |
 
 
 [View Repository](https://github.com/Yxiang-828/Helper_Tools) 

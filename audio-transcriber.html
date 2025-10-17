@@ -52,9 +52,26 @@
             <span class="tech-badge">FFmpeg</span>
         </div>
 
+        <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project (Personal Productivity Tool)</p>
+
         <p style="font-size: 1.2rem; color: #b0b0b0; margin: 30px 0;">
             I built a custom Python pipeline that leverages Whisper AI with AMD GPU acceleration via DirectML. The architecture is purposefully restrictive - targeting only AMD Radeon RX 6000/7000/8000 series GPUs on Windows to maximize DirectML optimization. My implementation handles long-form audio (30+ minutes) through intelligent chunking and achieves 3-5x speedup over CPU processing.
         </p>
+
+        <h2 class="section-title">🧰 Technologies & Tools Used</h2>
+        <p style="color: #b0b0b0;">Understanding the core technologies behind this project:</p>
+        
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Whisper AI (OpenAI)</h3>
+        <p style="color: #b0b0b0;">A state-of-the-art speech recognition model trained on 680,000 hours of multilingual data. Whisper uses a transformer architecture with encoder-decoder design, converting audio spectrograms into text tokens. It supports 99 languages and handles background noise, accents, and technical terminology remarkably well.</p>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">DirectML (Microsoft)</h3>
+        <p style="color: #b0b0b0;">A low-level DirectX 12 API that provides GPU acceleration for machine learning workloads on Windows. Unlike CUDA (NVIDIA-only) or ROCm (Linux AMD), DirectML is hardware-agnostic but optimized for AMD GPUs on Windows. It enables neural network inference on consumer GPUs without requiring specialized ML hardware.</p>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">ONNX Runtime</h3>
+        <p style="color: #b0b0b0;">Open Neural Network Exchange (ONNX) runtime is a cross-platform inference engine that executes machine learning models. It converts PyTorch/TensorFlow models to an optimized format, then uses execution providers (like DirectML) for hardware acceleration. This conversion happens once and is cached for subsequent runs.</p>
+
+        <h3 style="color: #ff6b6b; margin-top: 20px;">Librosa</h3>
+        <p style="color: #b0b0b0;">A Python library for audio analysis. I use it to load audio files, extract duration metadata, and split long audio into 30-second chunks. Librosa handles sample rate conversion and audio format normalization, ensuring consistent input for the Whisper model.</p>
 
         <h2 class="section-title">🔧 My Implementation</h2>
         <div class="feature-grid">

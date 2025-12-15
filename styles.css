@@ -202,9 +202,9 @@ nav ul li a:hover::before {
 
 .cta-button:hover {
     transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 12px 35px rgba(0,212,255,0.7);
-    background: linear-gradient(45deg, #1a1a2e, #0a0a1a);
-    color: #00ffff;
+    box-shadow: 0 12px 35px rgba(255, 68, 68, 0.7);
+    background: linear-gradient(45deg, #2b0000, #1a0505);
+    color: #ff4444;
 }
 
 .cta-button:active {

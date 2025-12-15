@@ -299,7 +299,7 @@ section p:hover {
 }
 
 /* About Section */
-#about {
+#about, #experience {
     background: rgba(26, 26, 46, 0.5);
     backdrop-filter: blur(10px);
 }

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yao Xiang - Resume</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            line-height: 1.4;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            color: #000;
+            background-color: #fff;
+        }
+        @media print {
+            @page {
+                margin: 1cm;
+                size: A4;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+                max-width: 100%;
+                width: 100%;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .contact-info a {
+                text-decoration: none;
+                color: #000;
+            }
+            /* Ensure links don't show URL after text */
+            a[href]:after {
+                content: none !important;
+            }
+        }
+        h1 {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 24px;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        .contact-info {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .contact-info a {
+            color: #000;
+            text-decoration: none;
+        }
+        h2 {
+            font-size: 16px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #000;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-bottom: 2px;
+        }
+        .section-content {
+            margin-bottom: 15px;
+        }
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .entry-subheader {
+            display: flex;
+            justify-content: space-between;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        ul {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 3px;
+            font-size: 14px;
+        }
+        .skills-list {
+            font-size: 14px;
+        }
+        .skills-category {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Yao Xiang</h1>
+    <div class="contact-info">
+        87985826 • <a href="mailto:xiangyao888@gmail.com">xiangyao888@gmail.com</a>
+        <br>
+        <strong>Website:</strong> <a href="https://yxiang-828.github.io/">yxiang-828.github.io</a> • 
+        <strong>GitHub:</strong> <a href="https://github.com/Yxiang-828">github.com/Yxiang-828</a>
+        <br>
+        <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/yao-xiang-733b06329/">linkedin.com/in/yao-xiang-733b06329</a>
+    </div>
+
+    <h2>Education</h2>
+    <div class="section-content">
+        <div class="entry-header">
+            <span>National University of Singapore</span>
+            <span>Aug 2024 – Aug 2028 (Projected)</span>
+        </div>
+        <div class="entry-subheader">
+            <span>Bachelor of Engineering (Computer Engineering)</span>
+            <span>Singapore</span>
+        </div>
+        <ul>
+            <li>Honours: Computer Engineering Hons</li>
+            <!-- <li>GPA: 4.14/5.0</li> -->
+        </ul>
+
+        <div style="margin-top: 10px;">
+            <div class="entry-header">
+                <span>River Valley Junior College</span>
+                <span>Graduated 2021</span>
+            </div>
+            <div class="entry-subheader">
+                <span>GCE A-Level (Integrated Programme)</span>
+                <span>Singapore</span>
+            </div>
+        </div>
+    </div>
+
+    <h2>Technical Skills</h2>
+    <div class="section-content skills-list">
+        <div><span class="skills-category">Languages:</span> Python, C/C++, Java, JavaScript, TypeScript, Verilog, PowerShell</div>
+        <div><span class="skills-category">Frameworks:</span> React, Node.js, Electron, FastAPI</div>
+        <div><span class="skills-category">Tools & Platforms:</span> Git, SQLite, Supabase, Arduino, FFmpeg, OpenAI Whisper</div>
+    </div>
+
+    <h2>Projects</h2>
+    <div class="section-content">
+        <div class="entry-header">
+            <span>Wingman (NUS Orbital Apollo 2025)</span>
+            <span>May 2025 – Present</span>
+        </div>
+        <div class="entry-subheader">
+            <span>Team Project | React, TypeScript, Electron, Python, SQLite</span>
+            <span><a href="https://github.com/Yxiang-828/Wingman" style="color:black; text-decoration:none;">[GitHub]</a></span>
+        </div>
+        <ul>
+            <li>Developing a local-first AI personal assistant desktop application, integrating <strong>Ollama-powered AI chat</strong> for privacy-focused, offline assistance.</li>
+            <li>Built a comprehensive productivity suite including task management, calendar, and mood diary.</li>
+            <li>Implemented secure authentication and data syncing using <strong>Supabase</strong> and <strong>SQLite</strong>.</li>
+        </ul>
+
+        <div style="margin-top: 15px;">
+            <div class="entry-header">
+                <span>Helper Tools (CLI Automation Suite)</span>
+                <span>Jan 2025 – Present</span>
+            </div>
+            <div class="entry-subheader">
+                <span>Personal Project | Python, PowerShell, .NET, AI Models</span>
+                <span><a href="https://github.com/Yxiang-828/Helper_Tools" style="color:black; text-decoration:none;">[GitHub]</a></span>
+            </div>
+            <ul>
+                <li><strong>File Scanner:</strong> Engineered a storage optimization tool using <strong>.NET APIs</strong> and a <strong>Min-Heap algorithm</strong> (O(M log K)), achieving scan speeds of <strong>95,000+ files/sec</strong> (16x faster than Windows Explorer).</li>
+                <li><strong>AI Upscalers:</strong> Implemented <strong>Real-ESRGAN</strong> and <strong>EDSR</strong> models with <strong>AMD Vulkan</strong> acceleration for 4x image/video upscaling.</li>
+                <li><strong>Audio Transcriber:</strong> Integrated <strong>OpenAI Whisper</strong> with DirectML for GPU-accelerated offline speech-to-text transcription.</li>
+                <li><strong>Video Processing:</strong> Created automated wrappers for FFmpeg to extract subtitles/audio and convert videos to optimized GIFs.</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 15px;">
+            <div class="entry-header">
+                <span>Dual-Mode AV Disruptor (HacX Hackathon 2025)</span>
+                <span>Oct 2025 – Nov 2025</span>
+            </div>
+            <div class="entry-subheader">
+                <span>Team Project | Python, Raspberry Pi, CARLA, mmWave Radar</span>
+                <span><a href="https://github.com/Yxiang-828/HacX-AV-Sensor-Disruptor" style="color:black; text-decoration:none;">[GitHub]</a></span>
+            </div>
+            <ul>
+                <li>Developed a non-destructive prototype to halt hostile autonomous vehicles by disrupting LiDAR and camera sensors.</li>
+                <li>Implemented dual-mode logic (Smoke Bomb vs Smart Obstacle) with safety features (thermal monitoring).</li>
+                <li>Validated system effectiveness using <strong>CARLA simulation</strong> and hardware field tests (15m range).</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 15px;">
+            <div class="entry-header">
+                <span>FPGA Graphic Calculator (EE2026)</span>
+                <span>Aug 2025 – Nov 2025</span>
+            </div>
+            <div class="entry-subheader">
+                <span>Team Project | Verilog, Vivado, Basys 3 FPGA</span>
+                <span><a href="https://github.com/Yxiang-828/EE2026-Project-Vivado" style="color:black; text-decoration:none;">[GitHub]</a></span>
+            </div>
+            <ul>
+                <li>Designed a multifunction scientific calculator and grapher on an Artix-7 FPGA.</li>
+                <li><strong>Keypad Interface:</strong> Engineered a pipelined input system with debouncing and OLED visualization for user interaction.</li>
+                <li><strong>Polynomial Solver:</strong> Implemented a <strong>Newton-Raphson</strong> root finder using <strong>Q22.14 fixed-point arithmetic</strong> for high-precision cubic equation solving.</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 15px;">
+            <div class="entry-header">
+                <span>FlowCLI (CS2113 Team Project)</span>
+                <span>Aug 2025 – Nov 2025</span>
+            </div>
+            <div class="entry-subheader">
+                <span>Core Contributor | Java, JUnit, Gradle, GitHub Actions</span>
+                <span><a href="https://github.com/AY2526S1-CS2113-W13-2/tp" style="color:black; text-decoration:none;">[GitHub]</a></span>
+            </div>
+            <ul>
+                <li>Developed a keyboard-optimized CLI task manager for developers to track project deadlines and priorities.</li>
+                <li>Implemented advanced filtering, sorting, and data export features to enhance user productivity.</li>
+                <li>Managed CI/CD pipelines using <strong>GitHub Actions</strong> and enforced code quality with <strong>Checkstyle</strong>.</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 15px;">
+            <div class="entry-header">
+                <span>Project Lan</span>
+                <span>Jan 2020 – Dec 2020</span>
+            </div>
+            <div class="entry-subheader">
+                <span>Team Project (Lead)</span>
+            </div>
+            <ul>
+                <li>Led a team to design a facility blueprint and reward scheme to improve student sleep habits.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>Experience</h2>
+    <div class="section-content">
+        <div class="entry-header">
+            <span>Singapore Armed Forces (Sungei Gedong Camp)</span>
+            <span>Nov 2022 – Jan 2024</span>
+        </div>
+        <div class="entry-subheader">
+            <span>Signaller</span>
+            <span>Singapore</span>
+        </div>
+        <ul>
+            <li><strong>Awards:</strong> Best Unit Award, Outstanding Conduct Grade.</li>
+            <li>Managed signal equipment, electric circuits, and IP address configurations for mission-critical communications.</li>
+            <li>Mentored junior personnel in technical operations, contributing to the unit's operational readiness.</li>
+        </ul>
+    </div>
+
+    <h2>Awards & Certifications</h2>
+    <div class="section-content">
+        <ul>
+            <li><strong>Certificate in Signal Operator Course Infocomm 2</strong> (Grade A- with accredited WSQ employability skills).</li>
+            <li><strong>Edusave Awards:</strong> Consistently received Bursary/Good Achievement/Credit awards (2012-2021).</li>
+            <li><strong>Table Tennis:</strong> Top 8 in Interschool Games (2018-2020), Top 4 (2017).</li>
+        </ul>
+    </div>
+
+    <h2>Volunteer Experience</h2>
+    <div class="section-content">
+        <div class="entry-header">
+            <span>Technology Awareness Project</span>
+            <span>Feb 2021 – Mar 2021</span>
+        </div>
+        <div class="entry-subheader">
+            <span>Slide Producer</span>
+        </div>
+        <ul>
+            <li>Created educational materials to teach the elderly how to use the HealthHub app for digital healthcare access.</li>
+        </ul>
+    </div>
+
+</body>
+</html>

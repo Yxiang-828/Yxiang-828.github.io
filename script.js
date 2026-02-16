@@ -196,6 +196,7 @@ window.holoInteract = (element) => {
 
     // FORCE VISIBILITY - Override all CSS
     dialog.style.width = ""; // Reset potentially modified width from scroll event
+    dialog.style.maxWidth = ""; // Reset potentially modified max-width from scroll event
     dialog.style.display = "block";
     dialog.style.opacity = "1";
     dialog.style.transform = "translateY(0)";
@@ -374,6 +375,7 @@ window.addEventListener('scroll', () => {
                 // Force show dialog using same logic as interact
                 holoContainer.classList.add("talking");
                 dialog.style.width = "400px"; // Make it wider for this long text
+                dialog.style.maxWidth = "none"; // Remove any max-width constraint
                 dialog.style.display = "block";
                 dialog.style.opacity = "1";
                 dialog.style.transform = "translateY(0)";
@@ -389,6 +391,7 @@ window.addEventListener('scroll', () => {
                     dialog.style.opacity = "";
                     dialog.style.transform = "";
                     dialog.style.width = ""; // Reset width to default
+                    dialog.style.maxWidth = ""; // Reset max-width to default
                 }, 5000);
             }
         }

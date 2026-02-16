@@ -10,14 +10,14 @@
             max-width: 1200px;
             margin: 100px auto 50px;
             padding: 40px;
-            background: rgba(15, 15, 35, 0.8);
+            background: rgba(20, 5, 5, 0.8);
             border-radius: 20px;
             border: 1px solid rgba(255,255,255,0.1);
         }
         .back-link {
             display: inline-block;
             margin-bottom: 30px;
-            color: #00d4ff;
+            color: #ff4444;
             text-decoration: none;
             font-weight: bold;
             transition: all 0.3s;
@@ -43,10 +43,10 @@
             margin: 30px 0;
         }
         .feature-box {
-            background: rgba(0, 212, 255, 0.05);
+            background: rgba(255, 68, 68, 0.05);
             padding: 20px;
             border-radius: 10px;
-            border-left: 3px solid #00d4ff;
+            border-left: 3px solid #ff4444;
         }
         .tech-stack {
             display: flex;
@@ -55,7 +55,7 @@
             margin: 20px 0;
         }
         .tech-badge {
-            background: linear-gradient(45deg, #00d4ff, #090979);
+            background: linear-gradient(45deg, #ff4444, #8b0000);
             color: white;
             padding: 8px 16px;
             border-radius: 20px;
@@ -63,10 +63,10 @@
             font-weight: bold;
         }
         .section-title {
-            color: #00d4ff;
+            color: #ff4444;
             margin-top: 50px;
             padding-bottom: 10px;
-            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+            border-bottom: 2px solid rgba(255, 68, 68, 0.3);
         }
         code {
             background: rgba(0,0,0,0.4);
@@ -80,7 +80,7 @@
             padding: 20px;
             border-radius: 10px;
             overflow-x: auto;
-            border-left: 3px solid #00d4ff;
+            border-left: 3px solid #ff4444;
         }
         pre code {
             background: none;
@@ -107,7 +107,7 @@
     <div class="project-detail">
         <a href="index.html#projects" class="back-link">← Back to Projects</a>
         
-        <h1 style="color: #00d4ff; margin-bottom: 20px;">🎨 AI Image Upscaler</h1>
+        <h1 style="color: #ff4444; margin-bottom: 20px;">🎨 AI Image Upscaler</h1>
         
         <p style="color: #ff6b6b; font-size: 0.9rem; margin: 10px 0;"><strong>Project Category:</strong> Individual Project</p>
 
@@ -131,19 +131,19 @@
         
         <div class="feature-grid">
             <div class="feature-box">
-                <h3 style="color: #00d4ff;">1. Real-ESRGAN Vulkan Integration</h3>
+                <h3 style="color: #ff4444;">1. Real-ESRGAN Vulkan Integration</h3>
                 <p style="color: #b0b0b0;">Built executable wrapper calling <code>realesrgan-ncnn-vulkan.exe</code> with dynamic model loading (<code>realesr-animevideov3-x{scale}.param</code> or <code>realesrgan-x4plus.param</code>). Achieves 2-5 second processing via AMD GPU Vulkan acceleration.</p>
             </div>
             <div class="feature-box">
-                <h3 style="color: #00d4ff;">2. EDSR OpenCV DNN Pipeline</h3>
+                <h3 style="color: #ff4444;">2. EDSR OpenCV DNN Pipeline</h3>
                 <p style="color: #b0b0b0;">Implemented <code>opencv_edsr.py</code> using <code>cv2.dnn_superres.DnnSuperResImpl_create()</code> to load TensorFlow models (<code>EDSR_x2.pb</code>, <code>EDSR_x3.pb</code>, <code>EDSR_x4.pb</code>). CPU-based processing with 15-30 second execution time.</p>
             </div>
             <div class="feature-box">
-                <h3 style="color: #00d4ff;">3. Classical Enhancement Fallback</h3>
+                <h3 style="color: #ff4444;">3. Classical Enhancement Fallback</h3>
                 <p style="color: #b0b0b0;">Designed fallback pipeline using Lanczos interpolation (<code>cv2.INTER_LANCZOS4</code>), CLAHE adaptive contrast (<code>cv2.createCLAHE(clipLimit=3.0)</code>), and unsharp masking with Gaussian blur for AI-independent upscaling.</p>
             </div>
             <div class="feature-box">
-                <h3 style="color: #00d4ff;">4. Batch Interface</h3>
+                <h3 style="color: #ff4444;">4. Batch Interface</h3>
                 <p style="color: #b0b0b0;">Created <code>image_upscaler.bat</code> Windows batch interface with method selection (1=Real-ESRGAN, 2=EDSR), scale selection (2x/3x/4x), automatic model path resolution, and output file naming (<code>filename_method_x{scale}.ext</code>).</p>
             </div>
         </div>
@@ -237,7 +237,7 @@ def enhance_image_classical(image, scale):
         
         <div class="feature-grid">
             <div class="feature-box">
-                <h3 style="color: #00d4ff;">Real-ESRGAN (GAN Architecture)</h3>
+                <h3 style="color: #ff4444;">Real-ESRGAN (GAN Architecture)</h3>
                 <ul style="color: #b0b0b0; line-height: 2;">
                     <li><strong>Processing:</strong> 2-5 seconds per image (Vulkan GPU)</li>
                     <li><strong>Best for:</strong> Severely degraded images, blurry photos</li>
@@ -247,7 +247,7 @@ def enhance_image_classical(image, scale):
                 </ul>
             </div>
             <div class="feature-box">
-                <h3 style="color: #00d4ff;">EDSR (CNN Architecture)</h3>
+                <h3 style="color: #ff4444;">EDSR (CNN Architecture)</h3>
                 <ul style="color: #b0b0b0; line-height: 2;">
                     <li><strong>Processing:</strong> 15-30 seconds per image (CPU)</li>
                     <li><strong>Best for:</strong> Already decent images, precise refinement</li>
@@ -283,7 +283,7 @@ Choose scale (2, 3, or 4): 4
         </ul>
 
         <div style="text-align: center; margin-top: 50px;">
-            <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/image_upscaler" target="_blank" class="cta-button">View on GitHub →</a>
+            <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/image_upscaler" target="_blank" class="cta-button">View Repo</a>
         </div>
     </div>
 
@@ -292,5 +292,16 @@ Choose scale (2, 3, or 4): 4
             <p>&copy; 2025 Yao Xiang. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Holo Companion -->
+    <div id="holo-container" onclick="holoInteract(this)">
+        <div class="holo-dialog-box">
+            <p id="holo-text">Traveler...</p>
+        </div>
+        <img src="images/holo.png" alt="Holo" class="holo-sprite">
+    </div>
+
+    <script src="script.js?v=4"></script>
 </body>
+
 </html>

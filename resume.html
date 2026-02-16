@@ -48,6 +48,9 @@
             body {
                 background: none;
             }
+            .download-btn {
+                display: none !important;
+            }
             .resume-container {
                 width: 100%;
                 height: 100%;
@@ -97,18 +100,20 @@
         }
 
         .profile-section h1 {
-            font-size: 22px; /* Reduced font size */
+            font-size: 32px; /* Increased font size since photo is removed */
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 10px;
+            margin-top: 15px; 
             line-height: 1.1;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .profile-section p {
-            font-size: 12.5px;
+            font-size: 14px;
             opacity: 0.9;
             font-weight: 300;
+            margin-bottom: 10px;
         }
 
         .sidebar-block h3 {
@@ -306,17 +311,16 @@
         <!-- LEFT SIDEBAR -->
         <aside class="sidebar">
             <div class="profile-section">
-                <div class="profile-photo">
-                    <img src="images/headshot.png" alt="Yao Xiang">
-                </div>
+                <!-- Image removed -->
                 <h1>Yao Xiang</h1>
                 <p>Computer Engineering Undergraduate</p>
+                <button onclick="window.print()" class="download-btn" style="display:inline-block; margin-top:10px; padding:5px 10px; cursor:pointer; background:rgba(255,255,255,0.2); border:1px solid white; color:white; border-radius:4px;">Download PDF</button>
             </div>
 
             <div class="sidebar-block">
                 <h3>Contact</h3>
                 <ul class="contact-list">
-                    <li><i class="fas fa-envelope"></i> <a href="mailto:xiangyao888@gmail.com">xiangyao888@gmail.com</a></li>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:dinosaur17013@gmail.com">dinosaur17013@gmail.com</a></li>
                     <li><i class="fas fa-phone"></i> +65 87985826</li>
                     <li><i class="fas fa-globe"></i> <a href="https://yxiang-828.github.io/">yxiang-828.github.io</a></li>
                     <li><i class="fab fa-github"></i> <a href="https://github.com/Yxiang-828">github.com/Yxiang-828</a></li>
@@ -512,10 +516,7 @@
                 <div class="entry">
                     <div class="entry-details">
                         <ul style="list-style: none; padding-left: 0;">
-                            <li style="margin-bottom: 6px;">
-                                <strong>Maritime Hackathon 2026</strong> <span style="font-size: 11px; color: #777;">(In Progress)</span>
-                                <a href="https://github.com/Yxiang-828/Maritime-Hackthon-2026" class="link-btn">GitHub</a>
-                            </li>
+
                             <li style="margin-bottom: 6px;">
                                 <strong>Hack4Good 2026</strong>
                                 <a href="https://github.com/Yxiang-828/Hack4Good2026" class="link-btn">GitHub</a>

@@ -4,13 +4,12 @@
 
 Computer Engineering (+ AI Minor) @ NUS (Year 2) | Teaching Assistant (CS2113). Hardware design (Verilog, Arduino, C/C++) + software automation (Python, Java, JavaScript, TypeScript). Building AI tools and efficient systems.
 
-**Website:** [yxiang-828.github.io](https://yxiang-828.github.io/) | **LinkedIn:** [linkedin.com/in/yao-xiang-733b06329](https://www.linkedin.com/in/yao-xiang-733b06329/) | **Email:** [xiangyao888@gmail.com](mailto:xiangyao888@gmail.com)
+**Website:** [yxiang-828.github.io](https://yxiang-828.github.io/) | **LinkedIn:** [linkedin.com/in/yao-xiang-733b06329](https://www.linkedin.com/in/yao-xiang-733b06329/) | **Personal Email:** [dinosaur17013@gmail.com](mailto:dinosaur17013@gmail.com)
 
 ##  Repos
 - [Wingman](https://github.com/Yxiang-828/Wingman) - Personal Assistant Desktop App 
 - [Helper Tools](https://github.com/Yxiang-828/Helper_Tools) - 7 CLI Tools (File Scanner, AI Upscalers, Media Processors) 
 - [Hack4Good 2026](https://github.com/Yxiang-828/Hack4Good2026) - Hackathon Project
-- [Maritime Hackathon](https://github.com/Yxiang-828/Maritime-Hackthon-2026) - In Progress 
 - [Dual-Mode AV Disruptor](https://github.com/Yxiang-828/HacX-AV-Sensor-Disruptor) - HacX 2025 Hackathon Project
 - [FPGA Calculator](https://github.com/Yxiang-828/EE2026-Project-Vivado) - EE2026 Scientific Calculator & Grapher
 - [FlowCLI](https://github.com/AY2526S1-CS2113-W13-2/tp) - CS2113 Task Manager

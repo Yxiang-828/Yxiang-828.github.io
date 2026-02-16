@@ -590,13 +590,14 @@ footer {
 
 /* Optimize animations */
 .animate-in {
-    animation: fadeInUp 0.8s ease-out forwards; /* Changed to forwards to ensure final state persists */
-    will-change: transform, opacity; /* Hint browser to optimize */
+    animation: fadeInUp 0.8s ease-out forwards;
+    /* Removed will-change to prevent flickering issues on scroll */
 }
 
 /* Optimize heavy rendering */
+/* Removed contain: content to prevent clipping of shadows and scroll flickering */
 section {
-    contain: content; /* Isolate rendering for better scroll performance */
+    position: relative;
 }
 
 @keyframes fadeInUp {

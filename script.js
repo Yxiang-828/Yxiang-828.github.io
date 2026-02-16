@@ -390,8 +390,13 @@ window.addEventListener('scroll', () => {
                     holoContainer.classList.remove("talking");
                     dialog.style.opacity = "";
                     dialog.style.transform = "";
-                    dialog.style.width = ""; // Reset width to default
-                    dialog.style.maxWidth = ""; // Reset max-width to default
+                    
+                    // Wait for fade out transition (300ms) to finish before resetting width
+                    // This prevents the "snap to small size" glitch while fading out
+                    setTimeout(() => {
+                        dialog.style.width = ""; 
+                        dialog.style.maxWidth = ""; 
+                    }, 350); 
                 }, 5000);
             }
         }

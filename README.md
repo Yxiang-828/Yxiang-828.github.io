@@ -133,14 +133,6 @@ Total Size (Top 10): 53.38 GB
 
 ---
 
-##  Experience
-**Singapore Armed Forces (Sungei Gedong Camp)** | *Signaller* | **Nov 2022 - Jan 2024**
-*   **Awards:** Best Unit Award, Outstanding Conduct Grade.
-*   Managed signal equipment, electric circuits, and IP address configurations for mission-critical communications.
-*   Mentored junior personnel in technical operations, contributing to the unit's operational readiness.
-
----
-
 ##  Tech Stack
 ![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)

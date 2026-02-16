@@ -195,6 +195,7 @@ window.holoInteract = (element) => {
     console.log("Current Tap Count:", holoTapCount);
 
     // FORCE VISIBILITY - Override all CSS
+    dialog.style.width = ""; // Reset potentially modified width from scroll event
     dialog.style.display = "block";
     dialog.style.opacity = "1";
     dialog.style.transform = "translateY(0)";
@@ -387,6 +388,7 @@ window.addEventListener('scroll', () => {
                     holoContainer.classList.remove("talking");
                     dialog.style.opacity = "";
                     dialog.style.transform = "";
+                    dialog.style.width = ""; // Reset width to default
                 }, 5000);
             }
         }

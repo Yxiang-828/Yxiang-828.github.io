@@ -3,6 +3,12 @@ console.log("=== SCRIPT.JS LOADED SUCCESSFULLY ===");
 console.log("Current URL:", window.location.href);
 console.log("Pathname:", window.location.pathname);
 
+// --- MODIFICATION: Determine Base Path ---
+const path = window.location.pathname.toLowerCase();
+const isInProjects = path.includes("/projects/");
+const basePath = isInProjects ? "../" : "";
+// -----------------------------------------
+
 document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -15,38 +21,6 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
-// Typing effect removed in favor of CSS animation
-/*
-const heroText = "Hi, I'm Yao Xiang! A computer engineering student!";
-const heroElement = document.querySelector('#hero h2');
-let i = 0;
-
-function typeWriter() {
-    if (i < heroText.length) {
-        heroElement.innerHTML += heroText.charAt(i);
-        i++;
-        setTimeout(typeWriter, 100);
-    } else {
-        // Add cursor blinking effect
-        heroElement.innerHTML += '<span class="cursor">|</span>';
-        setInterval(() => {
-            const cursor = document.querySelector('.cursor');
-            if (cursor) {
-                cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
-            }
-        }, 500);
-    }
-}
-*/
-
-// Start typing effect when page loads - REMOVED
-/*
-window.addEventListener('load', () => {
-    heroElement.innerHTML = '';
-    typeWriter();
-});
-*/
 
 // Scroll animations
 const observerOptions = {
@@ -84,19 +58,6 @@ function createParticles() {
 
 createParticles();
 
-/*
-// Add hover effects to project cards - Moving to CSS for smoother performance
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-10px) scale(1.02)';
-    });
-
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0) scale(1)';
-    });
-});
-*/
-
 // Add skill progress bars animation
 function animateSkillBars() {
     const skillItems = document.querySelectorAll('.skill-category li');
@@ -121,14 +82,6 @@ const skillsObserver = new IntersectionObserver((entries) => {
 if (skillsSection) {
     skillsObserver.observe(skillsSection);
 }
-
-// Add dynamic background color change on scroll - REMOVED for performance/dampening
-// window.addEventListener('scroll', () => {
-//     const scrollPosition = window.scrollY;
-//     const body = document.body;
-//     const hue = (scrollPosition / 10) % 360;
-//     body.style.background = `linear-gradient(135deg, hsl(${hue}, 50%, 10%) 0%, hsl(${hue + 60}, 50%, 15%) 50%, hsl(${hue + 120}, 50%, 20%) 100%)`;
-// });
 
 // Add click effect to CTA button
 const ctaButton = document.querySelector('.cta-button');
@@ -232,7 +185,7 @@ window.holoInteract = (element) => {
     element.classList.add("talking");
     clearTimeout(holoTimeout);
 
-    const path = window.location.pathname.toLowerCase();
+    // Use global path vars
     const isMainPage = path.endsWith("index.html") || path === "/" || path.endsWith("/resume") || path.endsWith("/resume/");
     
     // Explicitly Log for Debugging
@@ -258,8 +211,8 @@ window.holoInteract = (element) => {
         else if (holoTapCount >= 5) {
             text.innerText = "mph!";
             
-            // Play Pop Sound
-            const popSound = new Audio("images/bubble-pop.mp3");
+            // Play Pop Sound - UPDATED PATH
+            const popSound = new Audio(basePath + "images/bubble-pop.mp3");
             popSound.volume = 0.6;
             popSound.play().catch(e => console.log("Pop sound failed:", e));
 
@@ -269,8 +222,8 @@ window.holoInteract = (element) => {
             setTimeout(() => {
                 element.classList.remove("vanished");
                 
-                // Play Pop Sound again
-                const popReturn = new Audio("images/bubble-pop.mp3");
+                // Play Pop Sound again - UPDATED PATH
+                const popReturn = new Audio(basePath + "images/bubble-pop.mp3");
                 popReturn.volume = 0.6;
                 popReturn.play().catch(e => console.log("Pop return failed:", e));
 
@@ -292,10 +245,10 @@ window.holoInteract = (element) => {
         else if (holoTapCount === 2) text.innerText = "Focus on the project!";
         else if (holoTapCount === 3) {
             text.innerText = "I'LL SEND YOU BACK HOME IF YOU DO IT AGAIN!";
-            // Pre-load assets for smooth animation
-            const attackGif = new Image(); attackGif.src = "images/holo-attack.gif";
-            const glassImg = new Image(); glassImg.src = "images/broken-glass_nobg.png";
-            const shatterSound = new Audio("images/glass-shatter.mp3"); shatterSound.preload = "auto";
+            // Pre-load assets for smooth animation - UPDATED PATH
+            const attackGif = new Image(); attackGif.src = basePath + "images/holo-attack.gif";
+            const glassImg = new Image(); glassImg.src = basePath + "images/broken-glass_nobg.png";
+            const shatterSound = new Audio(basePath + "images/glass-shatter.mp3"); shatterSound.preload = "auto";
         }
         else if (holoTapCount >= 4) {
             text.innerText = "BEGONE!";
@@ -304,7 +257,7 @@ window.holoInteract = (element) => {
             let attackImg = document.querySelector(".holo-attack-gif");
             if (!attackImg) {
                 attackImg = document.createElement("img");
-                attackImg.src = "images/holo-attack.gif";
+                attackImg.src = basePath + "images/holo-attack.gif"; // UPDATED PATH
                 attackImg.classList.add("holo-attack-gif");
                 document.body.appendChild(attackImg);
             }
@@ -324,8 +277,8 @@ window.holoInteract = (element) => {
             // Start animation
             attackImg.classList.add("holo-attack-active");
             
-            // 3. Play Shatter Sound & Show Glass (Timed with impact)
-            const shatterAudio = new Audio("images/glass-shatter.mp3");
+            // 3. Play Shatter Sound & Show Glass (Timed with impact) - UPDATED PATH
+            const shatterAudio = new Audio(basePath + "images/glass-shatter.mp3");
             
             setTimeout(() => {
                 shatterAudio.play().catch(e => console.log("Audio play failed:", e));
@@ -336,7 +289,7 @@ window.holoInteract = (element) => {
             // 4. Redirect after delay
             setTimeout(() => { 
                 console.log("Redirecting to index.html...");
-                window.location.href = "index.html"; 
+                window.location.href = basePath + "index.html"; // UPDATED PATH (Back to home)
             }, 1600); // 600ms impact + 1000ms delay
             
             return; 
@@ -358,7 +311,8 @@ window.holoInteract = (element) => {
 
 // Global Click Sound Effect
 function playClickSound() {
-    const clickSound = new Audio("images/mouse-click.mp3");
+    // UPDATED PATH
+    const clickSound = new Audio(basePath + "images/mouse-click.mp3");
     clickSound.volume = 0.4;
     // We don't wait for the promise here because we handle delay separately
     clickSound.play().catch(e => console.log("Click sound failed:", e));
@@ -414,10 +368,11 @@ window.addEventListener('scroll', () => {
             // Only trigger if she's not currently "vanished" or busy
             if (!holoContainer.classList.contains("vanished") && !holoContainer.classList.contains("talking")) {
                 
-                holoText.innerText = "You've come to the end, do you like it? Press `view details` if you have not!";
+                holoText.innerText = "You've come to the end, do you like it? Press `view details` in the 'featured projects' section if you have not!";
                 
                 // Force show dialog using same logic as interact
                 holoContainer.classList.add("talking");
+                dialog.style.width = "400px"; // Make it wider for this long text
                 dialog.style.display = "block";
                 dialog.style.opacity = "1";
                 dialog.style.transform = "translateY(0)";

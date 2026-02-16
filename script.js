@@ -9,6 +9,35 @@ const isInProjects = path.includes("/projects/");
 const basePath = isInProjects ? "../" : "";
 // -----------------------------------------
 
+// --- View Counter ---
+async function updateCounter() {
+    try {
+        const counterElement = document.getElementById('view-counter');
+        const countValue = document.getElementById('count-value');
+        
+        if (!counterElement || !countValue) return;
+
+        // Using counterapi.dev - free simple counter service
+        // Namespace: Yxiang-828, Key: portfolio
+        const response = await fetch('https://api.counterapi.dev/v1/Yxiang-828/portfolio/up');
+        
+        if (!response.ok) {
+           throw new Error('Counter API failed');
+        }
+        
+        const data = await response.json();
+        countValue.textContent = data.count;
+        counterElement.style.display = 'block'; // Show only after successful load
+        
+    } catch (error) {
+        console.log('View counter unavailable:', error);
+        // Fallback or just keep hidden
+    }
+}
+
+document.addEventListener('DOMContentLoaded', updateCounter);
+// --------------------
+
 document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();

@@ -171,12 +171,26 @@ nav ul li a:hover::before {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(8, 1fr);
+    /* ensure credit appears on overlay */
+    color: #ccc;
     /* picture should always fill and stay centered */
     background-image: url('images/Cover.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     z-index: 2000;
+}
+#loader-credit {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    text-align: center;
+}
+#loader-credit a {
+    color: #ff4444;
+    text-decoration: none;
 }
 #loader .cell {
     background: rgba(0,0,0,0.85);

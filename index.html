@@ -1,20 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- hide page content until loader/holo sequence finishes -->
     <style>
-    body.preload{visibility:hidden !important;}
-    /* keep loader & holo visible during preload state */
-    body.preload #loader,
-    body.preload #holo-container {visibility:visible !important;}
-</style>
-    <meta name="description" content="Portfolio of Yao Xiang, Computer Engineering student at NUS specializing in AI, hardware, and software development.">
-    <meta name="keywords" content="Yao Xiang, Computer Engineering, NUS, AI, Python, JavaScript, Verilog, Arduino, Helper Tools, Wingman">
+        body.preload {
+            visibility: hidden !important;
+        }
+
+        /* keep loader & holo visible during preload state */
+        body.preload #loader,
+        body.preload #holo-container {
+            visibility: visible !important;
+        }
+
+        @keyframes pulseOpacity {
+            0% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.3;
+            }
+        }
+    </style>
+    <meta name="description"
+        content="Portfolio of Yao Xiang, Computer Engineering student at NUS specializing in AI, hardware, and software development.">
+    <meta name="keywords"
+        content="Yao Xiang, Computer Engineering, NUS, AI, Python, JavaScript, Verilog, Arduino, Helper Tools, Wingman">
     <title>Yao Xiang - Computer Engineering Student</title>
     <link rel="stylesheet" href="styles.css?v=5">
 </head>
+
 <body class="preload">
     <!-- loading overlay grid -->
     <div id="loader" aria-hidden="true">
@@ -42,10 +65,14 @@
     <section id="hero">
         <div class="hero-container">
             <h2>Hi, I'm Yao Xiang!</h2>
-            <p>Aspiring Computer Engineer with a strong passion for machine learning, hardware-software integration, and full-stack development. Proven ability to build efficient automation tools and AI-powered applications. Fluent in English and Chinese, and adaptable to new environments. Eager to leverage academic foundations in a professional workspace to drive technological innovation.</p>
+            <p>Aspiring Computer Engineer with a strong passion for machine learning, hardware-software integration, and
+                full-stack development. Proven ability to build efficient automation tools and AI-powered applications.
+                Fluent in English and Chinese, and adaptable to new environments. Eager to leverage academic foundations
+                in a professional workspace to drive technological innovation.</p>
             <div style="margin-top: 20px;">
                 <a href="#contact" class="cta-button" style="margin-right: 15px;">Get In Touch</a>
-                <a href="resume.html" class="cta-button" style="background-color: transparent; border: 2px solid #ff4444;">View Resume</a>
+                <a href="resume.html" class="cta-button"
+                    style="background-color: transparent; border: 2px solid #ff4444;">View Resume</a>
             </div>
         </div>
     </section>
@@ -53,8 +80,12 @@
     <section id="about">
         <div class="container">
             <h2>About Me</h2>
-            <p>I'm a Year 2 Computer Engineering student (Minor in AI) at the National University of Singapore, passionate about creating innovative solutions that combine hardware and software. My expertise spans from Verilog, C/C++, and Arduino for embedded systems to Python, Java, JavaScript, and TypeScript for modern applications.</p>
-            <p>Currently developing Helper Tools (high-performance CLI utilities for developers) and Wingman (Electron-based AI assistant desktop app).</p>
+            <p>I'm a Year 2 Computer Engineering student (Minor in AI) at the National University of Singapore,
+                passionate about creating innovative solutions that combine hardware and software. My expertise spans
+                from Verilog, C/C++, and Arduino for embedded systems to Python, Java, JavaScript, and TypeScript for
+                modern applications.</p>
+            <p>Currently developing Helper Tools (high-performance CLI utilities for developers) and Wingman
+                (Electron-based AI assistant desktop app).</p>
         </div>
     </section>
 
@@ -65,108 +96,158 @@
 
                 <div class="project-card">
                     <h3>💡 Hack4Good 2026</h3>
-                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Hackathon Project</strong></p>
+                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Hackathon
+                            Project</strong></p>
                     <p>Project developed for Hack4Good 2026. Check GitHub for latest updates and source code.</p>
                     <div style="margin-top: 15px;">
-                        <a href="https://github.com/Yxiang-828/Hack4Good2026" target="_blank" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
+                        <a href="https://github.com/Yxiang-828/Hack4Good2026" target="_blank" class="cta-button"
+                            style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
                     </div>
                 </div>
                 <div class="project-card">
                     <h3>🤖 Wingman</h3>
-                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Team Project - NUS Orbital Apollo 2025</strong></p>
-                    <p>Electron-based AI assistant desktop app. <strong>Electron + React + TypeScript + Python</strong>. Features AI integration, task management, cross-platform support.</p>
+                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Team Project - NUS
+                            Orbital Apollo 2025</strong></p>
+                    <p>Electron-based AI assistant desktop app. <strong>Electron + React + TypeScript + Python</strong>.
+                        Features AI integration, task management, cross-platform support.</p>
                     <div style="margin-top: 15px;">
-                        <a href="projects/wingman.html" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Details</a>
-                        <a href="https://github.com/Yxiang-828/Wingman" target="_blank" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
+                        <a href="projects/wingman.html" class="cta-button"
+                            style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Details</a>
+                        <a href="https://github.com/Yxiang-828/Wingman" target="_blank" class="cta-button"
+                            style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
                     </div>
                 </div>
                 <div class="project-card">
                     <h3>📡 Dual-Mode AV Disruptor</h3>
-                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>HacX 2025 Hackathon Project</strong></p>
-                    <p><strong>Python + Raspberry Pi + CARLA</strong>. Non-destructive prototype to halt hostile autonomous vehicles by disrupting LiDAR and camera sensors. Validated with 15m range field tests.</p>
+                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>HacX 2025 Hackathon
+                            Project</strong></p>
+                    <p><strong>Python + Raspberry Pi + CARLA</strong>. Non-destructive prototype to halt hostile
+                        autonomous vehicles by disrupting LiDAR and camera sensors. Validated with 15m range field
+                        tests.</p>
                     <div style="margin-top: 15px;">
-                        <a href="https://github.com/Yxiang-828/HacX-AV-Sensor-Disruptor" target="_blank" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
+                        <a href="https://github.com/Yxiang-828/HacX-AV-Sensor-Disruptor" target="_blank"
+                            class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
                     </div>
                 </div>
                 <div class="project-card">
                     <h3>🧮 FPGA Calculator</h3>
-                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>EE2026 Scientific Calculator</strong></p>
-                    <p><strong>Verilog + Vivado + Basys 3</strong>. Scientific calculator & grapher. Features Newton-Raphson root finder and Q22.14 fixed-point arithmetic.</p>
+                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>EE2026 Scientific
+                            Calculator</strong></p>
+                    <p><strong>Verilog + Vivado + Basys 3</strong>. Scientific calculator & grapher. Features
+                        Newton-Raphson root finder and Q22.14 fixed-point arithmetic.</p>
                     <div style="margin-top: 15px;">
-                        <a href="https://github.com/Yxiang-828/EE2026-Project-Vivado" target="_blank" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
+                        <a href="https://github.com/Yxiang-828/EE2026-Project-Vivado" target="_blank" class="cta-button"
+                            style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
                     </div>
                 </div>
                 <div class="project-card">
                     <h3>⌨️ FlowCLI</h3>
-                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>CS2113 Task Manager</strong></p>
-                    <p><strong>Java + JUnit + Gradle</strong>. Keyboard-optimized CLI task manager. Features advanced filtering, sorting, and CI/CD with GitHub Actions.</p>
+                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>CS2113 Task
+                            Manager</strong></p>
+                    <p><strong>Java + JUnit + Gradle</strong>. Keyboard-optimized CLI task manager. Features advanced
+                        filtering, sorting, and CI/CD with GitHub Actions.</p>
                     <div style="margin-top: 15px;">
-                        <a href="https://ay2526s1-cs2113-w13-2.github.io/tp/" target="_blank" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Docs</a>
-                        <a href="https://github.com/AY2526S1-CS2113-W13-2/tp" target="_blank" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
+                        <a href="https://ay2526s1-cs2113-w13-2.github.io/tp/" target="_blank" class="cta-button"
+                            style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Docs</a>
+                        <a href="https://github.com/AY2526S1-CS2113-W13-2/tp" target="_blank" class="cta-button"
+                            style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
                     </div>
                 </div>
                 <div class="project-card">
                     <h3>🎨 Image Upscaler</h3>
-                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Individual Project</strong></p>
-                    <img src="https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/realesrgan_1.png" alt="Image Upscaler Comparison" loading="lazy">
-                    <p><strong>Real-ESRGAN + EDSR AI models</strong>. GPU-accelerated (2-5s/image). 4x quality boost. AMD Vulkan optimized.</p>
+                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Individual
+                            Project</strong></p>
+                    <img src="https://raw.githubusercontent.com/Yxiang-828/Helper_Tools/main/image_upscaler/samples/realesrgan_1.png"
+                        alt="Image Upscaler Comparison" loading="lazy">
+                    <p><strong>Real-ESRGAN + EDSR AI models</strong>. GPU-accelerated (2-5s/image). 4x quality boost.
+                        AMD Vulkan optimized.</p>
                     <div style="margin-top: 15px;">
-                        <a href="projects/image-upscaler.html" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Details</a>
-                        <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/image_upscaler" target="_blank" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
+                        <a href="projects/image-upscaler.html" class="cta-button"
+                            style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Details</a>
+                        <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/image_upscaler" target="_blank"
+                            class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
                     </div>
                 </div>
                 <div class="project-card">
                     <h3>🎬 Video Upscaler</h3>
-                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Individual Project</strong></p>
-                    <p><strong>Real-ESRGAN + FFmpeg</strong>. Frame-by-frame AI upscaling (4x resolution). AMD hardware encoding with CPU fallback.</p>
+                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Individual
+                            Project</strong></p>
+                    <p><strong>Real-ESRGAN + FFmpeg</strong>. Frame-by-frame AI upscaling (4x resolution). AMD hardware
+                        encoding with CPU fallback.</p>
                     <div style="margin-top: 15px;">
-                        <a href="projects/video-upscaler.html" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Details</a>
-                        <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/video_upscaler" target="_blank" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
+                        <a href="projects/video-upscaler.html" class="cta-button"
+                            style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Details</a>
+                        <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/video_upscaler" target="_blank"
+                            class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
                     </div>
                 </div>
                 <div class="project-card">
                     <h3>🎞️ Video to GIF Converter</h3>
-                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Individual Project</strong></p>
-                    <p><strong>MoviePy + Pillow</strong>. Exact size constraints (1-50MB). Speed control (0.1x-2.0x). Auto-resolution scaling.</p>
+                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Individual
+                            Project</strong></p>
+                    <p><strong>MoviePy + Pillow</strong>. Exact size constraints (1-50MB). Speed control (0.1x-2.0x).
+                        Auto-resolution scaling.</p>
                     <div style="margin-top: 15px;">
-                        <a href="projects/video-to-gif.html" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Details</a>
-                        <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/Video_to_GIF_Converter" target="_blank" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
+                        <a href="projects/video-to-gif.html" class="cta-button"
+                            style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Details</a>
+                        <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/Video_to_GIF_Converter"
+                            target="_blank" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View
+                            Repo</a>
                     </div>
                 </div>
                 <div class="project-card">
                     <h3>🎤 Audio Transcriber</h3>
-                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Individual Project</strong></p>
-                    <p><strong>Whisper (ONNX) + DirectML</strong>. AMD GPU acceleration. Processes long audio (30+ min). 3-5x faster than CPU.</p>
+                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Individual
+                            Project</strong></p>
+                    <p><strong>Whisper (ONNX) + DirectML</strong>. AMD GPU acceleration. Processes long audio (30+ min).
+                        3-5x faster than CPU.</p>
                     <div style="margin-top: 15px;">
-                        <a href="projects/audio-transcriber.html" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Details</a>
-                        <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/Audio_to_Text_Transcriber" target="_blank" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
+                        <a href="projects/audio-transcriber.html" class="cta-button"
+                            style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Details</a>
+                        <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/Audio_to_Text_Transcriber"
+                            target="_blank" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View
+                            Repo</a>
                     </div>
                 </div>
                 <div class="project-card">
                     <h3>📝 Subtitle/MP3 Extractor</h3>
-                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Individual Project</strong></p>
-                    <p><strong>FFmpeg CLI wrapper</strong>. Extracts embedded SRT subtitles. Falls back to MP3 audio extraction.</p>
+                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Individual
+                            Project</strong></p>
+                    <p><strong>FFmpeg CLI wrapper</strong>. Extracts embedded SRT subtitles. Falls back to MP3 audio
+                        extraction.</p>
                     <div style="margin-top: 15px;">
-                        <a href="projects/subtitle-extractor.html" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Details</a>
-                        <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/Video-subtitle%26mp3-extractor" target="_blank" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
+                        <a href="projects/subtitle-extractor.html" class="cta-button"
+                            style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Details</a>
+                        <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/Video-subtitle%26mp3-extractor"
+                            target="_blank" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View
+                            Repo</a>
                     </div>
                 </div>
                 <div class="project-card">
                     <h3>🔍 File Scanner</h3>
-                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Individual Project</strong></p>
-                    <p><strong>.NET APIs + PowerShell</strong>. 95K+ files/sec on HDD. Min-heap top-K algorithm. 16-50x faster than Get-ChildItem.</p>
+                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Individual
+                            Project</strong></p>
+                    <p><strong>.NET APIs + PowerShell</strong>. 95K+ files/sec on HDD. Min-heap top-K algorithm. 16-50x
+                        faster than Get-ChildItem.</p>
                     <div style="margin-top: 15px;">
-                        <a href="projects/file-scanner.html" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Details</a>
-                        <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/File_Scanner" target="_blank" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
+                        <a href="projects/file-scanner.html" class="cta-button"
+                            style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Details</a>
+                        <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/File_Scanner" target="_blank"
+                            class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
                     </div>
                 </div>
                 <div class="project-card">
                     <h3>🎮 Unity Image Extractor</h3>
-                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Individual Project</strong></p>
-                    <p><strong>UnityPy + PIL</strong>. Extracts Texture2D/Sprite assets from .unity3d bundles. Batch processing, PNG conversion.</p>
+                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Individual
+                            Project</strong></p>
+                    <p><strong>UnityPy + PIL</strong>. Extracts Texture2D/Sprite assets from .unity3d bundles. Batch
+                        processing, PNG conversion.</p>
                     <div style="margin-top: 15px;">
-                        <a href="projects/unity-extractor.html" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Details</a>
-                        <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/Unity_Image_Extractor" target="_blank" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View Repo</a>
+                        <a href="projects/unity-extractor.html" class="cta-button"
+                            style="font-size: 0.9rem; padding: 8px 16px; margin-right: 10px;">View Details</a>
+                        <a href="https://github.com/Yxiang-828/Helper_Tools/tree/main/Unity_Image_Extractor"
+                            target="_blank" class="cta-button" style="font-size: 0.9rem; padding: 8px 16px;">View
+                            Repo</a>
                     </div>
                 </div>
             </div>
@@ -179,10 +260,13 @@
             <div class="project-grid" style="grid-template-columns: 1fr;">
                 <div class="project-card">
                     <h3>National University of Singapore (CS2113)</h3>
-                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Undergraduate Teaching Assistant | Jan 2026 - Present</strong></p>
+                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-bottom: 10px;"><strong>Undergraduate Teaching
+                            Assistant | Jan 2026 - Present</strong></p>
                     <ul style="list-style-type: disc; padding-left: 20px; margin-top: 10px; color: #e0e0e0;">
-                        <li style="margin-bottom: 5px;">Teaching Assistant for CS2113 Software Engineering & Object-Oriented Programming (AY25/26 Sem 2).</li>
-                        <li style="margin-bottom: 5px;">Guiding students on software principles, Java, and collaborative development using GitHub.</li>
+                        <li style="margin-bottom: 5px;">Teaching Assistant for CS2113 Software Engineering &
+                            Object-Oriented Programming (AY25/26 Sem 2).</li>
+                        <li style="margin-bottom: 5px;">Guiding students on software principles, Java, and collaborative
+                            development using GitHub.</li>
                     </ul>
                 </div>
             </div>
@@ -246,12 +330,16 @@
     <section id="contact">
         <div class="container">
             <h2>Get In Touch</h2>
-            <p>I'm always open to discussing new opportunities, interesting projects, or just having a chat about fun, anime & AI!</p>
+            <p>I'm always open to discussing new opportunities, interesting projects, or just having a chat about fun,
+                anime & AI!</p>
             <div class="contact-info">
                 <p><strong>Personal Email:</strong> dinosaur17013@gmail.com</p>
-                <p><strong>Website:</strong> <a href="https://yxiang-828.github.io/" target="_blank">yxiang-828.github.io</a></p>
-                <p><strong>GitHub:</strong> <a href="https://github.com/Yxiang-828" target="_blank">github.com/Yxiang-828</a></p>
-                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/yao-xiang-733b06329/" target="_blank">linkedin.com/in/yao-xiang-733b06329</a></p>
+                <p><strong>Website:</strong> <a href="https://yxiang-828.github.io/"
+                        target="_blank">yxiang-828.github.io</a></p>
+                <p><strong>GitHub:</strong> <a href="https://github.com/Yxiang-828"
+                        target="_blank">github.com/Yxiang-828</a></p>
+                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/yao-xiang-733b06329/"
+                        target="_blank">linkedin.com/in/yao-xiang-733b06329</a></p>
             </div>
         </div>
     </section>
@@ -259,12 +347,14 @@
     <footer>
         <div class="container">
             <p>&copy; 2025 Yao Xiang. All rights reserved.</p>
-            <p style="font-size:0.8rem; color:#888; margin-top:5px;">Cover artwork by <a href="https://twitter.com/maru__myth" target="_blank" style="color:#ff4444; text-decoration:none;">@maru__myth</a></p>
+            <p style="font-size:0.8rem; color:#888; margin-top:5px;">Cover artwork by <a
+                    href="https://twitter.com/maru__myth" target="_blank"
+                    style="color:#ff4444; text-decoration:none;">@maru__myth</a></p>
         </div>
     </footer>
 
     <!-- Holo Companion -->
-    <div id="holo-container" onclick="holoInteract(this)">
+    <div id="holo-container" onclick="holoInteract(this)" style="display: none;">
         <div class="holo-dialog-box">
             <p id="holo-text">Traveler...</p>
         </div>
@@ -273,48 +363,105 @@
 
     <script src="script.js?v=4"></script>
 
-    <!-- loader script -->
+    <!-- Loader Script -->
     <script>
-        (function() {
-            // block various input events while loading (scrollbar remains visible)
-            // use global helper defined in script.js
-            document.addEventListener('wheel', preventScroll, {passive:false});
-            document.addEventListener('touchmove', preventScroll, {passive:false});
-            document.addEventListener('keydown', preventScroll, {passive:false});
+        (function () {
             const loader = document.getElementById('loader');
+            const holoContainer = document.getElementById('holo-container');
+            const holoText = document.getElementById('holo-text');
+
+            // Check if user is manually reloading the page
+            const navEntries = performance.getEntriesByType("navigation");
+            const isReload = navEntries.length > 0 && navEntries[0].type === "reload";
+
+            // Skip loader if returning from another page or using a deep link hash (but NOT on manual refresh)
+            if (!isReload && (sessionStorage.getItem('visited') || window.location.hash)) {
+                if (loader) loader.remove();
+                document.body.classList.remove('preload');
+                window.holoCanNavigate = true;
+                sessionStorage.setItem('visited', 'true');
+                if (holoContainer) {
+                    holoContainer.style.display = 'block';
+                }
+                if (holoText) {
+                    holoText.innerText = "Greetings, traveler.";
+                }
+
+                // Fix anchor scrolling because layout was hidden initially
+                if (window.location.hash) {
+                    setTimeout(() => {
+                        const target = document.querySelector(window.location.hash);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }, 50);
+                }
+                return;
+            }
+
+            // First time loading sequence
             if (!loader) return;
             const rows = 8;
             const cols = 10;
-            // flag to track if holo click unlocked navigation
             window.holoCanNavigate = false;
 
-            // build cells immediately so grid is visible before load
+            // Initialize overlay grid cells
             for (let i = 0; i < rows * cols; ++i) {
                 const cell = document.createElement('div');
                 cell.className = 'cell';
-                // staggered delays spread roughly over first ~3s
                 const ratio = i / (rows * cols);
                 const delay = (Math.random() * 0.5 + ratio * 2.5).toFixed(3);
                 cell.style.setProperty('--delay', delay + 's');
                 loader.appendChild(cell);
             }
 
-            // when page fully loaded, start animation & schedule ready prompt
+            // Handle page load completion and interaction prompt
             window.addEventListener('load', () => {
                 loader.classList.add('loaded');
-                // show holo prompt exactly when overlay would finish
+
+                // Appear the "Click anywhere to begin" prompt earlier (4.5s)
                 setTimeout(() => {
-                    const holoText = document.querySelector('#holo-text');
-                    const holoContainer = document.querySelector('#holo-container');
-                    if (holoText && holoContainer) {
-                        holoText.innerText = 'Ready?';
-                        // force the dialog open
-                        holoContainer.classList.add('talking');
-                    }
-                }, 4000);
-                // do not auto-remove overlay; wait for holo click
+                    const beginPrompt = document.createElement('div');
+                    beginPrompt.innerHTML = 'Click anywhere to begin';
+                    beginPrompt.className = 'begin-prompt';
+                    loader.appendChild(beginPrompt);
+
+                    const spawnHoloSequence = () => {
+                        beginPrompt.remove();
+                        if (holoContainer && holoText) {
+                            holoContainer.classList.add('holo-splash-center');
+                            holoContainer.style.opacity = '0';
+                            holoContainer.style.transform = 'translate(-50%, -50%) scale(0) translateY(50px)';
+                            holoContainer.style.display = 'block';
+
+                            // Force reflow to trigger CSS animation
+                            void holoContainer.offsetWidth;
+
+                            // Apply the pop in animation
+                            holoContainer.style.animation = 'popInSplash 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards';
+
+                            holoText.innerText = 'Ready?';
+                            holoContainer.classList.add('talking');
+
+                            // Guaranteed to play SFX now because it's triggered by a user click
+                            if (typeof playSound === 'function') {
+                                playSound('pop', 0.8);
+                            }
+
+                            // Clean up inline styles after animation so script.js CSS classes can work
+                            setTimeout(() => {
+                                holoContainer.style.animation = '';
+                                holoContainer.style.opacity = '';
+                                holoContainer.style.transform = '';
+                            }, 650);
+                        }
+                    };
+
+                    loader.addEventListener('click', spawnHoloSequence, { once: true });
+                }, 4500);
             });
         })();
     </script>
 </body>
+
 </html>

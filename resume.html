@@ -58,9 +58,14 @@
             .resume-container {
                 /* match the on‑screen width so printed PDF looks identical */
                 width: 210mm;
-                min-height: 297mm;
+                /* let content determine height on paper to avoid an empty second sheet */
+                min-height: auto !important;
+                height: auto !important;
                 box-shadow: none;
                 margin: auto;
+                /* prevent page breaks inside the container */
+                page-break-inside: avoid;
+                break-inside: avoid;
             }
             @page {
                 size: A4;

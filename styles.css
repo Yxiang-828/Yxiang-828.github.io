@@ -16,6 +16,19 @@ body {
     background: linear-gradient(135deg, #000000 0%, #1a0505 50%, #2b0000 100%);
     min-height: 100vh;
     overflow-x: hidden;
+    user-select: none; /* Prevent text selection cursor on non-text elements */
+    caret-color: transparent; /* Hide blinking text cursor globally */
+}
+
+/* Allow text selection on actual text elements */
+p, h1, h2, h3, h4, h5, h6, span, li, code, pre, strong, em, blockquote {
+    user-select: text;
+}
+
+/* Restore blinking cursor only for actual input fields */
+input, textarea, [contenteditable="true"] {
+    caret-color: auto;
+    user-select: auto;
 }
 
 .container {

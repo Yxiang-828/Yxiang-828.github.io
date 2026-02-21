@@ -76,7 +76,7 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
 
 // Scroll animations
 const observerOptions = {
-    threshold: 0.1,
+    threshold: 0.05, // Lowered threshold so it triggers earlier on mobile
     rootMargin: '0px 0px -50px 0px'
 };
 
@@ -129,7 +129,7 @@ const skillsObserver = new IntersectionObserver((entries) => {
             animateSkillBars();
         }
     });
-}, { threshold: 0.5 });
+}, { threshold: 0.05 });
 
 if (skillsSection) {
     skillsObserver.observe(skillsSection);

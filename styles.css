@@ -746,8 +746,9 @@ section {
     }
 
     .detail-container {
-        padding: 20px !important;
-        margin-top: 180px !important;
+        padding: 5% !important;
+        margin: 180px 5% 50px !important; /* Use ratio/smaller margins for mobile */
+        width: auto;
     }
 
     .detail-container h1 {
@@ -755,6 +756,32 @@ section {
     }
 
     .perf-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .tech-badge {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+    }
+
+    .feature-grid, .theme-grid, .screenshot-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .theme-box img {
+        width: 100%;
+        max-width: none;
+    }
+
+    .personality-table {
         display: block;
         overflow-x: auto;
         white-space: nowrap;

@@ -254,8 +254,12 @@ nav ul li a:hover::before {
 /* Splash Screen Prompt */
 .begin-prompt {
     position: absolute;
-    top: 42%;
-    left: 8%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Precisely center */
+    width: 100%;
+    text-align: center;
     color: #fff;
     font-size: 1.8rem;
     letter-spacing: 2px;

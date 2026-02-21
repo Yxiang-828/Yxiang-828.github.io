@@ -6,8 +6,9 @@
     <!-- hide page content until loader/holo sequence finishes -->
     <style>
     body.preload{visibility:hidden !important;}
-    /* keep loader visible during preload state */
-    body.preload #loader{visibility:visible !important;}
+    /* keep loader & holo visible during preload state */
+    body.preload #loader,
+    body.preload #holo-container {visibility:visible !important;}
 </style>
     <meta name="description" content="Portfolio of Yao Xiang, Computer Engineering student at NUS specializing in AI, hardware, and software development.">
     <meta name="keywords" content="Yao Xiang, Computer Engineering, NUS, AI, Python, JavaScript, Verilog, Arduino, Helper Tools, Wingman">

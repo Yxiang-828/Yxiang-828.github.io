@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
+    <!-- loading overlay grid -->
+    <div id="loader" aria-hidden="true"></div>
+
     <header>
         <nav>
             <div class="nav-container">
@@ -259,5 +262,49 @@
     </div>
 
     <script src="script.js?v=4"></script>
+
+    <!-- loader script -->
+    <script>
+        (function() {
+            // block various input events while loading (scrollbar remains visible)
+            // use global helper defined in script.js
+            document.addEventListener('wheel', preventScroll, {passive:false});
+            document.addEventListener('touchmove', preventScroll, {passive:false});
+            document.addEventListener('keydown', preventScroll, {passive:false});
+            const loader = document.getElementById('loader');
+            if (!loader) return;
+            const rows = 8;
+            const cols = 10;
+            // flag to track if holo click unlocked navigation
+            window.holoCanNavigate = false;
+
+            // build cells immediately so grid is visible before load
+            for (let i = 0; i < rows * cols; ++i) {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                // staggered delays spread roughly over first ~3s
+                const ratio = i / (rows * cols);
+                const delay = (Math.random() * 0.5 + ratio * 2.5).toFixed(3);
+                cell.style.setProperty('--delay', delay + 's');
+                loader.appendChild(cell);
+            }
+
+            // when page fully loaded, start animation & schedule ready prompt
+            window.addEventListener('load', () => {
+                loader.classList.add('loaded');
+                // show holo prompt exactly when overlay would finish
+                setTimeout(() => {
+                    const holoText = document.querySelector('#holo-text');
+                    const holoContainer = document.querySelector('#holo-container');
+                    if (holoText && holoContainer) {
+                        holoText.innerText = 'Ready?';
+                        // force the dialog open
+                        holoContainer.classList.add('talking');
+                    }
+                }, 4000);
+                // do not auto-remove overlay; wait for holo click
+            });
+        })();
+    </script>
 </body>
 </html>

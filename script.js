@@ -7,6 +7,8 @@ console.log("Pathname:", window.location.pathname);
 const path = window.location.pathname.toLowerCase();
 const isInProjects = path.includes("/projects/");
 const basePath = isInProjects ? "../" : "";
+// lock navigation until holo interaction on main page
+window.holoCanNavigate = false;
 // -----------------------------------------
 
 // --- Audio Preloading ---
@@ -231,6 +233,8 @@ window.chibiInteract = (element) => {
 // Holo Interaction Logic
 let holoTapCount = 0;
 let holoTimeout;
+// scroll-prevention helper reference (defined in loader script)
+function preventScroll(e){ e.preventDefault(); }
 
 window.holoInteract = (element) => {
     console.log("=== HOLO CLICKED! FUNCTION CALLED ===");
@@ -264,6 +268,14 @@ window.holoInteract = (element) => {
 
     // Use global path vars
     const isMainPage = path.endsWith("index.html") || path === "/" || path.endsWith("/resume") || path.endsWith("/resume/");
+
+    // ensure holo is shown on subpages as well
+    if (!isMainPage) {
+        const holoEl = document.getElementById('holo-container');
+        if (holoEl) {
+            holoEl.classList.add('holo-visible');
+        }
+    }
     
     // Explicitly Log for Debugging
     console.log("------------------------------------------------");
@@ -282,7 +294,23 @@ window.holoInteract = (element) => {
     
     if (isMainPage) {
         // --- MAIN PAGE STATE ---
-        // Fun interactions, vanish after 5 taps, come back later.
+        // if loader still present and user clicked ready prompt
+        const loaderElem = document.getElementById('loader');
+        if (text && text.innerText === 'Ready?') {
+            // remove overlay if still present but not required
+            if (loaderElem) loaderElem.remove();
+            // remove blocking listeners (scroll is allowed but will have scrollbar)
+            document.removeEventListener('wheel', preventScroll);
+            document.removeEventListener('touchmove', preventScroll);
+            document.removeEventListener('keydown', preventScroll);
+            // replace ready prompt with greeting
+            text.innerText = "Greetings, traveler.";
+            // allow navigation now
+            window.holoCanNavigate = true;
+            return;
+        }
+        
+        // Fun interactions after initial entry, vanish after 5 taps, come back later.
         if (holoTapCount === 1) text.innerText = "Greetings, traveler.";
         else if (holoTapCount === 2) text.innerText = "Do you have any apples?";
         else if (holoTapCount === 3) text.innerText = "Stop poking me!";
@@ -400,6 +428,16 @@ document.addEventListener('click', (e) => {
     // Condition 1: Must be a valid target
     // Condition 2: Must NOT be inside Holo container (she has her own sounds)
     if (target && !e.target.closest('#holo-container')) {
+        // check navigation lock on main page
+        const isMainPage = path.endsWith("index.html") || path === "/" || path.endsWith("/resume") || path.endsWith("/resume/");
+        if (isMainPage && !window.holoCanNavigate) {
+            // prevent navigation attempts until holo clicked
+            if (target.tagName === 'A' && target.href && target.target !== '_blank' && !target.getAttribute('href').startsWith('#')) {
+                // silently block and maybe prompt user
+                console.log('Navigation blocked until holo is tapped');
+                return; // drop the event
+            }
+        }
         
         // Special handling for links that navigate away (causing sound cut-off)
         // If it's an <a> tag, has an href, is NOT opening in new tab, and is NOT a hash link (smooth scroll)
@@ -433,38 +471,36 @@ window.addEventListener('scroll', () => {
         const dialog = document.querySelector(".holo-dialog-box");
 
         if (holoContainer && holoText && dialog) {
-            // Only trigger if she's not currently "vanished" or busy
-            if (!holoContainer.classList.contains("vanished") && !holoContainer.classList.contains("talking")) {
-                
-                holoText.innerText = "You've come to the end, do you like it? Press `view details` in the 'featured projects' section if you have not!";
-                
-                // Force show dialog using same logic as interact
-                holoContainer.classList.add("talking");
-                dialog.style.width = "400px"; // Make it wider for this long text
-                dialog.style.maxWidth = "none"; // Remove any max-width constraint
-                dialog.style.display = "block";
-                dialog.style.opacity = "1";
-                dialog.style.transform = "translateY(0)";
-                dialog.style.visibility = "visible";
+            // override any previous state (even if vanished or talking)
+            holoContainer.classList.remove("vanished");
+            holoContainer.classList.remove("talking");
+            
+            // set message (same as before but forcefully shown)
+            holoText.innerText = "You've come to the end, do you like it? Press `view details` in the 'featured projects' section if you have not!";
 
-                // Shake her to get attention
-                holoContainer.classList.add("shaking");
-                setTimeout(() => { holoContainer.classList.remove("shaking"); }, 400);
+            // show dialog forcibly
+            holoContainer.classList.add("talking");
+            dialog.style.width = "400px"; // make room for text
+            dialog.style.maxWidth = "none";
+            dialog.style.display = "block";
+            dialog.style.opacity = "1";
+            dialog.style.transform = "translateY(0)";
+            dialog.style.visibility = "visible";
 
-                // Hide after 5 seconds automatically
+            // give a shake to catch attention
+            holoContainer.classList.add("shaking");
+            setTimeout(() => { holoContainer.classList.remove("shaking"); }, 400);
+
+            // hide after a bit, but keep state so further scrolls don't retrigger
+            setTimeout(() => {
+                holoContainer.classList.remove("talking");
+                dialog.style.opacity = "";
+                dialog.style.transform = "";
                 setTimeout(() => {
-                    holoContainer.classList.remove("talking");
-                    dialog.style.opacity = "";
-                    dialog.style.transform = "";
-                    
-                    // Wait for fade out transition (300ms) to finish before resetting width
-                    // This prevents the "snap to small size" glitch while fading out
-                    setTimeout(() => {
-                        dialog.style.width = ""; 
-                        dialog.style.maxWidth = ""; 
-                    }, 350); 
-                }, 5000);
-            }
+                    dialog.style.width = "";
+                    dialog.style.maxWidth = "";
+                }, 350);
+            }, 5000);
         }
     }
 });

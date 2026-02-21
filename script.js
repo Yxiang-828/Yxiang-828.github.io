@@ -303,6 +303,8 @@ window.holoInteract = (element) => {
             document.removeEventListener('wheel', preventScroll);
             document.removeEventListener('touchmove', preventScroll);
             document.removeEventListener('keydown', preventScroll);
+            // reveal page content now that user has acknowleged
+            document.body.classList.remove('preload');
             // replace ready prompt with greeting
             text.innerText = "Greetings, traveler.";
             // allow navigation now

@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- hide page content until loader/holo sequence finishes -->
+    <style>body.preload{visibility:hidden !important;}</style>
     <meta name="description" content="Portfolio of Yao Xiang, Computer Engineering student at NUS specializing in AI, hardware, and software development.">
     <meta name="keywords" content="Yao Xiang, Computer Engineering, NUS, AI, Python, JavaScript, Verilog, Arduino, Helper Tools, Wingman">
     <title>Yao Xiang - Computer Engineering Student</title>
     <link rel="stylesheet" href="styles.css?v=5">
 </head>
-<body>
+<body class="preload">
     <!-- loading overlay grid -->
-    <div id="loader" aria-hidden="true"></div>
+    <div id="loader" aria-hidden="true">
+        <p id="loader-credit">Cover art by <a href="https://twitter.com/maru__myth" target="_blank">@maru__myth</a></p>
+    </div>
 
     <header>
         <nav>
@@ -250,6 +254,7 @@
     <footer>
         <div class="container">
             <p>&copy; 2025 Yao Xiang. All rights reserved.</p>
+            <p style="font-size:0.8rem; color:#888; margin-top:5px;">Cover artwork by <a href="https://twitter.com/maru__myth" target="_blank" style="color:#ff4444; text-decoration:none;">@maru__myth</a></p>
         </div>
     </footer>
 

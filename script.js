@@ -9,6 +9,29 @@ const isInProjects = path.includes("/projects/");
 const basePath = isInProjects ? "../" : "";
 // -----------------------------------------
 
+// --- Audio Preloading ---
+const sounds = {
+    click: new Audio(basePath + "images/mouse-click.mp3"),
+    pop: new Audio(basePath + "images/bubble-pop.mp3"),
+    shatter: new Audio(basePath + "images/glass-shatter.mp3")
+};
+
+// Preload them so they play immediately
+Object.values(sounds).forEach(audio => {
+    audio.preload = "auto";
+    audio.load();
+});
+
+function playSound(type, volume = 1.0) {
+    if (sounds[type]) {
+        // Clone the node to allow overlapping sounds if clicked rapidly
+        const soundClone = sounds[type].cloneNode();
+        soundClone.volume = volume;
+        soundClone.play().catch(e => console.log(`${type} sound failed:`, e));
+    }
+}
+// ------------------------
+
 // --- View Counter ---
 async function updateCounter() {
     try {
@@ -242,10 +265,8 @@ window.holoInteract = (element) => {
         else if (holoTapCount >= 5) {
             text.innerText = "mph!";
             
-            // Play Pop Sound - UPDATED PATH
-            const popSound = new Audio(basePath + "images/bubble-pop.mp3");
-            popSound.volume = 0.6;
-            popSound.play().catch(e => console.log("Pop sound failed:", e));
+            // Play Pop Sound
+            playSound('pop', 0.6);
 
             element.classList.add("vanished");
             
@@ -253,10 +274,8 @@ window.holoInteract = (element) => {
             setTimeout(() => {
                 element.classList.remove("vanished");
                 
-                // Play Pop Sound again - UPDATED PATH
-                const popReturn = new Audio(basePath + "images/bubble-pop.mp3");
-                popReturn.volume = 0.6;
-                popReturn.play().catch(e => console.log("Pop return failed:", e));
+                // Play Pop Sound again
+                playSound('pop', 0.6);
 
                 holoTapCount = 0; // Reset interaction
                 text.innerText = "I'm back!";
@@ -276,10 +295,9 @@ window.holoInteract = (element) => {
         else if (holoTapCount === 2) text.innerText = "Focus on the project!";
         else if (holoTapCount === 3) {
             text.innerText = "I'LL SEND YOU BACK HOME IF YOU DO IT AGAIN!";
-            // Pre-load assets for smooth animation - UPDATED PATH
+            // Pre-load assets for smooth animation
             const attackGif = new Image(); attackGif.src = basePath + "images/holo-attack.gif";
             const glassImg = new Image(); glassImg.src = basePath + "images/broken-glass_nobg.png";
-            const shatterSound = new Audio(basePath + "images/glass-shatter.mp3"); shatterSound.preload = "auto";
         }
         else if (holoTapCount >= 4) {
             text.innerText = "BEGONE!";
@@ -308,11 +326,9 @@ window.holoInteract = (element) => {
             // Start animation
             attackImg.classList.add("holo-attack-active");
             
-            // 3. Play Shatter Sound & Show Glass (Timed with impact) - UPDATED PATH
-            const shatterAudio = new Audio(basePath + "images/glass-shatter.mp3");
-            
+            // 3. Play Shatter Sound & Show Glass (Timed with impact)
             setTimeout(() => {
-                shatterAudio.play().catch(e => console.log("Audio play failed:", e));
+                playSound('shatter', 0.8);
                 glassOverlay.classList.add("glass-shattered");
                 attackImg.style.opacity = "0"; // Hide holo after shatter
             }, 600); // Adjust timing to match GIF impact
@@ -342,11 +358,7 @@ window.holoInteract = (element) => {
 
 // Global Click Sound Effect
 function playClickSound() {
-    // UPDATED PATH
-    const clickSound = new Audio(basePath + "images/mouse-click.mp3");
-    clickSound.volume = 0.4;
-    // We don't wait for the promise here because we handle delay separately
-    clickSound.play().catch(e => console.log("Click sound failed:", e));
+    playSound('click', 0.4);
 }
 
 // Global Event Listener - Catches ALL interaction clicks with Navigation Delay

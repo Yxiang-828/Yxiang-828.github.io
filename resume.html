@@ -301,6 +301,33 @@
         .mini-block {
             flex: 1;
         }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 0;
+                background: var(--white);
+            }
+            .resume-container {
+                width: 100%;
+                min-height: auto;
+                grid-template-columns: 1fr;
+                box-shadow: none;
+            }
+            .sidebar {
+                padding: 30px 20px;
+            }
+            .main-content {
+                padding: 20px;
+            }
+            .coursework-grid {
+                grid-template-columns: max-content 1fr;
+            }
+            .mini-section {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
     </style>
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">

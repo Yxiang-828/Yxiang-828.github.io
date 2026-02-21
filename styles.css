@@ -714,6 +714,39 @@ section {
         font-size: 2rem;
     }
 
+    #hero {
+        margin-top: 180px; /* Adjust for taller header */
+        padding: 100px 0 60px;
+    }
+
+    #hero .cta-button {
+        display: block;
+        margin: 15px auto !important;
+        width: 80%;
+    }
+
+    .project-card .cta-button {
+        display: block;
+        margin: 10px 0 !important;
+        width: 100%;
+        text-align: center;
+    }
+
+    .detail-container {
+        padding: 20px !important;
+        margin-top: 180px !important;
+    }
+
+    .detail-container h1 {
+        font-size: 2rem;
+    }
+
+    .perf-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
     section {
         padding: 60px 0;
     }

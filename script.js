@@ -22,12 +22,37 @@ Object.values(sounds).forEach(audio => {
     audio.load();
 });
 
+// --- Unlock audio on first user gesture ---
+let audioUnlocked = false;
+function unlockAudio() {
+    if (audioUnlocked) return;
+    audioUnlocked = true;
+    // play once muted to prime decoding/permission
+    Object.values(sounds).forEach(a => {
+        a.muted = true;
+        a.play().catch(() => {}).then(() => {
+            a.pause();
+            a.currentTime = 0;
+            a.muted = false;
+        });
+    });
+    window.removeEventListener('click', unlockAudio, true);
+}
+window.addEventListener('click', unlockAudio, {once: true, capture: true});
+// --------------------------------------------------
+
 function playSound(type, volume = 1.0) {
     if (sounds[type]) {
         // Clone the node to allow overlapping sounds if clicked rapidly
         const soundClone = sounds[type].cloneNode();
         soundClone.volume = volume;
-        soundClone.play().catch(e => console.log(`${type} sound failed:`, e));
+        soundClone.play().then(() => {
+            // console.log(`${type} sound played`);
+        }).catch(e => {
+            console.log(`${type} sound failed:`, e, 'readyState=', sounds[type].readyState);
+        });
+    } else {
+        console.warn('Requested sound', type, 'does not exist');
     }
 }
 // ------------------------

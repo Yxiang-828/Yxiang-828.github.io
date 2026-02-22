@@ -905,40 +905,52 @@ section {
     .nav-container {
         flex-direction: column;
         height: auto;
-        padding: 10px 15px;
-        gap: 10px;
+        padding: calc(10px + env(safe-area-inset-top)) 15px 10px 15px;
+        gap: 5px;
         justify-content: center;
         align-items: center;
+        background: #0a0000;
+        /* Solid background on mobile to prevent bleed */
     }
 
     nav h1 {
         text-align: center;
-        margin-bottom: 5px;
+        margin-bottom: 0px;
+        font-size: 1.5rem;
     }
 
     nav ul {
         margin-top: 5px;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
         align-items: center;
         width: 100%;
-        padding: 0;
-        gap: 10px;
+        padding: 5px 0;
+        gap: 15px;
+        -webkit-overflow-scrolling: touch;
+        border-top: 1px solid rgba(255, 68, 68, 0.2);
+    }
+
+    /* Hide scrollbar for the horizontal nav */
+    nav ul::-webkit-scrollbar {
+        display: none;
     }
 
     nav ul li {
         margin: 0;
+        white-space: nowrap;
     }
 
     nav ul li a {
         font-size: 0.9rem;
-        /* Slightly smaller list items */
         padding: 4px 8px;
     }
 
     #view-counter {
-        margin: 5px 0 0 0;
-        align-self: center;
+        display: none !important;
+        /* Hide view counter on mobile to save vertical space */
     }
 
     #hero h2 {

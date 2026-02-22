@@ -905,7 +905,7 @@ section {
     .nav-container {
         flex-direction: column;
         height: auto;
-        padding: calc(10px + env(safe-area-inset-top)) 15px 10px 15px;
+        padding: max(35px, env(safe-area-inset-top)) 15px 10px 15px;
         gap: 5px;
         justify-content: center;
         align-items: center;

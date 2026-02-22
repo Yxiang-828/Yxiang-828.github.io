@@ -1373,7 +1373,8 @@ section::after {
     bottom: 100%;
     right: 0;
     width: max-content;
-    max-width: 250px;
+    max-width: 35ch;
+    /* Wrap cleanly around ~7-8 words without leaving empty space */
     background: rgba(26, 5, 5, 0.95);
     border: 1px solid #ff4444;
     border-radius: 8px;
@@ -1429,9 +1430,7 @@ section::after {
     transform: translateY(0);
     visibility: visible;
     pointer-events: auto;
-    width: 400px;
-    max-width: 90vw;
-    /* allow fluid wrapping */
+    /* allow fluid wrapping via max-width: 35ch from base class */
 }
 
 /* Animations */

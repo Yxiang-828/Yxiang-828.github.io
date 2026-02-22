@@ -454,7 +454,14 @@ window.addEventListener('scroll', () => {
                 if (holoContainer && holoText && dialog) {
                     holoContainer.classList.remove("vanished");
 
-                    holoText.innerText = "You've come to the end, do you like it? Press `view details` in the 'featured projects' section if you have not!";
+
+                    const isMainPage = path.endsWith("index.html") || path === "/" || path.endsWith("/resume") || path.endsWith("/resume/");
+
+                    if (isMainPage) {
+                        holoText.innerText = "You've come to the end, do you like it? Press `view details` in the 'featured projects' section if you have not!";
+                    } else {
+                        holoText.innerText = "How is it?";
+                    }
 
                     holoContainer.classList.add("talking");
                     dialog.classList.add("interaction-end");
